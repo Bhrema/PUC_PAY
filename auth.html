@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUCPAY - Registre-se</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
+
+  <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>PUC</b>PAY</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Registre-se aqui</p>
+
+      <form id="register-form">
+
+        <div class="input-group mb-3">
+          <input id="formEmail" type="email" class="form-control" placeholder="Email" name="email"> <!--Input de EMAIL-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+        
+        <div class="input-group mb-3">
+          <input id="formNome" type="text" class="form-control" placeholder="Nome Completo" name="name"> <!--Input de Nome-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpf" checked onclick="set_cpf()">
+          <label class="form-check-label" for="inlineRadio1">CPF</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpnj" onclick="set_cnpj()">
+          <label class="form-check-label" for="inlineRadio2">CNPJ</label>
+        </div>
+
+        <div class="input-group mb-3" id="cpf_div">
+          <input id="formCpf" type="text" class="form-control" placeholder="CPF" name="cpf"> <!--Input de Cpf/Cnpj (por enquanto)-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-id-card"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback">CPF inválido</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+
+        <div class="input-group mb-3" style="display: none;" id="cnpj_div">
+          <input id="formCpf" type="text" class="form-control" placeholder="CNPJ" name="cnpj"> <!--Input de Cpf/Cnpj (por enquanto)-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-id-card"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback">CNPJ inválido</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+
+        <div id="endereco" style="display: none;">
+          <select class="form-select mb-3">
+            <option selected>Endereço</option>
+            <option value="1">Bloco 1 Amarelo</option>
+            <option value="2">Bloco 2 Azul</option>
+            <option value="3">Bloco 3 Verde</option>
+            <option value="4">Bloco 4 Laranja</option>
+            <option value="5">Bloco 5 Vermelho</option>
+            <option value="6">Bloco 6 Medicina</option>
+            <option value="7">Bloco 7 Politécnica</option>
+            <option value="8">DCE</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <input id="formPassword" type="password" class="form-control" placeholder="Password" name="password"> <!--Input de senha-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback"> Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+        <div class="input-group mb-3">
+          <input id="formPassword" type="password" class="form-control" placeholder="Confirme Senha" name="password"> <!--Input de senha-->
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+          <span class="invalid-feedback"> Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</span>
+          <!--Span que aparece caso o Regex não retorne True-->
+        </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block" id="register-button">Registrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+        <a href="login.html" class="text-center" style="bottom: 50px; left: 75px; position: relative;">Eu já possuo um login</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+<script>
+const set_cnpj = () => {
+  document.getElementById("cnpj_div").style.display = "flex";
+  document.getElementById("cpf_div").style.display = "none";
+  document.getElementById("endereco").style.display = "block";
+}
+const set_cpf = () => {
+  document.getElementById("cpf_div").style.display = "flex";
+  document.getElementById("cnpj_div").style.display = "none";
+  document.getElementById("endereco").style.display = "none";
+}
+const form = document.getElementById('register-form') // Captura o formulário
+
+// Regex de email para o cadastro de usuário
+const emailInput = document.getElementById('formEmail'); // Captura o input de email
+const emailFeedback = document.querySelector('.invalid-feedback'); // Captura o span de Erro
+emailInput.addEventListener('input', () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailValue = emailInput.value;
+  
+  if (emailRegex.test(emailValue)) {
+    emailInput.classList.remove('is-invalid');
+    emailInput.classList.add('is-valid');
+    emailFeedback.style.display = 'none';
+  } else {
+    emailInput.classList.remove('is-valid');
+    emailInput.classList.add('is-invalid');
+    emailFeedback.style.display = 'block';
+  }
+});
+
+const nameInput = document.getElementById('formNome');
+const nameFeedback = document.querySelector('.invalid-feedback');
+// Regex de Nome para cadastro de usuário
+nameInput.addEventListener('input', () => {
+  const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
+  const nameValue = nameInput.value;
+  
+  if (nameRegex.test(nameValue)) {
+    nameInput.classList.remove('is-invalid');
+    nameInput.classList.add('is-valid');
+    nameFeedback.style.display = 'none';
+  } else {
+    nameInput.classList.remove('is-valid');
+    nameInput.classList.add('is-invalid');
+    nameFeedback.style.display = 'block';
+  }
+}); 
+
+const passwordInput = document.getElementById('formPassword');
+const passwordFeedback = document.querySelector('.invalid-feedback');
+// Regex de senha para cadastro de usuário
+passwordInput.addEventListener('input', () => {
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
+  const passwordValue = passwordInput.value;
+    
+  if (passwordRegex.test(passwordValue)) {
+      passwordInput.classList.remove('is-invalid');
+      passwordInput.classList.add('is-valid');
+      passwordFeedback.style.display = 'none';
+  } else {
+      passwordInput.classList.remove('is-valid');
+      passwordInput.classList.add('is-invalid');
+      passwordFeedback.style.display = 'block';
+    }
+});
+
+
+const register = async (data) => {
+const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
+  //fetch() retorna uma promise que é resolvida quando a resposta é recebida
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
+    },
+    body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
+  });
+  
+    const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
+
+    console.log(responseData); // exibe a resposta no console
+
+    return responseData; // retorna a resposta como um objeto JS
+}
+  // Captura o evento de submit do form
+  form.addEventListener('submit', event => {
+    event.preventDefault() // Previne que a tela sofra refresh
+    handleRegister()
+    });
+
+    async function handleRegister() {
+      const formData = new FormData(form); // obtém os valores do form e os converte em objetos
+      const data = {}; // objeto que irá armazenar os valores do formulário
+
+      formData.forEach((value, key) => { // itera sobre os campos do formulário
+        data[key] = value; // o valor e a chave são adicionados em data
+        // ex : email(chave) luiz@gamil.com(value)
+      });
+
+      const response = await register(data) // aguarda a resolução da Promise retornada
+
+      if(response.email) { // verifica se a resposta tem a key email
+        window.location.replace('login.html') // manda para a tela de login
+      } else {
+        console.log('login inválido')
+      }
+      }
+</script>
+ 
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+</body>
+</html>

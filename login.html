@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUCPAY - Registre-se</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>PUC</b>PAY</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Realize seu login</p>
+      <form method="post" id="login-form">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12 align-item-center mb-3">
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+        <a href="/front-end/auth.html" class="float-right" href="registre.html" class="text-center">Não possuo um
+          login</a>
+      </div>
+      <!-- /.form-box -->
+    </div><!-- /.card -->
+  </div>
+  <!-- /.register-box -->
+
+  <script>
+
+    const form = document.getElementById('login-form')
+
+
+    const login = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const responseData = await response.json();
+
+      console.log(responseData);
+
+      return responseData;
+
+      const identification = async (data) =>{
+        const response = await fetch('http://localhost:3000/auth/whoami', {
+        method: 'GET'
+      });
+    }
+
+      return response;
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      handleLogin()
+    });
+
+    async function handleLogin() {
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      const response = await login(data)
+
+      if (response.isAdmin) {
+        setTimeout(function () {
+
+          const user = JSON.stringify(response)
+
+          localStorage.setItem('session', user)
+
+          window.location.replace('dashboard-adm.html');
+        }, 1200);
+      } else if(response.email) {
+        setTimeout(function () {
+
+          const user = JSON.stringify(response)
+
+          localStorage.setItem('session', user)
+
+          window.location.replace('dashboard-aluno.html');
+        }, 1200);
+      }
+    }
+  </script>
+
+
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+</body>
+
+</html>
