@@ -8,11 +8,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
 
   <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
 </head>
@@ -76,12 +76,12 @@
               <span class="fas fa-id-card"></span>
             </div>
           </div>
-          <span id="spanErrorCnpj" class="invalid-feedback">CNPJ inválido / Somente números</span>
+          <span id="spanErrorCnpj" class="invalid-feedback">CNPJ inválido</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
 
         <div id="endereco" style="display: none;">
-          <select id="enderecoInput" class="form-select mb-3">
+          <select id="enderecoInput" class="form-select mb-3" name="block">
             <option selected></option>
             <option value="1">Bloco 1 Amarelo</option>
             <option value="2">Bloco 2 Azul</option>
@@ -122,7 +122,7 @@
           <!-- /.col -->
         </div>
       </form>
-        <a href="login.html" class="text-center" style="bottom: 50px; left: 75px; position: relative;">Eu já possuo um login</a>
+        <a href="login.html" class="text-center" style="left: 75px; position: relative;">Eu já possuo um login</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -282,8 +282,7 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
       'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
     },
     body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
-  });
-  
+  })
     const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
 
     console.log(responseData); // exibe a resposta no console
@@ -306,13 +305,8 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
       });
 
       const response = await register(data) // aguarda a resolução da Promise retornada
-
-      if(response.email) { // verifica se a resposta tem a key email
-        window.location.replace('login.html') // manda para a tela de login
-      } else {
-        console.log('login inválido')
       }
-      }
+      
 
 </script>
  
