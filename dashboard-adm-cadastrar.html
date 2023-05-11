@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUCPAY</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contato</a>
+        </li>
+      </ul>
+
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+            <i class="fas fa-search"></i>
+          </a>
+          <div class="navbar-search-block">
+            <form class="form-inline">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </li>
+
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Brad Diesel
+                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">Call me whenever you can...</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    John Pierce
+                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">I got your message bro</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Nora Silvester
+                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">The subject goes here</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+          </div>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+
+
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <span class="brand-text font-weight-light">PUCPAY</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <i class="fas-fa-user"></i>
+          </div>
+          <div class="info">
+            <a href="login.html" class="d-block" id="session-name">Faça seu login</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            <li class="nav-item menu-open">
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./dashboard-adm.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Overview
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Cadastrar</p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./dashboard-adm-view-users.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Usuarios</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Relatórios</p>
+                  </a>
+                </li>
+
+              </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- CONTEÚDO DO DASHBOARD -->
+    <section class="content">
+      <!-- <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div> -->
+        <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
+          <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
+                  <div class="card-body p-5"><!--  Input Control -->
+                    <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Cadastrar Conta</h2>
+  
+                    <form id="register-form" style="position: relative; bottom: 40px;">
+  
+                      <div class="form-outline mb-1">
+                        <label class="form-label" for="formAdmEmail">Email</label>
+                        <input id="formAdmEmail" type="email" class="form-control form-control-lg" name="email" />
+                        <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
+                      </div>
+  
+                      <div class="form-outline mb-1">
+                        <label class="form-label" for="formAdmNome">Nome</label>
+                        <input id="formAdmNome" type="text" class="form-control form-control-lg" name="name" />
+                        <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpf" checked onclick="set_cpf()">
+                        <label class="form-check-label" for="inlineRadio1">CPF</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cnpj" onclick="set_cnpj()">
+                        <label class="form-check-label" for="cnpj">CNPJ</label>
+                      </div>
+  
+                      <div class="form-outline mb-1" id="cpf_div">
+                        <label class="form-label" for="formAdmCPF">CPF</label>
+                        <input id="formAdmCPF" type="text"  class="form-control form-control-lg" name="cpf_cnpj" />
+                      </div>
+
+                      <div class="form-outline mb-1" id="cnpj_div" style="display: none;">
+                        <label class="form-label" for="formAdmCNPJ">CNPJ</label>
+                        <input id="formAdmCNPJ" type="text"  class="form-control form-control-lg" name="cpf_cnpj" />
+                      </div>
+
+                      <div id="endereco" style="display: none;">
+                        <label class="form-label" for="formAdmeEndereço">Endereço</label><br>
+                        <select class="form-select mb-3" id="formAdmeEndereço">  
+                          <option value="1">Bloco 1 Amarelo</option>
+                          <option value="2">Bloco 2 Azul</option>
+                          <option value="3">Bloco 3 Verde</option>
+                          <option value="4">Bloco 4 Laranja</option>
+                          <option value="5">Bloco 5 Vermelho</option>
+                          <option value="6">Bloco 6 Medicina</option>
+                          <option value="7">Bloco 7 Politécnica</option>
+                          <option value="8">DCE</option>
+                        </select>
+                      </div>
+  
+                      <div class="form-outline mb-1">
+                        <label class="form-label" for="formAdmSenha">Senha</label>
+                        <input id="formAdmSenha" type="password"  class="form-control form-control-lg" name="password" />
+                      </div>
+  
+                      <div class="d-flex justify-content-center position-relative" style="top: 10px;">
+                        <button type="submit"
+                          class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrar</button>
+                      </div>
+                    </form>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </section>  
+
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
+
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.2.0
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <script>
+    const set_cnpj = () => {
+      document.getElementById("cnpj_div").style.display = "block";
+      document.getElementById("cpf_div").style.display = "none";
+      document.getElementById("endereco").style.display = "block";
+      document.getElementById("card-registro").style.height = "570px";
+      document.getElementById("label-cad").style.bottom = "30px";
+      document.getElementById("register-form").style.bottom = "80px";
+    } 
+    const set_cpf = () => {
+    document.getElementById("cpf_div").style.display = "block";
+    document.getElementById("cnpj_div").style.display = "none";
+    document.getElementById("endereco").style.display = "none";
+    document.getElementById("card-registro").style.height = "550px";
+    document.getElementById("label-cad").style.bottom = "0px";
+    document.getElementById("register-form").style.bottom = "40px";
+    }
+    const form = document.getElementById('register-form')
+
+    function regex() {
+      const formAdmEmail = document.getElementById('formAdmEmail')
+      const formAdmNome = document.getElementById('formAdmNome')
+      const formAdmCpfCnpj = document.getElementById('formAdmCpf/Cnpj')
+      const formAdmSenha = document.getElementById('formAdmSenha')
+
+      // Regex de input do e-mail de cadastro da tela de Adm
+      formAdmEmail.addEventListener('input', () => {
+
+        const formAdmEmailFeedback = document.querySelector('.invalid-feedback')
+        const admEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (admEmailRegex.test(formAdmEmail.value)) {
+          formAdmEmail.classList.remove('is-invalid');
+          formAdmEmail.classList.add('is-valid');
+          formAdmEmailFeedback.style.display = 'none';
+        } else {
+          formAdmEmail.classList.remove('is-valid');
+          formAdmEmail.classList.add('is-invalid');
+          formAdmEmailFeedback.style.display = 'block';
+        }
+      });
+    }
+    regex()
+    const register = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      const responseData = await response.json();
+
+      return responseData;
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault()
+      handleRegister()
+    })
+
+
+    async function handleRegister() {
+      const formData = new FormData(form);
+      const data = {};
+      if (sessionJson.isAdmin) {
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+      }
+
+      const response = await register(data)
+
+      if (response.email) {
+        window.location.replace('dashboard-adm-view-users.html')
+      } else {
+        console.log('Erro, ou registro inválido')
+      }
+    }
+
+
+    const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
+
+
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+    }
+
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
+
+    function deleteSession() {
+      localStorage.removeItem('session');
+    }
+
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+    const userNameSession = document.getElementById('session-name')
+
+    userNameSession.innerText = sessionJson.name;
+
+
+  </script>
+
+
+
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.js"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="plugins/raphael/raphael.min.js"></script>
+  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+  <!-- ChartJS -->
+  <script src="plugins/chart.js/Chart.min.js"></script>
+
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="dist/js/pages/dashboard2.js"></script>
+</body>
+
+</html>
