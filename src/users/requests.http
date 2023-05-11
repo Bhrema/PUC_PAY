@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallo12@gmail.com",
-  "name": "Otávio Costa Dallo",
-  "cpf": "10843769972",
+  "email": "ocostadallo12@gmai.com",
+  "name": "Otávio Cost Dallo",
+  "cpf": "10843769922",
   "password": "@Livia040323"
 }
 
