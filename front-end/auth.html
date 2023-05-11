@@ -34,7 +34,7 @@
               <span class="fas fa-envelope"></span>
             </div>
           </div>
-          <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
+          <span id="spanErrorEmail" class="invalid-feedback">Insira um e-mail válido</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
         
@@ -45,17 +45,17 @@
               <span class="fas fa-user"></span>
             </div>
           </div>
-          <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
+          <span id="spanErrorName" class="invalid-feedback">Nome completo sem símbolos</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
 
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpf" checked onclick="set_cpf()">
-          <label class="form-check-label" for="inlineRadio1">CPF</label>
+          <label class="form-check-label" for="inlineRadio1">Acadêmico</label>
         </div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpnj" onclick="set_cnpj()">
-          <label class="form-check-label" for="inlineRadio2">CNPJ</label>
+          <label class="form-check-label" for="inlineRadio2">Restaurante</label>
         </div>
 
         <div class="input-group mb-3" id="cpf_div">
@@ -65,24 +65,24 @@
               <span class="fas fa-id-card"></span>
             </div>
           </div>
-          <span class="invalid-feedback">CPF inválido</span>
+          <span id="spanErrorCpf" class="invalid-feedback">CPF inválido / Somente números</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
 
         <div class="input-group mb-3" style="display: none;" id="cnpj_div">
-          <input id="formCpf" type="text" class="form-control" placeholder="CNPJ" name="cnpj"> <!--Input de Cpf/Cnpj (por enquanto)-->
+          <input id="formCnpj" type="text" class="form-control" placeholder="CNPJ" name="cnpj"> <!--Input de Cpf/Cnpj (por enquanto)-->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-id-card"></span>
             </div>
           </div>
-          <span class="invalid-feedback">CNPJ inválido</span>
+          <span id="spanErrorCnpj" class="invalid-feedback">CNPJ inválido / Somente números</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
 
         <div id="endereco" style="display: none;">
-          <select class="form-select mb-3">
-            <option selected>Endereço</option>
+          <select id="enderecoInput" class="form-select mb-3">
+            <option selected></option>
             <option value="1">Bloco 1 Amarelo</option>
             <option value="2">Bloco 2 Azul</option>
             <option value="3">Bloco 3 Verde</option>
@@ -92,6 +92,7 @@
             <option value="7">Bloco 7 Politécnica</option>
             <option value="8">DCE</option>
           </select>
+          <span id="spanErrorEndereco" class="invalid-feedback">Selecione um endereço</span>
         </div>
 
         <div class="input-group mb-3">
@@ -101,17 +102,17 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
-          <span class="invalid-feedback"> Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</span>
+          <span id="spanErrorPassword" class="invalid-feedback"> Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
         <div class="input-group mb-3">
-          <input id="formPassword" type="password" class="form-control" placeholder="Confirme Senha" name="password"> <!--Input de senha-->
+          <input id="formValidatePassword" type="password" class="form-control" placeholder="Confirme Senha" name="password"> <!--Input de senha-->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
-          <span class="invalid-feedback"> Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</span>
+          <span id="spanErrorValidatePassword" class="invalid-feedback">Insira a mesma senha </span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
           <!-- /.col -->
@@ -131,6 +132,7 @@
 <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
 <script>
+
 const set_cnpj = () => {
   document.getElementById("cnpj_div").style.display = "flex";
   document.getElementById("cpf_div").style.display = "none";
@@ -141,11 +143,12 @@ const set_cpf = () => {
   document.getElementById("cnpj_div").style.display = "none";
   document.getElementById("endereco").style.display = "none";
 }
+
 const form = document.getElementById('register-form') // Captura o formulário
 
 // Regex de email para o cadastro de usuário
 const emailInput = document.getElementById('formEmail'); // Captura o input de email
-const emailFeedback = document.querySelector('.invalid-feedback'); // Captura o span de Erro
+const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
 emailInput.addEventListener('input', () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailValue = emailInput.value;
@@ -162,7 +165,7 @@ emailInput.addEventListener('input', () => {
 });
 
 const nameInput = document.getElementById('formNome');
-const nameFeedback = document.querySelector('.invalid-feedback');
+const nameFeedback = document.getElementById('spanErrorName')
 // Regex de Nome para cadastro de usuário
 nameInput.addEventListener('input', () => {
   const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
@@ -179,8 +182,63 @@ nameInput.addEventListener('input', () => {
   }
 }); 
 
+const cpfInput = document.getElementById('formCpf')
+const cpfFeedback = document.getElementById('spanErrorCpf')
+// Regex de Cpf para cadastro de usuário
+cpfInput.addEventListener('input', () => {
+  const cpfRegex = /^\d{11}$/
+  const cpfValue = cpfInput.value
+
+  if (cpfRegex.test(cpfValue)) {
+    cpfInput.classList.remove('is-invalid')
+    cpfInput.classList.add('is-valid')
+    cpfFeedback.style.display = 'none'
+  }
+  else {
+    cpfInput.classList.remove('is-valid')
+    cpfInput.classList.add('is-invalid')
+    cpfFeedback.style.display = 'block'
+  }
+})
+
+const cnpjInput = document.getElementById('formCnpj')
+const cnpjFeedback = document.getElementById('spanErrorCnpj')
+// Regex de CNPJ para cadastro de restaurantes
+cnpjInput.addEventListener('input', () => {
+  const cnpjRegex = /^\d{14}$/
+  const cnpjValue = cnpjInput.value
+
+  if (cnpjRegex.test(cnpjValue)) {
+    cnpjInput.classList.remove('is-invalid')
+    cnpjInput.classList.add('is-valid')
+    cnpjFeedback.style.display = 'none'
+  }
+  else {
+    cnpjInput.classList.remove('is-valid')
+    cnpjInput.classList.add('is-invalid')
+    cnpjFeedback.style.display = 'block'
+  }
+})
+
+const enderecoInput = document.getElementById('enderecoInput')
+const enderecoFeedback = document.getElementById('spanErrorEndereco')
+// Regex de endereço(bloco) para restaurantes
+enderecoInput.addEventListener('click', () => {
+  const enderecoValue = enderecoInput.value
+  if (enderecoValue === '') {
+    enderecoInput.classList.remove('is-valid')
+    enderecoInput.classList.add('is-invalid')
+    enderecoFeedback.style.display = 'block'
+  }
+  else {
+    enderecoInput.classList.remove('is-invalid')
+    enderecoInput.classList.add('is-valid')
+    enderecoFeedback.style.display = 'none'
+  }
+})
+
 const passwordInput = document.getElementById('formPassword');
-const passwordFeedback = document.querySelector('.invalid-feedback');
+const passwordFeedback = document.getElementById('spanErrorPassword')
 // Regex de senha para cadastro de usuário
 passwordInput.addEventListener('input', () => {
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
@@ -196,6 +254,24 @@ passwordInput.addEventListener('input', () => {
       passwordFeedback.style.display = 'block';
     }
 });
+
+const validatePasswordInput = document.getElementById('formValidatePassword')
+const validatePassFeedback = document.getElementById('spanErrorValidatePassword')
+// Regex de validar senha
+validatePasswordInput.addEventListener('input', () => {
+  if (validatePasswordInput.value === passwordInput.value) {
+      validatePasswordInput.classList.remove('is-invalid');
+      validatePasswordInput.classList.add('is-valid');
+      validatePassFeedback.style.display = 'none';
+  }
+  else {
+      validatePasswordInput.classList.remove('is-valid');
+      validatePasswordInput.classList.add('is-invalid');
+      validatePassFeedback.style.display = 'block';
+  }
+
+}
+)
 
 
 const register = async (data) => {
@@ -217,7 +293,7 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
   // Captura o evento de submit do form
   form.addEventListener('submit', event => {
     event.preventDefault() // Previne que a tela sofra refresh
-    handleRegister()
+    handleRegister() 
     });
 
     async function handleRegister() {
@@ -237,6 +313,7 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
         console.log('login inválido')
       }
       }
+
 </script>
  
 <!-- jQuery -->
