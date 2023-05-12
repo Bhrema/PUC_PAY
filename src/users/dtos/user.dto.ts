@@ -14,8 +14,11 @@ export class UserDto {
   cpf: string;
 
   @Expose()
-  isAdmin: boolean;
+  cnpj: string;
 
   @Expose()
-  isRestaurant: boolean;
+  block: string;
+
+  @Expose()
+  isAdmin: boolean;
 }

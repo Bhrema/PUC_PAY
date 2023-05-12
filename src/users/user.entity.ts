@@ -18,8 +18,14 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column( { nullable: true } )
   cpf: string;
+
+  @Column( { nullable: true } )
+  cnpj: string;
+
+  @Column( { nullable: true } )
+  block: string;
 
   @Column()
   password: string;
