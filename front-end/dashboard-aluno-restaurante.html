@@ -206,6 +206,12 @@
   </div>
   <!-- ./wrapper -->
   <script>
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    const userNameSession = document.getElementById('session-name')
+    userNameSession.innerText = sessionJson.name;
+
 
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
@@ -235,11 +241,7 @@
       localStorage.removeItem('session');
     }
 
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
 
-    const userNameSession = document.getElementById('session-name')
-    userNameSession.innerText = sessionJson.name;
 
 
   </script>

@@ -129,7 +129,7 @@
 
         const response = await login(data);
 
-        if (response.isAdmin) {
+        if (response.isAdmin && response) {
           setTimeout(function () {
             const user = JSON.stringify(response);
 
@@ -137,7 +137,7 @@
 
             window.location.replace("dashboard-adm.html");
           }, 1200);
-        } else if (response.email) {
+        } else if (response.user) {
           setTimeout(function () {
             const user = JSON.stringify(response);
 
@@ -145,7 +145,14 @@
 
             window.location.replace("dashboard-aluno.html");
           }, 1200);
-        }
+        } else if (response.cnpj) {
+          setTimeout(function () {
+            const user = JSON.stringify(response);
+
+            localStorage.setItem("session", user);
+
+            window.location.replace("dashboard-restaurante.html");
+          }, 1200)
       }
     </script>
 

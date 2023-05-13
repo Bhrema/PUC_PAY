@@ -305,12 +305,15 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
       });
 
       const response = await register(data) // aguarda a resolução da Promise retornada
+      console.log(response)
 
-
-      if (response.isEmail){
+      if (response.email){
         window.location.replace('login.html')
       }
+
+
       }
+      
 
       
       
