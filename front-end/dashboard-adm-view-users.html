@@ -401,6 +401,18 @@
               }
               });
             });
+            const buttonsEditar = document.querySelectorAll('[id^="button-delete"]');
+            buttonsEditar.forEach((buttonsEditar) => {
+              const id =buttonsEditar.id.split('-')[2];
+              if (sessionJson.isAdmin & users.isAdmin !== true){
+                if (sessionJson.cpf) {                  
+                  window.location.replace("adm-editar-restaurante.html")
+                } else {
+                  window.location.replace('adm-editar-acad.html')
+                }
+
+              }
+            })
               
 
             async function deleteUser(id) {
