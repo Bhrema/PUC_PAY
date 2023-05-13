@@ -7,14 +7,13 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="node_modules/bootstrap/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -215,7 +214,7 @@
                           <td class="text-nowrap align-middle" name="id">01</td>
                           <td class="text-nowrap align-middle" name="name">Luiz Gonzaga</td>
                           <td class="text-nowrap align-middle" name="email"><span>Email.email@email.com</span></td>
-                          <td class="text-nowrap align-middle" name="cpf_cnpj"><span>19019019020</span></td>
+                          <td class="text-nowrap align-middle" name="cpf"><span>19019019020</span></td>
                           <td class="text-nowrap align-middle" name="isAdmin"><span>False</span></td>
                           <td class="text-center align-middle">
                             <div class="btn-group align-top">
@@ -268,7 +267,7 @@
                           <td class="text-nowrap align-middle" name="id">02</td>
                           <td class="text-nowrap align-middle" name="name">The Dripper</td>
                           <td class="text-nowrap align-middle" name="email"><span>Email.email@email.com</span></td>
-                          <td class="text-nowrap align-middle" name="cpf_cnpj"><span>12345678901011</span></td>
+                          <td class="text-nowrap align-middle" name="cnpj"><span>12345678901011</span></td>
                           <td class="text-center align-middle">
                             <div class="btn-group align-top">
                               <button class="btn btn-sm btn-outline-secondary badge" type="button"
@@ -402,8 +401,8 @@
               }
               });
             });
-            
-            
+              
+
             async function deleteUser(id) {
               try {
                 const response = await fetch(`http://localhost:3000/auth/${id}`, {
