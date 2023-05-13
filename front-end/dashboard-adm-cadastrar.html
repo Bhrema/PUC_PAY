@@ -217,37 +217,42 @@
                       <div class="form-outline mb-1">
                         <label class="form-label" for="formAdmEmail">Email</label>
                         <input id="formAdmEmail" type="email" class="form-control form-control-lg" name="email" />
-                        <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
+                        <span id="SpanAdmEmail" class="invalid-feedback">Por favor, insira um e-mail correto</span>
                       </div>
   
                       <div class="form-outline mb-1">
                         <label class="form-label" for="formAdmNome">Nome</label>
                         <input id="formAdmNome" type="text" class="form-control form-control-lg" name="name" />
-                        <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
+                        <span id="SpanAdmNome" class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
                       </div>
 
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cpf" checked onclick="set_cpf()">
-                        <label class="form-check-label" for="inlineRadio1">CPF</label>
+                        <label class="form-check-label" for="inlineRadio1">Acadêmico</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="cnpj" onclick="set_cnpj()">
-                        <label class="form-check-label" for="cnpj">CNPJ</label>
+                        <label class="form-check-label" for="cnpj">Restaurante</label>
                       </div>
   
                       <div class="form-outline mb-1" id="cpf_div">
                         <label class="form-label" for="formAdmCPF">CPF</label>
                         <input id="formAdmCPF" type="text"  class="form-control form-control-lg" name="cpf" />
+                        <span id="SpanAdmCpf" class="invalid-feedback
+                        ">CPF Inválido / Somente números</span>
                       </div>
 
                       <div class="form-outline mb-1" id="cnpj_div" style="display: none;">
                         <label class="form-label" for="formAdmCNPJ">CNPJ</label>
                         <input id="formAdmCNPJ" type="text"  class="form-control form-control-lg" name="cnpj" />
+                        <span id="SpanAdmCnpj" class="invalid-feedback
+                        ">CNPJ Inválido / Somente números</span>
                       </div>
 
                       <div id="endereco" style="display: none;">
-                        <label class="form-label" for="formAdmeEndereço">Endereço</label><br>
-                        <select class="form-select mb-3" id="formAdmeEndereço" name="block">  
+                        <label class="form-label" for="formAdmEndereço">Endereço</label><br>
+                        <select class="form-select mb-3" id="formAdmEndereço" name="block">
+                          <option selected></option>  
                           <option value="1">Bloco 1 Amarelo</option>
                           <option value="2">Bloco 2 Azul</option>
                           <option value="3">Bloco 3 Verde</option>
@@ -257,11 +262,15 @@
                           <option value="7">Bloco 7 Politécnica</option>
                           <option value="8">DCE</option>
                         </select>
+                        <span id="SpanAdmEndereco" class="invalid-feedback
+                        ">Endereço inválido</span>
                       </div>
   
                       <div class="form-outline mb-1">
                         <label class="form-label" for="formAdmSenha">Senha</label>
                         <input id="formAdmSenha" type="password"  class="form-control form-control-lg" name="password" />
+                        <span id="SpanAdmSenha" class="invalid-feedback
+                        ">Senha com pelo menos 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial</span>
                       </div>
   
                       <div class="d-flex justify-content-center position-relative" style="top: 10px;">
@@ -321,13 +330,14 @@
     function regex() {
       const formAdmEmail = document.getElementById('formAdmEmail')
       const formAdmNome = document.getElementById('formAdmNome')
-      const formAdmCpfCnpj = document.getElementById('formAdmCpf/Cnpj')
+      const formAdmCpf = document.getElementById('formAdmCPF')
+      const formAdmCnpj = document.getElementById('formAdmCNPJ')
+      const formAdmEndereco = document.getElementById('formAdmEndereço')
       const formAdmSenha = document.getElementById('formAdmSenha')
 
       // Regex de input do e-mail de cadastro da tela de Adm
       formAdmEmail.addEventListener('input', () => {
-
-        const formAdmEmailFeedback = document.querySelector('.invalid-feedback')
+        const formAdmEmailFeedback = document.getElementById('SpanAdmEmail')
         const admEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (admEmailRegex.test(formAdmEmail.value)) {
@@ -340,6 +350,86 @@
           formAdmEmailFeedback.style.display = 'block';
         }
       });
+      // Regex de input de nome
+      formAdmNome.addEventListener('input', () => {
+        const formAdmNomeFeedback = document.getElementById('SpanAdmNome')
+        const admNomeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
+
+        if (admNomeRegex.test(formAdmNome.value)) {
+          formAdmNome.classList.remove('is-invalid');
+          formAdmNome.classList.add('is-valid');
+          formAdmNomeFeedback.style.display = 'none';
+        } else {
+          formAdmNome.classList.remove('is-valid');
+          formAdmNome.classList.add('is-invalid');
+          formAdmNomeFeedback.style.display = 'block';
+        }
+        });
+
+        formAdmCpf.addEventListener('input', () => {
+        const formAdmCpfFeedback = document.getElementById('SpanAdmCpf')
+        const admCpfRegex = /^\d{11}$/
+
+        if (admCpfRegex.test(formAdmCpf.value)) {
+          formAdmCpf.classList.remove('is-invalid');
+          formAdmCpf.classList.add('is-valid');
+          formAdmCpfFeedback.style.display = 'none';
+        } else {
+          formAdmCpf.classList.remove('is-valid');
+          formAdmCpf.classList.add('is-invalid');
+          formAdmCpfFeedback.style.display = 'block';
+        }
+        });
+
+        formAdmCnpj.addEventListener('input', () => {
+        const formAdmCnpjFeedback = document.getElementById('SpanAdmCnpj')
+        const admCnpjRegex = /^\d{14}$/
+
+        if (admCnpjRegex.test(formAdmCnpj.value)) {
+          formAdmCnpj.classList.remove('is-invalid');
+          formAdmCnpj.classList.add('is-valid');
+          formAdmCnpjFeedback.style.display = 'none';
+        } else {
+          formAdmCnpj.classList.remove('is-valid');
+          formAdmCnpj.classList.add('is-invalid');
+          formAdmCnpjFeedback.style.display = 'block';
+        }
+        });
+
+        formAdmEndereco.addEventListener('click', () => {
+        const formAdmEnderecoFeedback = document.getElementById('SpanAdmEndereco')
+
+        if (formAdmEndereco.value !== '') {
+          formAdmEndereco.classList.remove('is-invalid');
+          formAdmEndereco.classList.add('is-valid');
+          formAdmEnderecoFeedback.style.display = 'none';
+        } else {
+          formAdmEndereco.classList.remove('is-valid');
+          formAdmEndereco.classList.add('is-invalid');
+          formAdmEnderecoFeedback.style.display = 'block';
+        }
+        });
+
+        formAdmSenha.addEventListener('input', () => {
+          const formAdmSenhaFeedback = document.getElementById('SpanAdmSenha')
+          const formAdmSenhaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/
+
+          if (formAdmSenhaRegex.test(formAdmSenha.value)) {
+            formAdmSenha.classList.remove('is-invalid')
+            formAdmSenha.classList.add('is-valid')
+            formAdmSenhaFeedback.style.display = 'none'
+          }
+          else {
+            formAdmSenha.classList.remove('is-valid')
+            formAdmSenha.classList.add('is-invalid')
+            formAdmSenhaFeedback.style.display = 'block'
+          }
+
+          }
+        )
+        
+
+
     }
     regex()
     const register = async (data) => {

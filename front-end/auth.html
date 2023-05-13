@@ -152,7 +152,7 @@ const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o sp
 emailInput.addEventListener('input', () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailValue = emailInput.value;
-  
+
   if (emailRegex.test(emailValue)) {
     emailInput.classList.remove('is-invalid');
     emailInput.classList.add('is-valid');
@@ -170,7 +170,7 @@ const nameFeedback = document.getElementById('spanErrorName')
 nameInput.addEventListener('input', () => {
   const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
   const nameValue = nameInput.value;
-  
+
   if (nameRegex.test(nameValue)) {
     nameInput.classList.remove('is-invalid');
     nameInput.classList.add('is-valid');
@@ -243,7 +243,7 @@ const passwordFeedback = document.getElementById('spanErrorPassword')
 passwordInput.addEventListener('input', () => {
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
   const passwordValue = passwordInput.value;
-    
+
   if (passwordRegex.test(passwordValue)) {
       passwordInput.classList.remove('is-invalid');
       passwordInput.classList.add('is-valid');
@@ -259,7 +259,10 @@ const validatePasswordInput = document.getElementById('formValidatePassword')
 const validatePassFeedback = document.getElementById('spanErrorValidatePassword')
 // Regex de validar senha
 validatePasswordInput.addEventListener('input', () => {
-  if (validatePasswordInput.value === passwordInput.value) {
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
+  const validatePassValue = validatePasswordInput.value
+
+  if (validatePassValue === passwordInput.value && passwordRegex.test(validatePassValue)) {
       validatePasswordInput.classList.remove('is-invalid');
       validatePasswordInput.classList.add('is-valid');
       validatePassFeedback.style.display = 'none';
@@ -292,9 +295,8 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
   // Captura o evento de submit do form
   form.addEventListener('submit', event => {
     event.preventDefault() // Previne que a tela sofra refresh
-    handleRegister() 
-    });
-
+      handleRegister() 
+  })
     async function handleRegister() {
       const formData = new FormData(form); // obtém os valores do form e os converte em objetos
       const data = {}; // objeto que irá armazenar os valores do formulário
@@ -310,8 +312,11 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
       if (response.isEmail){
         window.location.replace('login.html')
       }
+      else {
+        alert('Registro inválido')
       }
-
+      }
+  
       
       
 
