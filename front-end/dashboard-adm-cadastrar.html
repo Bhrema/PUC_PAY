@@ -7,13 +7,14 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../node_modules/@fortawesome/css/all.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -241,12 +242,12 @@
 
                       <div class="form-outline mb-1" id="cnpj_div" style="display: none;">
                         <label class="form-label" for="formAdmCNPJ">CNPJ</label>
-                        <input id="formAdmCNPJ" type="text"  class="form-control form-control-lg" name="cpf_cnpj" />
+                        <input id="formAdmCNPJ" type="text"  class="form-control form-control-lg" name="cnpj" />
                       </div>
 
                       <div id="endereco" style="display: none;">
                         <label class="form-label" for="formAdmeEndereço">Endereço</label><br>
-                        <select class="form-select mb-3" id="formAdmeEndereço">  
+                        <select class="form-select mb-3" id="formAdmeEndereço" name="block">  
                           <option value="1">Bloco 1 Amarelo</option>
                           <option value="2">Bloco 2 Azul</option>
                           <option value="3">Bloco 3 Verde</option>

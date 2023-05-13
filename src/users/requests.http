@@ -3,9 +3,10 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallo12@gmai.com",
-  "name": "Otávio Cost Dallo",
-  "cpf": "10843769922",
+  "email": "ocostadallsos@gmail.com",
+  "name": "Otávio Costa Dallo",
+  "cnpj": "64964465000145",
+  "block": "2",
   "password": "@Livia040323"
 }
 
@@ -27,6 +28,9 @@ POST http://localhost:3000/auth/signout
 ### Find all users
 GET http://localhost:3000/auth/adm/users
 
+### Find all restaurants
+GET http://localhost:3000/auth/adm/restaurants
+
 ### Find all users with a given email
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
@@ -37,7 +41,7 @@ POST http://localhost:3000/typeuser
 DELETE http://localhost:3000/auth/3
 
 ### Update a user
-PATCH http://localhost:3000/auth/4
+PATCH http://localhost:3000/auth/1
 content-type: application/json
 
 {

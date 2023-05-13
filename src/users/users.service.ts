@@ -28,6 +28,21 @@ export class UsersService {
     return this.repo.find({ cpf })
   }
 
+  async findUsersWithCpf(): Promise<User[]> {
+    return this.repo.createQueryBuilder('user')
+      .where('user.cpf IS NOT NULL')
+      .andWhere('user.cpf <> ""')
+      .getMany();
+  }
+
+  
+  async findUsersWithCnpj(): Promise<User[]> {
+    return this.repo.createQueryBuilder('user')
+      .where('user.cnpj IS NOT NULL')
+      .andWhere('user.cnpj <> ""')
+      .getMany();
+  }
+
   async findAll(): Promise<User[]> {
     return await this.repo.createQueryBuilder('user').getMany();
   }

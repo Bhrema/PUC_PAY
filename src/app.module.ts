@@ -4,6 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
+import { ProductsController } from './products/products.controller';
+import { ProductsService } from './products/products.service';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/products.entity';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
@@ -11,13 +16,17 @@ import { User } from './users/user.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'bd.sqlite',
-      entities: [User],
+      entities: [User, Product],
       synchronize: true,
     }),
+    MulterModule.register({
+      dest: './uploads',
+    }),
     UsersModule,
+    ProductsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ProductsController],
+  providers: [AppService, ProductsService],
 })
 
 export class AppModule {}

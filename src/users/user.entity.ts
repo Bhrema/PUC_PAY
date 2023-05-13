@@ -5,7 +5,10 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  OneToMany
 } from 'typeorm';
+
+import { Product } from 'src/products/products.entity';
 
 @Entity()
 export class User {
@@ -30,7 +33,10 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: false })
+  @OneToMany(() => Product, product => product.restaurant)
+  products: Product[];
+
+  @Column( { default: false } )
   isAdmin: boolean;
   
   @AfterInsert()

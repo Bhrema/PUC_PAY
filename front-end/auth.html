@@ -8,11 +8,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../node_modules/@fortawesome/css/all.min.css">
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
 
   <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
 </head>
@@ -305,7 +305,14 @@ const response = await fetch('http://localhost:3000/auth/signup', { // Requisiç
       });
 
       const response = await register(data) // aguarda a resolução da Promise retornada
+
+
+      if (response.isEmail){
+        window.location.replace('login.html')
       }
+      }
+
+      
       
 
 </script>

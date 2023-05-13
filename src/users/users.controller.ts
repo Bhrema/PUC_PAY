@@ -16,7 +16,7 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth/auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
 import { AuthGuard } from '../guards/auth.guard';
@@ -67,9 +67,13 @@ export class UsersController {
 
   @Get('/adm/users')
   async getAllUsers(): Promise<User[]> {
-    return await this.usersService.findAll()
+    return await this.usersService.findUsersWithCpf()
   }
 
+  @Get('/adm/restaurants')
+  async getUsersWithCnpj(): Promise<User[]> {
+    return this.usersService.findUsersWithCnpj();
+  }
 
   @Get()
   findAllUsers(@Query('email') email: string) {

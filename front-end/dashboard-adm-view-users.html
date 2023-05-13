@@ -7,13 +7,14 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../node_modules/@fortawesome/css/all.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -249,9 +250,9 @@
                 <div class="card-title">
                   <h6 class="mr-2"><span>Restaurantes</span></h6>
                 </div>
-                <div class="e-table">
+                <div class="e-table-restaurant">
                   <div class="table-responsive table-lg mt-3">
-                    <table class="table table-bordered" id="table">
+                    <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th class="max-width">Id</th>
@@ -261,7 +262,7 @@
                           <th class="max-width">Ações</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="tbody" class="tbody">
                         <tr>
                           </td>
                           <td class="text-nowrap align-middle" name="id">02</td>
@@ -349,16 +350,60 @@
               `;
 
               table.innerHTML += linha;
-            });
+            })
+          } catch{
+            console.log(error)
+          }
+          }
+
+
+            async function responseRestaurant() {
+                try {
+                  const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
+                    method: 'GET',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                  });
+
+                  const responseData = await response.json();
+                  const users = responseData;
+
+                  console.log(users)
+
+
+                  const tableRes = document.querySelector('.tbody')
+                  console.log(table)
+                  tableRes.innerHTML = ''
+
+                  users.forEach(elemento => {
+                    const linhaRes = `
+                <tr>
+                      <td>${elemento.id}</td>
+                      <td>${elemento.name}</td>
+                      <td>${elemento.email}</td>
+                      <td>${elemento.cnpj}</td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-edit-${elemento.id}">Editar</button>
+                        <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-delete-${elemento.id}">Deletar</button>
+                      </td>
+                    </tr>
+                    `;
+
+                    tableRes.innerHTML += linhaRes;
+                  })
 
             const buttonsDelete = document.querySelectorAll('[id^="button-delete"]');
             buttonsDelete.forEach((buttonDelete) => {
               buttonDelete.addEventListener('click', () => {
                 const id = buttonDelete.id.split('-')[2];
-                deleteUser(id);
+                if(sessionJson.isAdmin & users.isAdmin !== true){
+                  deleteUser(id);
+              }
               });
             });
-
+            
+            
             async function deleteUser(id) {
               try {
                 const response = await fetch(`http://localhost:3000/auth/${id}`, {
@@ -388,6 +433,7 @@
         }
 
         response()
+        responseRestaurant()
 
         const btn = document.getElementById('btnLogout')
         btn.addEventListener('click', async event => {
