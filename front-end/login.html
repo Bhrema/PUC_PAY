@@ -1,166 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PUCPAY - Registre-se</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-    />
-    <!-- icheck bootstrap -->
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
-    />
-    <!-- Theme style -->
-    <link
-      rel="stylesheet"
-      href="../node_modules/admin-lte/dist/css/adminlte.min.css"
-    />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PUCPAY - Registre-se</title>
 
-  <body class="hold-transition register-page">
-    <div class="register-box">
-      <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-          <a href="../../index2.html" class="h1"><b>PUC</b>PAY</a>
-        </div>
-        <div class="card-body">
-          <p class="login-box-msg">Realize seu login</p>
-          <form method="post" id="login-form">
-            <div class="input-group mb-3">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                name="email"
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
-                </div>
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                name="password"
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <!-- /.col -->
-              <div class="col-12 align-item-center mb-3">
-                <button type="submit" class="btn btn-primary btn-block">
-                  Entrar
-                </button>
-              </div>
-              <!-- /.col -->
-            </div>
-          </form>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css" />
+</head>
 
-          <a
-            href="/front-end/auth.html"
-            class="float-right"
-            href="registre.html"
-            class="text-center"
-            >Não possuo um login</a
-          >
-        </div>
-        <!-- /.form-box -->
+<body class="hold-transition register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="../../index2.html" class="h1"><b>PUC</b>PAY</a>
       </div>
-      <!-- /.card -->
+      <div class="card-body">
+        <p class="login-box-msg">Realize seu login</p>
+        <form method="post" id="login-form">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email" name="email" />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="password" />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- /.col -->
+            <div class="col-12 align-item-center mb-3">
+              <button type="submit" class="btn btn-primary btn-block">
+                Entrar
+              </button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <a href="/front-end/auth.html" class="float-right" href="registre.html" class="text-center">Não possuo um
+          login</a>
+      </div>
+      <!-- /.form-box -->
     </div>
-    <!-- /.register-box -->
+    <!-- /.card -->
+  </div>
+  <!-- /.register-box -->
 
-    <script>
-      const form = document.getElementById("login-form");
+  <script>
+    const form = document.getElementById("login-form");
 
-      const login = async (data) => {
-        const response = await fetch("http://localhost:3000/auth/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        const responseData = await response.json();
-
-        console.log(responseData);
-
-        return responseData;
-
-        const identification = async (data) => {
-          const response = await fetch("http://localhost:3000/auth/whoami", {
-            method: "GET",
-          });
-        };
-
-        return response;
-      };
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        handleLogin();
+    const login = async (data) => {
+      const response = await fetch("http://localhost:3000/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
-      async function handleLogin() {
-        const formData = new FormData(form);
-        const data = {};
+      const responseData = await response.json();
 
-        formData.forEach((value, key) => {
-          data[key] = value;
+      console.log(responseData);
+
+      return responseData;
+
+      const identification = async (data) => {
+        const response = await fetch("http://localhost:3000/auth/whoami", {
+          method: "GET",
         });
+      };
 
-        const response = await login(data);
+      return response;
+    };
 
-        if (response.isAdmin && response) {
-          setTimeout(function () {
-            const user = JSON.stringify(response);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      handleLogin();
+    });
 
-            localStorage.setItem("session", user);
+    async function handleLogin() {
+      const formData = new FormData(form);
+      const data = {};
 
-            window.location.replace("dashboard-adm.html");
-          }, 1200);
-        } else if (response.user) {
-          setTimeout(function () {
-            const user = JSON.stringify(response);
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
 
-            localStorage.setItem("session", user);
+      const response = await login(data);
 
-            window.location.replace("dashboard-aluno.html");
-          }, 1200);
-        } else if (response.cnpj) {
-          setTimeout(function () {
-            const user = JSON.stringify(response);
+      if (response.isAdmin) {
+        setTimeout(function () {
 
-            localStorage.setItem("session", user);
+          const user = JSON.stringify(response)
 
-            window.location.replace("dashboard-restaurante.html");
-          }, 1200)
+          localStorage.setItem('session', user)
+
+          window.location.replace('dashboard-adm.html');
+        }, 1200);
+      } else if (response.cpf) {
+        setTimeout(function () {
+
+          const user = JSON.stringify(response)
+
+          localStorage.setItem('session', user)
+
+          window.location.replace('dashboard-aluno.html');
+        }, 1200);
+      } else {
+        setTimeout(function () {
+
+          const user = JSON.stringify(response)
+
+          localStorage.setItem('session', user)
+
+          window.location.replace('dashboard-restaurante.html');
+        }, 1200);
       }
-    </script>
+    }
+  </script>
 
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-  </body>
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+</body>
+
 </html>

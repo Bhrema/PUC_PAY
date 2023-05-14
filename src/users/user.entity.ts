@@ -21,13 +21,13 @@ export class User {
   @Column()
   name: string;
 
-  @Column( { nullable: true } )
+  @Column({ nullable: true, default: null })
   cpf: string;
 
-  @Column( { nullable: true } )
+  @Column({ nullable: true, default: null })
   cnpj: string;
 
-  @Column( { nullable: true } )
+  @Column({ nullable: true, default: null })
   block: string;
 
   @Column()

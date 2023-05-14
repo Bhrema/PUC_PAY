@@ -239,13 +239,13 @@
 
     userNameSession.innerText = sessionJson.name;
 
-    const isAuthenticated = !!localStorage.getItem('session');
-
-    console.log(session)
+    console.log(sessionJson)
 
 
-    if (!isAuthenticated) {
-      window.location.replace('login.html');
+    if (sessionJson) {
+      console.log('dadsa')
+    } else{
+      window.location.replace('login.html')
     }
 
 

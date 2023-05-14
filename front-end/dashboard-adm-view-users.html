@@ -327,11 +327,9 @@
             const responseData = await response.json();
             const users = responseData;
 
-            console.log(users)
-
 
             const table = document.querySelector('table tbody')
-            table.innerHTML = ''
+            table.innerHTML = '';
 
             users.forEach(elemento => {
               const linha = `
@@ -368,11 +366,8 @@
                   const responseData = await response.json();
                   const users = responseData;
 
-                  console.log(users)
-
 
                   const tableRes = document.querySelector('.tbody')
-                  console.log(table)
                   tableRes.innerHTML = ''
 
                   users.forEach(elemento => {
@@ -401,18 +396,18 @@
               }
               });
             });
-            const buttonsEditar = document.querySelectorAll('[id^="button-delete"]');
-            buttonsEditar.forEach((buttonsEditar) => {
-              const id =buttonsEditar.id.split('-')[2];
-              if (sessionJson.isAdmin & users.isAdmin !== true){
-                if (sessionJson.cpf) {                  
-                  window.location.replace("adm-editar-restaurante.html")
-                } else {
-                  window.location.replace('adm-editar-acad.html')
-                }
+            // const buttonsEditar = document.querySelectorAll('[id^="button-delete"]');
+            // buttonsEditar.forEach((buttonsEditar) => {
+            //   const id =buttonsEditar.id.split('-')[2];
+            //   if (users.isAdmin !== true){
+            //     if (sessionJson.cpf) {                  
+            //       window.location.replace("adm-editar-restaurante.html")
+            //     } else {
+            //       window.location.replace('adm-editar-acad.html')
+            //     }
 
-              }
-            })
+            //   }
+            // })
               
 
             async function deleteUser(id) {
@@ -481,11 +476,7 @@
           userNameSession.innerText = "Faça seu login!"
         }
 
-        userNameSession.innerText = sessionJson.name;
-
-        const isAuthenticated = !!localStorage.getItem('session');
-
-        console.log(isAuthenticated)
+        userNameSession.innerText = sessionJson.name
 
         if (!isAuthenticated && window.location.pathname !== '/login') {
 

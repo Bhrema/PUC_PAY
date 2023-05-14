@@ -36,7 +36,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-outline-danger float-right">Logout</button>
+          <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -136,7 +136,7 @@
           <i class="fas-fa-user"></i>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block" id="session-name">Faça seu login</a>
         </div>
       </div>
 
@@ -201,6 +201,47 @@
   </footer>
 </div>
 <!-- ./wrapper -->
+
+<script>
+  const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
+
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+    }
+
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
+
+
+    function deleteSession() {
+      localStorage.removeItem('session');
+    }
+
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    const userNameSession = document.getElementById('session-name')
+
+    userNameSession.innerText = sessionJson.name;
+
+</script>
+
+
+
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->

@@ -7,7 +7,8 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -184,22 +185,22 @@
     </aside>
 
     <!-- CONTEÚDO DO DASHBOARD -->
-    <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" >
-      <tbody>
-      <tr>
-        <td>
-        <a href="#">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title" id="idName">Name</h5>
-              <p class="card-text" id="idBlock">Endereço</p>
-            </div>
-          </div>
-        </a>
-      </td>
-      </tr>
-    </tbody>
+    <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
+      <tbody id="tbody">
+        <tr>
+          <td>
+            <a href="#">
+              <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" id="name">Name</h5>
+                  <p class="card-text" id="block">Endereço</p>
+                </div>
+              </div>
+            </a>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
     <!-- /.content-wrapper -->
@@ -222,43 +223,83 @@
   </div>
   <!-- ./wrapper -->
   <script>
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
+    async function showRestaurants() {
+      try {
+        const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
 
-    const userNameSession = document.getElementById('session-name')
-    userNameSession.innerText = sessionJson.name;
+        const responseData = await response.json();
+        const users = responseData;
+        console.log(users)
+
+        const table = document.getElementById('tbody');
+        table.innerHTML = '';
+
+        table.forEach(elemento => {
+          const content = `
+          <tbody>
+                    <tr>
+                      <td>
+                        <a>
+                          <div>
+                            <img>
+                            <div>
+                              <h5>${elemento.name}</h5>
+                              <p>${elemento.block}</p>
+                            </div>
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+              <tbody>
+          `;
+          console.log(elemento)
+          table.innerHTML += content;
+
+        })
+      } catch {
+        console.log(error)
+      }};
+
+      showRestaurants()
+
+      const btn = document.getElementById('btnLogout')
+      btn.addEventListener('click', async event => {
+        event.preventDefault()
+        await logout()
+        replaceLocation()
+        deleteSession()
+      })
+
+      const logout = async (data) => {
+        const response = await fetch('http://localhost:3000/auth/signout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+      }
+
+      const session = localStorage.getItem('session')
+      const sessionJson = JSON.parse(session)
+
+      const userNameSession = document.getElementById('session-name')
+      userNameSession.innerText = sessionJson.name;
+
+      function replaceLocation() {
+        window.location.replace('login.html')
+      }
 
 
-    const btn = document.getElementById('btnLogout')
-    btn.addEventListener('click', async event => {
-      event.preventDefault()
-      await logout()
-      replaceLocation()
-      deleteSession()
-    })
-
-    const logout = async (data) => {
-      const response = await fetch('http://localhost:3000/auth/signout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-
-    }
-
-    function replaceLocation() {
-      window.location.replace('login.html')
-    }
-
-
-    function deleteSession() {
-      localStorage.removeItem('session');
-    }
-
-
-
+      function deleteSession() {
+        localStorage.removeItem('session');
+      };
 
   </script>
   <!-- REQUIRED SCRIPTS -->
