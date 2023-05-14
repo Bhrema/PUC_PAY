@@ -274,8 +274,43 @@ validatePasswordInput.addEventListener('input', () => {
 }
 )
 
+const register = async (data) => {
+  const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
+  //fetch() retorna uma promise que é resolvida quando a resposta é recebida
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
+    },
+    body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
+  })
+    const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
+  
+    return responseData; // retorna a resposta como um objeto JS
+}
+  // Captura o evento de submit do form
+  form.addEventListener("submit", event => {
+    event.preventDefault() // Previne que a tela sofra refresh
+    handleRegister()
+    });
+
+    async function handleRegister() {
+      const formData = new FormData(form); // obtém os valores do form e os converte em objetos
+      const data = {}; // objeto que irá armazenar os valores do formulário
+
+      formData.forEach((value, key) => { // itera sobre os campos do formulário
+        data[key] = value; // o valor e a chave são adicionados em data
+        // ex : email(chave) luiz@gamil.com(value)
+      });
+
+      const response = await register(data) // aguarda a resolução da Promise retornada
+
+      if (response.email){
+        window.location.replace('login.html')
+      }
+      }      
+
       const buttonRegister = document.getElementById('register-button');
-      const email = document.getElementById('formEmail');
+      const email = document.getElementBy('formEmail');
       const name = document.getElementById('formName');
       const cpf = document.getElementById('formCpf');
       const cnpj = document.getElementById('formCnpj');
