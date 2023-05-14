@@ -39,7 +39,7 @@
         </div>
         
         <div class="input-group mb-3">
-          <input id="formNome" type="text" class="form-control" placeholder="Nome Completo" name="name"> <!--Input de Nome-->
+          <input id="formName" type="text" class="form-control" placeholder="Nome Completo" name="name"> <!--Input de Nome-->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -112,12 +112,13 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
-          <span id="spanErrorValidatePassword" class="invalid-feedback">Insira a mesma senha </span>
+          <span id="spanErrorValidatePassword" class="invalid-feedback">Insira a mesma senha</span>
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
           <!-- /.col -->
+            <p id="message" style="display: none; color: red; margin-left: 34px;">Por favor, preencha todos os campos.</p>
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" id="register-button">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-block" id="register-button" name="register">Registrar</button>
           </div>
           <!-- /.col -->
         </div>
@@ -273,50 +274,25 @@ validatePasswordInput.addEventListener('input', () => {
 }
 )
 
+      const buttonRegister = document.getElementById('register-button');
+      const email = document.getElementById('formEmail');
+      const name = document.getElementById('formName');
+      const cpf = document.getElementById('formCpf');
+      const cnpj = document.getElementById('formCnpj');
+      const block = document.getElementById('enderecoInput');
+      const password = document.getElementById('formPassword');
+      const confirmPassword = document.getElementById('formValidatePassword');
+      const message = document.getElementById('message');
 
-const register = async (data) => {
-const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
-  //fetch() retorna uma promise que é resolvida quando a resposta é recebida
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
-    },
-    body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
-  })
-    const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
+      buttonRegister.addEventListener('click', (event) => {
+        if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
+          message.style.display = 'block';
+        } else {
+          message.style.display = 'none';
+        }
 
-    console.log(responseData); // exibe a resposta no console
-
-    return responseData; // retorna a resposta como um objeto JS
-}
-  // Captura o evento de submit do form
-  form.addEventListener('submit', event => {
-    event.preventDefault() // Previne que a tela sofra refresh
-    handleRegister()
-    });
-
-    async function handleRegister() {
-      const formData = new FormData(form); // obtém os valores do form e os converte em objetos
-      const data = {}; // objeto que irá armazenar os valores do formulário
-
-      formData.forEach((value, key) => { // itera sobre os campos do formulário
-        data[key] = value; // o valor e a chave são adicionados em data
-        // ex : email(chave) luiz@gamil.com(value)
-      });
-
-      const response = await register(data) // aguarda a resolução da Promise retornada
-      console.log(response)
-
-      if (response.email){
-        window.location.replace('login.html')
-      }
-
-
-      }
-      
-
-      
-      
+      console.log(buttonRegister)
+    })
 
 </script>
  

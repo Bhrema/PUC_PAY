@@ -16,8 +16,4 @@ export class UpdateUserDto {
   @IsBoolean()
   @IsOptional()
   isAdmin: boolean;
-  
-  @IsBoolean()
-  @IsOptional()
-  isRestaurant: boolean;
 }

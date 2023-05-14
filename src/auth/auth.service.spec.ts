@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing'
 import { AuthService } from '../auth/auth.service'
-import { UsersService } from './users.service'
+import { UsersService } from 'src/users/users.service';
 
 it('can create an instance of AuthService', async () => {
 

@@ -27,7 +27,7 @@
         <p class="login-box-msg">Realize seu login</p>
         <form method="post" id="login-form">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name="email" />
+            <input type="email" class="form-control" placeholder="Email" name="email" id="email" />
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -35,17 +35,18 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password" />
+            <input type="password" class="form-control" placeholder="Password" name="password" id="password" />
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
+          <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha todos os campos.</p>
           <div class="row">
             <!-- /.col -->
             <div class="col-12 align-item-center mb-3">
-              <button type="submit" class="btn btn-primary btn-block">
+              <button type="submit" class="btn btn-primary btn-block" id="buttonLogin">
                 Entrar
               </button>
             </div>
@@ -79,14 +80,6 @@
       console.log(responseData);
 
       return responseData;
-
-      const identification = async (data) => {
-        const response = await fetch("http://localhost:3000/auth/whoami", {
-          method: "GET",
-        });
-      };
-
-      return response;
     };
 
     form.addEventListener("submit", (event) => {
@@ -122,7 +115,7 @@
 
           window.location.replace('dashboard-aluno.html');
         }, 1200);
-      } else {
+      } else if (response.cnpj) {
         setTimeout(function () {
 
           const user = JSON.stringify(response)
@@ -133,6 +126,18 @@
         }, 1200);
       }
     }
+
+    const buttonLogin = document.getElementById('buttonLogin')
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const message = document.getElementById('message');
+    buttonLogin.addEventListener('click', (event) => {
+      if (emailInput.value === '' || passwordInput.value === '') {
+        message.style.display = 'block';
+      } else {
+        message.style.display = 'none';
+      }
+    })
   </script>
 
   <!-- jQuery -->
