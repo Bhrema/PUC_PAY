@@ -408,7 +408,11 @@
 
             //   }
             // })
-              
+            const buttonsEdit = document.querySelectorAll('[id^="button-edit"]');
+            buttonsEdit.forEach(buttonEdit => {
+              buttonEdit.addEventListener('click', () => {
+                window.location.replace('adm-editar-restaurante.html')})
+            });
 
             async function deleteUser(id) {
               try {
