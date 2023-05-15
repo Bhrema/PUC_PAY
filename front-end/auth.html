@@ -133,6 +133,9 @@
 <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
 <script>
+
+const form = document.getElementById('register-form')
+
     const set_cnpj = () => {
       document.getElementById("cnpj_div").style.display = "flex";
       document.getElementById("cpf_div").style.display = "none";
@@ -144,8 +147,7 @@
       document.getElementById("endereco").style.display = "none";
     }
 
-    const form = document.getElementById('register-form') // Captura o formulário
-
+    function regex(){
     // Regex de email para o cadastro de usuário
         const emailInput = document.getElementById('formEmail'); // Captura o input de email
         const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
@@ -271,43 +273,45 @@
         }
 
       }
+
       )
+    }
+    regex()
+      const register = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
+      //fetch() retorna uma promise que é resolvida quando a resposta é recebida
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
+        },
+        body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
+      })
+        const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
+      
+        return responseData; // retorna a resposta como um objeto JS
+    }
+      // Captura o evento de submit do form
+      form.addEventListener("submit", event => {
+        event.preventDefault() // Previne que a tela sofra refresh
+        handleRegister()
+        });
 
+        async function handleRegister() {
+          const formData = new FormData(form); // obtém os valores do form e os converte em objetos
+          const data = {}; // objeto que irá armazenar os valores do formulário
 
-const register = async (data) => {
-  const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
-  //fetch() retorna uma promise que é resolvida quando a resposta é recebida
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
-    },
-    body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
-  })
-    const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
-  
-    return responseData; // retorna a resposta como um objeto JS
-}
-  // Captura o evento de submit do form
-  form.addEventListener("submit", event => {
-    event.preventDefault() // Previne que a tela sofra refresh
-    handleRegister()
-    });
+          formData.forEach((value, key) => { // itera sobre os campos do formulário
+            data[key] = value; // o valor e a chave são adicionados em data
+            // ex : email(chave) luiz@gamil.com(value)
+          });
 
-    async function handleRegister() {
-      const formData = new FormData(form); // obtém os valores do form e os converte em objetos
-      const data = {}; // objeto que irá armazenar os valores do formulário
+          const response = await register(data) // aguarda a resolução da Promise retornada
 
-      formData.forEach((value, key) => { // itera sobre os campos do formulário
-        data[key] = value; // o valor e a chave são adicionados em data
-        // ex : email(chave) luiz@gamil.com(value)
-      });
+          if (response.email){
+            window.location.replace('login.html')
+          }
 
-      const response = await register(data) // aguarda a resolução da Promise retornada
-
-      if (response.email){
-        window.location.replace('login.html')
-      }
-      }      
+      
 
       // const buttonRegister = document.getElementById('register-button');
       // const email = document.getElementBy('formEmail');

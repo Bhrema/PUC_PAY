@@ -9,6 +9,7 @@ import { ProductsService } from './products/products.service';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/products.entity';
 import { MulterModule } from '@nestjs/platform-express';
+import { UserEntity } from './users/usertype.entity';
 
 
 @Module({
@@ -16,7 +17,7 @@ import { MulterModule } from '@nestjs/platform-express';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'bd.sqlite',
-      entities: [User, Product],
+      entities: [User, Product, UserEntity],
       synchronize: true,
     }),
     MulterModule.register({
