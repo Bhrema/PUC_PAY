@@ -312,22 +312,14 @@
       
 
       const buttonRegister = document.getElementById('register-button');
-      const email = document.getElementBy('formEmail');
-      const name = document.getElementById('formName');
-      const cpf = document.getElementById('formCpf');
-      const cnpj = document.getElementById('formCnpj');
-      const block = document.getElementById('enderecoInput');
-      const password = document.getElementById('formPassword');
-      const confirmPassword = document.getElementById('formValidatePassword');
       const message = document.getElementById('message');
 
       buttonRegister.addEventListener('click', (event) => {
-        if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
+        if (passwordInput.value === '' || enderecoInput.value === '' || cpfInput === '' || nameInput === '') {
           message.style.display = 'block';
         } else {
           message.style.display = 'none';
         }
-
       console.log(buttonRegister)
       })
 
