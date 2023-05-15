@@ -39,7 +39,7 @@
         </div>
         
         <div class="input-group mb-3">
-          <input id="formName" type="text" class="form-control" placeholder="Nome Completo" name="name"> <!--Input de Nome-->
+          <input id="formNome" type="text" class="form-control" placeholder="Nome Completo" name="name"> <!--Input de Nome-->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -118,7 +118,7 @@
           <!-- /.col -->
             <p id="message" style="display: none; color: red; margin-left: 34px;">Por favor, preencha todos os campos.</p>
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" id="register-button" name="register">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-block" id="register-button">Registrar</button>
           </div>
           <!-- /.col -->
         </div>
@@ -134,8 +134,6 @@
 
 <script>
 
-const form = document.getElementById('register-form')
-
     const set_cnpj = () => {
       document.getElementById("cnpj_div").style.display = "flex";
       document.getElementById("cpf_div").style.display = "none";
@@ -147,7 +145,7 @@ const form = document.getElementById('register-form')
       document.getElementById("endereco").style.display = "none";
     }
 
-    function regex(){
+    const form = document.getElementById('register-form')
     // Regex de email para o cadastro de usuário
         const emailInput = document.getElementById('formEmail'); // Captura o input de email
         const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
@@ -275,8 +273,7 @@ const form = document.getElementById('register-form')
       }
 
       )
-    }
-    regex()
+
       const register = async (data) => {
       const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
       //fetch() retorna uma promise que é resolvida quando a resposta é recebida
@@ -287,11 +284,11 @@ const form = document.getElementById('register-form')
         body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
       })
         const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
-      
+        console.log(responseData)
         return responseData; // retorna a resposta como um objeto JS
     }
       // Captura o evento de submit do form
-      form.addEventListener("submit", event => {
+      form.addEventListener('submit', event => {
         event.preventDefault() // Previne que a tela sofra refresh
         handleRegister()
         });
@@ -307,31 +304,32 @@ const form = document.getElementById('register-form')
 
           const response = await register(data) // aguarda a resolução da Promise retornada
 
-          if (response.email){
+          if (response.IsEmail){
             window.location.replace('login.html')
           }
+        }
 
       
 
-      // const buttonRegister = document.getElementById('register-button');
-      // const email = document.getElementBy('formEmail');
-      // const name = document.getElementById('formName');
-      // const cpf = document.getElementById('formCpf');
-      // const cnpj = document.getElementById('formCnpj');
-      // const block = document.getElementById('enderecoInput');
-      // const password = document.getElementById('formPassword');
-      // const confirmPassword = document.getElementById('formValidatePassword');
-      // const message = document.getElementById('message');
+      const buttonRegister = document.getElementById('register-button');
+      const email = document.getElementBy('formEmail');
+      const name = document.getElementById('formName');
+      const cpf = document.getElementById('formCpf');
+      const cnpj = document.getElementById('formCnpj');
+      const block = document.getElementById('enderecoInput');
+      const password = document.getElementById('formPassword');
+      const confirmPassword = document.getElementById('formValidatePassword');
+      const message = document.getElementById('message');
 
-      // // buttonRegister.addEventListener('click', (event) => {
-      // //   if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
-      // //     message.style.display = 'block';
-      // //   } else {
-      // //     message.style.display = 'none';
-      // //   }
+      buttonRegister.addEventListener('click', (event) => {
+        if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
+          message.style.display = 'block';
+        } else {
+          message.style.display = 'none';
+        }
 
-      // // console.log(buttonRegister)
-      // // })
+      console.log(buttonRegister)
+      })
 
 </script>
  
