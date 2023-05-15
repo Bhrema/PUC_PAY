@@ -304,7 +304,7 @@
 
           const response = await register(data) // aguarda a resolução da Promise retornada
 
-          if (response.IsEmail){
+          if (response.email){
             window.location.replace('login.html')
           }
         }
