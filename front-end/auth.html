@@ -133,146 +133,146 @@
 <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
 <script>
-
-const set_cnpj = () => {
-  document.getElementById("cnpj_div").style.display = "flex";
-  document.getElementById("cpf_div").style.display = "none";
-  document.getElementById("endereco").style.display = "block";
-}
-const set_cpf = () => {
-  document.getElementById("cpf_div").style.display = "flex";
-  document.getElementById("cnpj_div").style.display = "none";
-  document.getElementById("endereco").style.display = "none";
-}
-
-const form = document.getElementById('register-form') // Captura o formulário
-
-// Regex de email para o cadastro de usuário
-const emailInput = document.getElementById('formEmail'); // Captura o input de email
-const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
-emailInput.addEventListener('input', () => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const emailValue = emailInput.value;
-  
-  if (emailRegex.test(emailValue)) {
-    emailInput.classList.remove('is-invalid');
-    emailInput.classList.add('is-valid');
-    emailFeedback.style.display = 'none';
-  } else {
-    emailInput.classList.remove('is-valid');
-    emailInput.classList.add('is-invalid');
-    emailFeedback.style.display = 'block';
-  }
-});
-
-const nameInput = document.getElementById('formNome');
-const nameFeedback = document.getElementById('spanErrorName')
-// Regex de Nome para cadastro de usuário
-nameInput.addEventListener('input', () => {
-  const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
-  const nameValue = nameInput.value;
-  
-  if (nameRegex.test(nameValue)) {
-    nameInput.classList.remove('is-invalid');
-    nameInput.classList.add('is-valid');
-    nameFeedback.style.display = 'none';
-  } else {
-    nameInput.classList.remove('is-valid');
-    nameInput.classList.add('is-invalid');
-    nameFeedback.style.display = 'block';
-  }
-}); 
-
-const cpfInput = document.getElementById('formCpf')
-const cpfFeedback = document.getElementById('spanErrorCpf')
-// Regex de Cpf para cadastro de usuário
-cpfInput.addEventListener('input', () => {
-  const cpfRegex = /^\d{11}$/
-  const cpfValue = cpfInput.value
-
-  if (cpfRegex.test(cpfValue)) {
-    cpfInput.classList.remove('is-invalid')
-    cpfInput.classList.add('is-valid')
-    cpfFeedback.style.display = 'none'
-  }
-  else {
-    cpfInput.classList.remove('is-valid')
-    cpfInput.classList.add('is-invalid')
-    cpfFeedback.style.display = 'block'
-  }
-})
-
-const cnpjInput = document.getElementById('formCnpj')
-const cnpjFeedback = document.getElementById('spanErrorCnpj')
-// Regex de CNPJ para cadastro de restaurantes
-cnpjInput.addEventListener('input', () => {
-  const cnpjRegex = /^\d{14}$/
-  const cnpjValue = cnpjInput.value
-
-  if (cnpjRegex.test(cnpjValue)) {
-    cnpjInput.classList.remove('is-invalid')
-    cnpjInput.classList.add('is-valid')
-    cnpjFeedback.style.display = 'none'
-  }
-  else {
-    cnpjInput.classList.remove('is-valid')
-    cnpjInput.classList.add('is-invalid')
-    cnpjFeedback.style.display = 'block'
-  }
-})
-
-const enderecoInput = document.getElementById('enderecoInput')
-const enderecoFeedback = document.getElementById('spanErrorEndereco')
-// Regex de endereço(bloco) para restaurantes
-enderecoInput.addEventListener('click', () => {
-  const enderecoValue = enderecoInput.value
-  if (enderecoValue === '') {
-    enderecoInput.classList.remove('is-valid')
-    enderecoInput.classList.add('is-invalid')
-    enderecoFeedback.style.display = 'block'
-  }
-  else {
-    enderecoInput.classList.remove('is-invalid')
-    enderecoInput.classList.add('is-valid')
-    enderecoFeedback.style.display = 'none'
-  }
-})
-
-const passwordInput = document.getElementById('formPassword');
-const passwordFeedback = document.getElementById('spanErrorPassword')
-// Regex de senha para cadastro de usuário
-passwordInput.addEventListener('input', () => {
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
-  const passwordValue = passwordInput.value;
-    
-  if (passwordRegex.test(passwordValue)) {
-      passwordInput.classList.remove('is-invalid');
-      passwordInput.classList.add('is-valid');
-      passwordFeedback.style.display = 'none';
-  } else {
-      passwordInput.classList.remove('is-valid');
-      passwordInput.classList.add('is-invalid');
-      passwordFeedback.style.display = 'block';
+    const set_cnpj = () => {
+      document.getElementById("cnpj_div").style.display = "flex";
+      document.getElementById("cpf_div").style.display = "none";
+      document.getElementById("endereco").style.display = "block";
     }
-});
+    const set_cpf = () => {
+      document.getElementById("cpf_div").style.display = "flex";
+      document.getElementById("cnpj_div").style.display = "none";
+      document.getElementById("endereco").style.display = "none";
+    }
 
-const validatePasswordInput = document.getElementById('formValidatePassword')
-const validatePassFeedback = document.getElementById('spanErrorValidatePassword')
-// Regex de validar senha
-validatePasswordInput.addEventListener('input', () => {
-  if (validatePasswordInput.value === passwordInput.value) {
-      validatePasswordInput.classList.remove('is-invalid');
-      validatePasswordInput.classList.add('is-valid');
-      validatePassFeedback.style.display = 'none';
-  }
-  else {
-      validatePasswordInput.classList.remove('is-valid');
-      validatePasswordInput.classList.add('is-invalid');
-      validatePassFeedback.style.display = 'block';
-  }
+    const form = document.getElementById('register-form') // Captura o formulário
 
-}
-)
+    // Regex de email para o cadastro de usuário
+        const emailInput = document.getElementById('formEmail'); // Captura o input de email
+        const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
+        emailInput.addEventListener('input', () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailValue = emailInput.value;
+        
+        if (emailRegex.test(emailValue)) {
+          emailInput.classList.remove('is-invalid');
+          emailInput.classList.add('is-valid');
+          emailFeedback.style.display = 'none';
+        } else {
+          emailInput.classList.remove('is-valid');
+          emailInput.classList.add('is-invalid');
+          emailFeedback.style.display = 'block';
+        }
+      });
+
+      const nameInput = document.getElementById('formNome');
+      const nameFeedback = document.getElementById('spanErrorName')
+      // Regex de Nome para cadastro de usuário
+      nameInput.addEventListener('input', () => {
+        const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([\s-][A-Za-zÀ-ÖØ-öø-ÿ]+)+$/
+        const nameValue = nameInput.value;
+        
+        if (nameRegex.test(nameValue)) {
+          nameInput.classList.remove('is-invalid');
+          nameInput.classList.add('is-valid');
+          nameFeedback.style.display = 'none';
+        } else {
+          nameInput.classList.remove('is-valid');
+          nameInput.classList.add('is-invalid');
+          nameFeedback.style.display = 'block';
+        }
+      }); 
+
+      const cpfInput = document.getElementById('formCpf')
+      const cpfFeedback = document.getElementById('spanErrorCpf')
+      // Regex de Cpf para cadastro de usuário
+      cpfInput.addEventListener('input', () => {
+        const cpfRegex = /^\d{11}$/
+        const cpfValue = cpfInput.value
+
+        if (cpfRegex.test(cpfValue)) {
+          cpfInput.classList.remove('is-invalid')
+          cpfInput.classList.add('is-valid')
+          cpfFeedback.style.display = 'none'
+        }
+        else {
+          cpfInput.classList.remove('is-valid')
+          cpfInput.classList.add('is-invalid')
+          cpfFeedback.style.display = 'block'
+        }
+      })
+
+      const cnpjInput = document.getElementById('formCnpj')
+      const cnpjFeedback = document.getElementById('spanErrorCnpj')
+      // Regex de CNPJ para cadastro de restaurantes
+      cnpjInput.addEventListener('input', () => {
+        const cnpjRegex = /^\d{14}$/
+        const cnpjValue = cnpjInput.value
+
+        if (cnpjRegex.test(cnpjValue)) {
+          cnpjInput.classList.remove('is-invalid')
+          cnpjInput.classList.add('is-valid')
+          cnpjFeedback.style.display = 'none'
+        }
+        else {
+          cnpjInput.classList.remove('is-valid')
+          cnpjInput.classList.add('is-invalid')
+          cnpjFeedback.style.display = 'block'
+        }
+      })
+
+      const enderecoInput = document.getElementById('enderecoInput')
+      const enderecoFeedback = document.getElementById('spanErrorEndereco')
+      // Regex de endereço(bloco) para restaurantes
+      enderecoInput.addEventListener('click', () => {
+        const enderecoValue = enderecoInput.value
+        if (enderecoValue === '') {
+          enderecoInput.classList.remove('is-valid')
+          enderecoInput.classList.add('is-invalid')
+          enderecoFeedback.style.display = 'block'
+        }
+        else {
+          enderecoInput.classList.remove('is-invalid')
+          enderecoInput.classList.add('is-valid')
+          enderecoFeedback.style.display = 'none'
+        }
+      })
+
+      const passwordInput = document.getElementById('formPassword');
+      const passwordFeedback = document.getElementById('spanErrorPassword')
+      // Regex de senha para cadastro de usuário
+      passwordInput.addEventListener('input', () => {
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?\/>.<,])(?=.*[^\s]).{8,}$/;
+        const passwordValue = passwordInput.value;
+          
+        if (passwordRegex.test(passwordValue)) {
+            passwordInput.classList.remove('is-invalid');
+            passwordInput.classList.add('is-valid');
+            passwordFeedback.style.display = 'none';
+        } else {
+            passwordInput.classList.remove('is-valid');
+            passwordInput.classList.add('is-invalid');
+            passwordFeedback.style.display = 'block';
+          }
+      });
+
+      const validatePasswordInput = document.getElementById('formValidatePassword')
+      const validatePassFeedback = document.getElementById('spanErrorValidatePassword')
+      // Regex de validar senha
+      validatePasswordInput.addEventListener('input', () => {
+        if (validatePasswordInput.value === passwordInput.value) {
+            validatePasswordInput.classList.remove('is-invalid');
+            validatePasswordInput.classList.add('is-valid');
+            validatePassFeedback.style.display = 'none';
+        }
+        else {
+            validatePasswordInput.classList.remove('is-valid');
+            validatePasswordInput.classList.add('is-invalid');
+            validatePassFeedback.style.display = 'block';
+        }
+
+      }
+      )
+
 
 const register = async (data) => {
   const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
@@ -309,25 +309,25 @@ const register = async (data) => {
       }
       }      
 
-      const buttonRegister = document.getElementById('register-button');
-      const email = document.getElementBy('formEmail');
-      const name = document.getElementById('formName');
-      const cpf = document.getElementById('formCpf');
-      const cnpj = document.getElementById('formCnpj');
-      const block = document.getElementById('enderecoInput');
-      const password = document.getElementById('formPassword');
-      const confirmPassword = document.getElementById('formValidatePassword');
-      const message = document.getElementById('message');
+      // const buttonRegister = document.getElementById('register-button');
+      // const email = document.getElementBy('formEmail');
+      // const name = document.getElementById('formName');
+      // const cpf = document.getElementById('formCpf');
+      // const cnpj = document.getElementById('formCnpj');
+      // const block = document.getElementById('enderecoInput');
+      // const password = document.getElementById('formPassword');
+      // const confirmPassword = document.getElementById('formValidatePassword');
+      // const message = document.getElementById('message');
 
-      buttonRegister.addEventListener('click', (event) => {
-        if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
-          message.style.display = 'block';
-        } else {
-          message.style.display = 'none';
-        }
+      // // buttonRegister.addEventListener('click', (event) => {
+      // //   if (email.value === '' || name.value === '' || cpf.value === '' || cnpj.value === '' || block.value === '' || password.value === '') {
+      // //     message.style.display = 'block';
+      // //   } else {
+      // //     message.style.display = 'none';
+      // //   }
 
-      console.log(buttonRegister)
-    })
+      // // console.log(buttonRegister)
+      // // })
 
 </script>
  

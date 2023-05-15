@@ -224,7 +224,6 @@
   <!-- ./wrapper -->
   <script>
     async function showRestaurants() {
-      try {
         const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
           method: 'GET',
           headers: {
@@ -235,35 +234,50 @@
         const responseData = await response.json();
         const users = responseData;
         console.log(users)
+        
+      
 
-        const table = document.getElementById('tbody');
-        table.innerHTML = '';
+const tableBody = document.getElementById('tbody');
 
-        table.forEach(elemento => {
-          const content = `
-          <tbody>
-                    <tr>
-                      <td>
-                        <a>
-                          <div>
-                            <img>
-                            <div>
-                              <h5>${elemento.name}</h5>
-                              <p>${elemento.block}</p>
-                            </div>
-                          </div>
-                        </a>
-                      </td>
-                    </tr>
-              <tbody>
-          `;
-          console.log(elemento)
-          table.innerHTML += content;
+users.forEach(item => {
+  const tableRow = document.createElement('tr');
 
-        })
-      } catch {
-        console.log(error)
-      }};
+  const tableData = document.createElement('td');
+  const cardLink = document.createElement('a');
+  cardLink.href = '#';
+
+  const cardDiv = document.createElement('div');
+  cardDiv.classList.add('card');
+  cardDiv.style.width = '18rem';
+
+  const image = document.createElement('img');
+  image.src = '...'; // Adicione o caminho da imagem correspondente ao item
+
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
+
+  const cardTitle = document.createElement('h5');
+  cardTitle.classList.add('card-title');
+  cardTitle.textContent = item.name;
+
+  const cardText = document.createElement('p');
+  cardText.classList.add('card-text');
+  cardText.textContent = item.email;
+
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(cardText);
+
+  cardDiv.appendChild(image);
+  cardDiv.appendChild(cardBody);
+
+  cardLink.appendChild(cardDiv);
+
+  tableData.appendChild(cardLink);
+  tableRow.appendChild(tableData);
+
+  tableBody.appendChild(tableRow);
+});
+};
 
       showRestaurants()
 
@@ -326,5 +340,4 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard2.js"></script>
 </body>
-
 </html>
