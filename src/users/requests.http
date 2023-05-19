@@ -3,9 +3,10 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallo@gmail.com",
-  "name": "Otávio Costa Dallo",
-  "cpf": "32123321321",
+  "email": "boicampero@gmail.com",
+  "name": "Boi Campero",
+  "cnpj": "9329932932932",
+  "block": "2",
   "password": "@Senha123"
 }
 
@@ -33,8 +34,17 @@ GET http://localhost:3000/auth/adm/restaurants
 ### Find all users with a given email
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
-### TypeUsers creation
-POST http://localhost:3000/typeuser
+### Create product
+POST http://localhost:3000/products
+content-type: application/json
+
+{
+  "name": "Coca-Cola",
+  "description": "Coca-Cola gelada na promoção",
+  "image": "cocacola.png",
+  "restaurant_id": 3
+}
+
 
 ### Delete a user given id
 DELETE http://localhost:3000/auth/21

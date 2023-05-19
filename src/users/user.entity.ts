@@ -33,8 +33,8 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => Product, product => product.restaurant)
-  products: Product[];
+  @OneToMany(() => Product, product => product.restaurant_id)
+  products: Product[]
 
   @Column( { default: false } )
   isAdmin: boolean;

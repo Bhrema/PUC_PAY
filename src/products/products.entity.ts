@@ -22,6 +22,6 @@ export class Product {
     image: string;
 
     @ManyToOne(() => User, user => user.products)
-    @JoinColumn({ name: "cnpj" })
-    restaurant: User;
+    @JoinColumn({ name: "restaurant_id", referencedColumnName: "id"})
+    restaurant_id: number;
 }

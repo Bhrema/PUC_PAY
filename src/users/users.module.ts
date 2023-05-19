@@ -6,9 +6,11 @@ import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from './user.entity';
 import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+import { ProductsService } from 'src/products/products.service';
+import { ProductsModule } from 'src/products/products.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]), ProductsModule],
   controllers: [UsersController],
   providers: [
     UsersService,
