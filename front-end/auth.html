@@ -303,6 +303,7 @@
           });
 
           const response = await register(data) // aguarda a resolução da Promise retornada
+          console.log(response.cnpj)
 
           if (response.email){
             window.location.replace('login.html')

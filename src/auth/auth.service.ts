@@ -31,6 +31,16 @@ export class AuthService {
     // Join the hashed result and the salt together
     const result = salt + '.' + hash.toString('hex');
 
+    if(cpf === ''){
+      cpf = null
+    }
+    if(cnpj === ''){
+      cnpj = null
+    }
+    if(block === ''){
+      block = null
+    }
+
     // Create a new user and save it
     const user = await this.usersService.create(email, name, cpf, cnpj, block, result);
 

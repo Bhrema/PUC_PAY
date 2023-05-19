@@ -3,11 +3,10 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallsos@gmail.com",
+  "email": "ocostadallo@gmail.com",
   "name": "Otávio Costa Dallo",
-  "cnpj": "64964465000145",
-  "block": "2",
-  "password": "@Livia040323"
+  "cpf": "32123321321",
+  "password": "@Senha123"
 }
 
 ### Sign in as an existing user
@@ -16,7 +15,7 @@ content-type: application/json
 
 {
   "email": "ricardaobolsonaro@gmail.com",
-  "password": "@Livia040323"
+  "password": "@Senha123"
 }
 
 ### Get the currently signed in user
@@ -38,10 +37,10 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 POST http://localhost:3000/typeuser
 
 ### Delete a user given id
-DELETE http://localhost:3000/auth/5
+DELETE http://localhost:3000/auth/21
 
 ### Update a user
-PATCH http://localhost:3000/auth/3
+PATCH http://localhost:3000/auth/23
 content-type: application/json
 
 {
