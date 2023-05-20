@@ -1,0 +1,28 @@
+### Create a product
+POST http://localhost:3000/products
+content-type: application/json
+
+{
+  "name": "Tubaina",
+  "description": "Tubaina gelada na promoção",
+  "image": "Tubaina.png",
+  "restaurant_id": 3
+}
+
+### Find all products
+GET http://localhost:3000/products/
+
+### Find one product
+GET http://localhost:3000/products/2
+
+### Delete a product
+DELETE http://localhost:3000/products/7
+
+
+### Update a product
+PATCH http://localhost:3000/products/5
+content-type: application/json
+
+{
+  "description": "Tubaina congelante"
+}

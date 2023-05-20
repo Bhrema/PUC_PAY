@@ -1,7 +1,6 @@
-import { IsEmail, IsString, IsOptional, IsNotEmpty} from 'class-validator';
-import { User } from 'src/users/user.entity';
+import {IsString, IsNotEmpty, IsNumber} from 'class-validator';
 
-export class ProductDto {
+export class CreateProductDto {
     @IsString()
     @IsNotEmpty()
     name: string;
