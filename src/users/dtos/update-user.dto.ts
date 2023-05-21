@@ -16,4 +16,12 @@ export class UpdateUserDto {
   @IsBoolean()
   @IsOptional()
   isAdmin: boolean;
+
+  @IsString()
+  @IsOptional()
+  cpf: string
+
+  @IsString()
+  @IsOptional()
+  cnpj: string
 }

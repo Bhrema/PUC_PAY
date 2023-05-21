@@ -32,8 +32,8 @@ export class ProductsController {
     return this.productsService.remove(parseInt(id));
   }
 
-  @Patch('/:id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateProductDto) {
-    return this.productsService.update(parseInt(id), body);
-  }
+    @Patch('/:id')
+    updateUser(@Param('id') id: string, @Body() body: UpdateProductDto) {
+        return this.productsService.update(parseInt(id), body);
+    }
 }
