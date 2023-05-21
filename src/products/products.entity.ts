@@ -19,6 +19,9 @@ export class Product {
     description: string;
 
     @Column()
+    price: string;
+
+    @Column()
     image: string;
 
     @ManyToOne(() => User, user => user.products)

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -14,340 +16,376 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css">
 </head>
+
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
+  <div class="wrapper">
 
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contato</a>
-      </li>
-    </ul>
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contato</a>
+        </li>
+      </ul>
 
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+            <i class="fas fa-search"></i>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+          <div class="navbar-search-block">
+            <form class="form-inline">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
               </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+            </form>
+          </div>
+        </li>
+
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Brad Diesel
+                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">Call me whenever you can...</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
               </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      
-      
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">PUCPAY</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <i class="fas-fa-user"></i>
-        </div>
-        <div class="info">
-          <a href="#" class="d-block" id="session-name">Faça seu login</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Perfil
-              </p>
+              <!-- Message End -->
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./dashboard-restaurante-produtos.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Produtos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./dashboard-restaurante-relatorio.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Relatório</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./dashboard-restaurante-promo-ativa.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Promoções Ativas</p>
-                </a>
-              </li>
-              
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    John Pierce
+                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">I got your message bro</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Nora Silvester
+                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">The subject goes here</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+          </div>
+        </li>
+        <!-- Notifications Dropdown Menu -->
 
-  <!-- CONTEÚDO DO DASHBOARD -->
-  <div class="content">
-    <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
-      <div class="container">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-            <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
-              <div class="card-body p-5"><!--  Input Control -->
-                <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Perfil</h2>
-                <form id="register-form" style="position: relative; bottom: 40px;">
-                  <div class="form-outline mb-1">
-                    <label class="form-label" for="formAcaEmail">Email</label>
-                    <input id="formEmail" type="email" class="form-control form-control-lg" name="email" disabled />
-                    <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
-                  </div>
 
-                  <div class="form-outline mb-1">
-                    <label class="form-label" for="formAcaNome">Nome</label>
-                    <input id="formNome" type="text" class="form-control form-control-lg" name="name" disabled />
-                    <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
-                  </div>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
-                  <div class="form-outline mb-1" id="cnpj_div" >
-                    <label class="form-label" for="formAdmCNPJ">CNPJ</label>
-                    <input id="formCnpj" type="text"  class="form-control form-control-lg" name="cnpj" disabled />
-                    <span id="SpanAdmCnpj" class="invalid-feedback
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <span class="brand-text font-weight-light">PUCPAY</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <i class="fas-fa-user"></i>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block" id="session-name">Faça seu login</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Perfil
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./dashboard-restaurante-produtos.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Produtos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./dashboard-restaurante-relatorio.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Relatório</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./dashboard-restaurante-promo-ativa.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Promoções Ativas</p>
+                  </a>
+                </li>
+
+              </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- CONTEÚDO DO DASHBOARD -->
+    <div class="content">
+      <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
+                <div class="card-body p-5"><!--  Input Control -->
+                  <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Perfil</h2>
+                  <form id="register-form" style="position: relative; bottom: 40px;">
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="formAcaEmail">Email</label>
+                      <input id="formEmail" type="email" class="form-control form-control-lg" name="email" />
+                      <span class="invalid-feedback">Por favor, insira um e-mail correto</span>
+                    </div>
+
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="formAcaNome">Nome</label>
+                      <input id="formNome" type="text" class="form-control form-control-lg" name="name" />
+                      <span class="invalid-feedback">Nome sem símbolos e pelo menos 10 caracteres</span>
+                    </div>
+
+                    <div class="form-outline mb-1" id="cnpj_div">
+                      <label class="form-label" for="formAdmCNPJ">CNPJ</label>
+                      <input id="formCnpj" type="text" class="form-control form-control-lg" name="cnpj" />
+                      <span id="SpanAdmCnpj" class="invalid-feedback
                     ">CNPJ Inválido / Somente números</span>
-                  </div>
+                    </div>
 
-                  <div id="endereco">
-                    <label>Endereço:</label>
-                    <select id="enderecoInput" class="form-select mb-3" name="block" disabled>
-                      <option selected></option>
-                      <option value="1">Bloco 1 Amarelo</option>
-                      <option value="2">Bloco 2 Azul</option>
-                      <option value="3">Bloco 3 Verde</option>
-                      <option value="4">Bloco 4 Laranja</option>
-                      <option value="5">Bloco 5 Vermelho</option>
-                      <option value="6">Bloco 6 Medicina</option>
-                      <option value="7">Bloco 7 Politécnica</option>
-                      <option value="8">DCE</option>
-                    </select>
-                    <span id="spanErrorEndereco" class="invalid-feedback">Selecione um endereço</span>
-                  </div>
+                    <div id="endereco">
+                      <label>Endereço:</label>
+                      <select id="enderecoInput" class="form-select mb-3" name="block">
+                        <option selected></option>
+                        <option value="1">Bloco 1 Amarelo</option>
+                        <option value="2">Bloco 2 Azul</option>
+                        <option value="3">Bloco 3 Verde</option>
+                        <option value="4">Bloco 4 Laranja</option>
+                        <option value="5">Bloco 5 Vermelho</option>
+                        <option value="6">Bloco 6 Medicina</option>
+                        <option value="7">Bloco 7 Politécnica</option>
+                        <option value="8">DCE</option>
+                      </select>
+                      <span id="spanErrorEndereco" class="invalid-feedback">Selecione um endereço</span>
+                    </div>
 
-                  <div class="d-flex justify-content-center position-relative" style="top: 10px;">
-                    <button type="button" id="editar" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" >Editar</button>
-                    <button type="submit" id="confirmar" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" style="display: none;">Confirmar</button>
-                  </div>
+                    <div class="d-flex justify-content-center position-relative" style="top: 10px;">
+                      <button type="submit" id="confirmar"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                        style="display: block;">Confirmar</button>
+                      <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum
+                        campo.</p>
+                    </div>
 
-                </form>
+                  </form>
 
+                  <p id="messageRedirect" style="display: none; color: red; margin-left: 33px;">Faça login com seus
+                    dados
+                    atualizados. Redirecionando em: <span id="countdown">3</span>s</p>
+
+
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
-  <!-- /.content-wrapper -->
+      <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
-    
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
+
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b> 3.2.0
+        </div>
+      </footer>
     </div>
-  </footer>
-</div>
-<!-- ./wrapper -->
+    <!-- ./wrapper -->
 
-<script>
-  const btn = document.getElementById('btnLogout')
-    btn.addEventListener('click', async event => {
-      event.preventDefault()
-      await logout()
-      replaceLocation()
-      deleteSession()
-    })
+    <script>
+      const btn = document.getElementById('btnLogout')
+      btn.addEventListener('click', async event => {
+        event.preventDefault()
+        await logout()
+        replaceLocation()
+        deleteSession()
+      })
 
-    const logout = async (data) => {
-      const response = await fetch('http://localhost:3000/auth/signout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+      const logout = async (data) => {
+        const response = await fetch('http://localhost:3000/auth/signout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+      }
+
+      function replaceLocation() {
+        window.location.replace('login.html')
+      }
+
+
+      const session = localStorage.getItem('session')
+      const sessionJson = JSON.parse(session)
+
+      const userNameSession = document.getElementById('session-name')
+
+      userNameSession.innerText = sessionJson.name;
+
+      document.getElementById("formNome").value = sessionJson.name;
+      document.getElementById("formEmail").value = sessionJson.email;
+      document.getElementById("formCnpj").value = sessionJson.cnpj;
+      document.getElementById("enderecoInput").value = sessionJson.block;
+
+      const form = document.getElementById('register-form');
+      const idUser = sessionJson.id;
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault()
+        await handleEdit()
+        messageAlert()
+        deleteSession()
+        replaceLocationSubmit()
       });
 
-    }
-
-    function replaceLocation() {
-      window.location.replace('login.html')
-    }
-
-
-    function deleteSession() {
-      localStorage.removeItem('session');
-    }
-
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
-
-    const userNameSession = document.getElementById('session-name')
-
-    userNameSession.innerText = sessionJson.name;
-
-    document.getElementById("formNome").value = sessionJson.name;
-    document.getElementById("formEmail").value = sessionJson.email;
-    document.getElementById("formCnpj").value = sessionJson.cnpj;
-    document.getElementById("enderecoInput").value = sessionJson.block;
-    
-    const btnEditar = document.getElementById("editar");
-    btnEditar.addEventListener("click", editar);
-    const btnConfirmar = document.getElementById("confirmar");
-    btnConfirmar.addEventListener("click", confirmar);
-    function editar() {
-      document.getElementById("formNome").disabled = false;
-      document.getElementById("formEmail").disabled = false;
-      document.getElementById("formCnpj").disabled = false;
-      document.getElementById("enderecoInput").disabled = false;
-      document.getElementById("editar").style.display = "none";
-      document.getElementById("confirmar").style.display= "block";
-      console.log("Editar")
-    }
-    function confirmar() {
-      event.preventDefault();
-      document.getElementById("formNome").disabled = true;
-      document.getElementById("formEmail").disabled = true;
-      document.getElementById("formCnpj").disabled = true;
-      document.getElementById("enderecoInput").disabled = true;
-      document.getElementById("editar").style.display = "block";
-      document.getElementById("confirmar").style.display= "none";
-      console.log("confimou")
+      function messageAlert() {
+        const message = document.getElementById('message')
+        const messageRedirect = document.getElementById('messageRedirect')
+        messageRedirect.style.display = 'block';
       }
-</script>
+
+
+      function replaceLocationSubmit() {
+        setTimeout(function () {
+          window.location.replace("login.html");
+        }, 3000)
+      }
+
+      function deleteSession() {
+        localStorage.removeItem('session');
+      }
+
+      async function handleEdit() {
+        const formData = new FormData(form);
+        const data = {};
+
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        const response = await edit(data)
+        console.log(response)
+      }
+
+
+      const edit = async (data) => {
+        const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data),
+        });
+        const responseData = await response.json();
+
+        return responseData
+      }
+
+    </script>
 
 
 
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
 
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
 
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
 </body>
+
 </html>

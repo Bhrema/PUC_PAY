@@ -3,10 +3,11 @@ POST http://localhost:3000/products
 content-type: application/json
 
 {
-  "name": "Tubaina",
-  "description": "Tubaina gelada na promoção",
-  "image": "Tubaina.png",
-  "restaurant_id": 3
+  "name": "Coca-Cola",
+  "description": "Coca-cola gelada",
+  "price": "4,50",
+  "image": "coca-cola.jpg",
+  "restaurant_id": 1
 }
 
 ### Find all products
@@ -16,7 +17,7 @@ GET http://localhost:3000/products/
 GET http://localhost:3000/products/2
 
 ### Delete a product
-DELETE http://localhost:3000/products/7
+DELETE http://localhost:3000/products/4
 
 
 ### Update a product

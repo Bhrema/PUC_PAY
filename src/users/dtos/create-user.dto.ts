@@ -20,6 +20,10 @@ export class CreateUserDto {
   @IsOptional()
   @IsString()
   block: string;
+
+  @IsOptional()
+  @IsString()
+  image: string;
   
   @IsString()
   @IsNotEmpty()

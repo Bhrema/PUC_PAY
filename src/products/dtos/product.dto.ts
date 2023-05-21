@@ -11,6 +11,9 @@ export class ProductDto {
     description: string
 
     @Expose()
+    price: string;
+
+    @Expose()
     image: string
 
     @Expose()

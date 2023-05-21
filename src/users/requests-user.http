@@ -3,19 +3,19 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallo@gmail.com",
-  "name": "Otávio Costa Dallo",
+  "email": "otaviodallo@gmail.com",
+  "name": "Otávio Dallo",
   "cpf": "10843769971",
   "password": "@Livia040323"
 }
 
 ### Sign in as an existing user
-POST http://localhost:3000/auth/signin
+POST http://localhost:3000/auth2/signin
 content-type: application/json
 
 {
-  "email": "ricardaobolsonaro@gmail.com",
-  "password": "@Senha123"
+  "email": "ocostadallo@gmail.com",
+  "password": "@Livia040323"
 }
 
 ### Get the currently signed in user
@@ -34,7 +34,7 @@ GET http://localhost:3000/auth/adm/restaurants
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
 ### Delete a user given id
-DELETE http://localhost:3000/auth/6
+DELETE http://localhost:3000/auth/3
 
 ### Update a user
 PATCH http://localhost:3000/auth/5

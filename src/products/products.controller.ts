@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Get, Param, NotFoundException, Delete, Patch } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, NotFoundException, Delete, Patch, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/edit-product.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('products')
 export class ProductsController {
@@ -18,9 +19,15 @@ export class ProductsController {
 
     @Post()
     async createProduct(@Body() body: CreateProductDto){
-        const product = await this.productsService.create(body.name, body.description, body.image, body.restaurant_id)
+        const product = await this.productsService.create(body.name, body.description, body.image, body.price, body.restaurant_id)
         return product;
     }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('image'))
+    uploadFile(@UploadedFile() file: Express.Multer.File) {
+        console.log(file);
+}   
 
     @Get()
     async findAllProducts(){

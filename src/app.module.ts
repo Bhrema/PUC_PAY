@@ -10,6 +10,7 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/products.entity';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserEntity } from './users/usertype.entity';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({

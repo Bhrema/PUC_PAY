@@ -20,5 +20,8 @@ export class UserDto {
   block: string;
 
   @Expose()
+  image: string;
+
+  @Expose()
   isAdmin: boolean;
 }

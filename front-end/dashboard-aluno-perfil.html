@@ -199,7 +199,7 @@
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
               <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
                 <div class="card-body p-5"><!--  Input Control -->
-                  <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Perfil</h2>
+                  <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Editar perfil</h2>
                   <form id="register-form" style="position: relative; bottom: 40px;">
                     <div class="form-outline mb-1">
                       <label class="form-label" for="formAcaEmail">Email</label>
@@ -221,11 +221,13 @@
                     <div class="d-flex justify-content-center position-relative" style="top: 10px;">
                       <button type="submit" id="confirmar"
                         class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Confirmar</button>
-                      <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum campo.</p>
+                      <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum
+                        campo.</p>
                     </div>
                   </form>
-                  <p id="messageRedirect" style="display: none; color: red; margin-left: 33px;">Faça login com seus dados
-                    atualizados. Redirecionando em: <span id="message-value">3</span>s</p>
+                  <p id="messageRedirect" style="display: none; color: red; margin-left: 33px;">Faça login com seus
+                    dados
+                    atualizados. Redirecionando em: <span id="countdown">3</span>s</p>
 
                 </div>
               </div>
@@ -310,26 +312,16 @@
       form.addEventListener('submit', async event => {
         event.preventDefault()
         await handleEdit()
-        await showAlert()
+        messageAlert()
         deleteSession()
         replaceLocationSubmit()
       });
 
-
-      function showAlert(){
-        const emailInput = document.getElementById('formEmail');
-        const nameInput = document.getElementById('formNome');
-        const cpfInput = document.getElementById('formCpf');
-        const message = document.getElementById('message');
-
-        if(emailInput === sessionJson.email && nameInput === sessionJson.name && cpfInput === sessionJson.cpf){
-          throw new Error("Error")
-          message.style.display = 'block';
-        }
-        if(emailInput === ''){
-          throw new error(error)
-        }
-      };
+      function messageAlert() {
+        const message = document.getElementById('message')
+        const messageRedirect = document.getElementById('messageRedirect')
+        messageRedirect.style.display = 'block';
+      }
 
 
       async function handleEdit() {
@@ -358,7 +350,7 @@
         return responseData
       }
 
-
+      
     </script>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->

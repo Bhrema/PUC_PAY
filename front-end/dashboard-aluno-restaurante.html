@@ -36,7 +36,6 @@
         </li>
       </ul>
 
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
@@ -117,8 +116,6 @@
           </div>
         </li>
         <!-- Notifications Dropdown Menu -->
-
-
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -253,8 +250,9 @@ users.forEach(item => {
   cardDiv.classList.add('card');
   cardDiv.style.width = '18rem';
 
+  const userImage = item.image;
   const image = document.createElement('img');
-  image.src = '/imgs/boicampero.jpg'; // Adicione o caminho da imagem correspondente ao item
+  image.src = `/uploads/${userImage}`; // Adicione o caminho da imagem correspondente ao item
 
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body');
@@ -282,7 +280,7 @@ users.forEach(item => {
 });
 };
 
-      showRestaurants()
+    showRestaurants()
 
       const btn = document.getElementById('btnLogout')
       btn.addEventListener('click', async event => {

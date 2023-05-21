@@ -11,6 +11,10 @@ export class CreateProductDto {
 
     @IsString()
     @IsNotEmpty()
+    price: string;
+
+    @IsString()
+    @IsNotEmpty()
     image: string;
 
     @IsNotEmpty()

@@ -29,6 +29,9 @@ export class User {
 
   @Column({ nullable: true, default: null })
   block: string;
+  
+  @Column({ nullable: true, default: null })
+  image: string;
 
   @Column()
   password: string;

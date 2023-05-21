@@ -19,6 +19,10 @@ export class UpdateUserDto {
 
   @IsString()
   @IsOptional()
+  block: string;
+
+  @IsString()
+  @IsOptional()
   cpf: string
 
   @IsString()
