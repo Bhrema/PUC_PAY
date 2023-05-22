@@ -137,7 +137,7 @@
           </div>
           <div class="info" style="display:flex; gap: 12px; align-items: center;">
             <a href="dashboard-aluno-perfil.html">
-              <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px; display: block; " id="perfil-image"> -->
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
           </a>
           </div>
@@ -318,6 +318,8 @@ users.forEach(item => {
       function deleteSession() {
         localStorage.removeItem('session');
       };
+
+      const perfilImage = document.getElementById('perfil-image');
 
   </script>
   <!-- REQUIRED SCRIPTS -->
