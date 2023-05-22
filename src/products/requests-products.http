@@ -6,7 +6,7 @@ content-type: application/json
   "name": "Coca-Cola",
   "description": "Coca-cola gelada",
   "price": "4,50",
-  "image": "coca-cola.jpg",
+  "image":"coca-cola.jpg",
   "restaurant_id": 1
 }
 

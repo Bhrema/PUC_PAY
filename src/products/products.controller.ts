@@ -18,8 +18,9 @@ export class ProductsController {
     }
 
     @Post()
-    async createProduct(@Body() body: CreateProductDto){
-        const product = await this.productsService.create(body.name, body.description, body.image, body.price, body.restaurant_id)
+    @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
+    async createProduct(@Body() body: CreateProductDto, @UploadedFile() file: Express.Multer.File){
+        const product = await this.productsService.create(body.name, body.description, file.filename, body.price, body.restaurant_id)
         return product;
     }
 
