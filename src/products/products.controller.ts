@@ -23,12 +23,6 @@ export class ProductsController {
         return product;
     }
 
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('image'))
-    uploadFile(@UploadedFile() file: Express.Multer.File) {
-        console.log(file);
-}   
-
     @Get()
     async findAllProducts(){
         return this.productsService.findAll()

@@ -37,11 +37,9 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 DELETE http://localhost:3000/auth/3
 
 ### Update a user
-PATCH http://localhost:3000/auth/5
+PATCH http://localhost:3000/auth/3
 content-type: application/json
 
 {
-  "email": "ocostadall@gmail.com",
-  "name": "Otávio Costa",
-  "cpf": "99932132121"
+  "IsAdmin": true
 }
