@@ -123,7 +123,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="index3.html" class="brand-link" style="text-align: center;">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="brand-text font-weight-light">PUCPAY</span>
       </a>
@@ -135,8 +135,11 @@
           <div class="image">
             <i class="fas-fa-user"></i>
           </div>
-          <div class="info">
-            <a href="login.html" class="d-block" id="session-name">Faça seu login</a>
+          <div class="info" style="display:flex; gap: 12px; align-items: center;">
+            <a href="dashboard-aluno-perfil.html">
+              <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
+          </a>
           </div>
         </div>
 
@@ -184,12 +187,12 @@
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
       <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
-        <tbody id="tbody">
+        <tbody id="tbody" style="display: flex">
           <tr>
             <td>
               <a href="#">
                 <div class="card" style="width: 18rem;">
-                  <img src="..." class="card-img-top" alt="...">
+                  <img src="..." clasas="crd-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title" id="name">Name</h5>
                     <p class="card-text" id="block">Endereço</p>

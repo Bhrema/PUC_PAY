@@ -3,9 +3,11 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "otaviodallo@gmail.com",
-  "name": "Otávio Dallo",
-  "cpf": "10843769971",
+  "email": "mcdonaldscentro@gmail.com",
+  "name": "Mc Donalds Centro",
+  "cnpj": "10843769971321",
+  "block": "1",
+  "img": "mcdond.jpg",
   "password": "@Livia040323"
 }
 
