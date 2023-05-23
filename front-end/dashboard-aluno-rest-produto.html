@@ -139,7 +139,7 @@
             <a href="dashboard-aluno-perfil.html">
               <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+            </a>
           </div>
         </div>
 
@@ -186,42 +186,42 @@
 
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
-        <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
-          <tbody id="tbody" style="display: flex">
+      <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
+        <tbody id="tbody" style="display: flex">
 
-            <tr>
-              <td>
-                <a href="#">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card">
-                          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                            data-mdb-ripple-color="light">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                              class="w-100" />
-                            <a href="#!"></a>
-                          </div>
-                          <div class="card-body">
-                            <a href="" class="text-reset">
-                              <h5 class="card-title mb-3">Nome do Produto</h5>
-                            </a>
-                            <br>
-                            <hr>
-                            <h6 class="mb-3">$Price</h6>
-                          </div>
-                          <button type="button" class="btn btn-primary">Adicionar ao carrinho</button>
-                        </div>
-                      </div>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        
-          
-      
+          <tr>
+            <td>
+              <a href="#">
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                      data-mdb-ripple-color="light">
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                        class="w-100" />
+                      <a href="#!"></a>
+                    </div>
+                    <div class="card-body">
+                      <a href="" class="text-reset">
+                        <h5 class="card-title mb-3" id="name">Nome do Produto</h5>
+                      </a>
+                      <br>
+                      <hr>
+                      <h6 class="mb-3" id="price">$Price</h6>
+                    </div>
+                    <button type="button" class="btn btn-primary">Adicionar ao carrinho</button>
+                  </div>
+                </div>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
     </div>
 
-            
+
 
     <!-- /.content-wrapper -->
 
@@ -242,60 +242,102 @@
     </footer> -->
   </div>
   <!-- ./wrapper -->
- <script>
+  <script>
     async function showProducts() {
-        const response = await fetch(`http://localhost:3000/products/restaurant/${restaurant}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
-        const responseData = await response.json();
-        const products = responseData;
-        console.log(products)
-        console.log(restaurant)
+      const urlParams = new URLSearchParams(window.location.search);
+      const restaurantId = urlParams.get("id");
+      const response = await fetch(`http://localhost:3000/products/restaurant/${restaurantId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      const responseData = await response.json();
+      const products = responseData;
+      console.log(products)
+
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = '';
+
+      function createProductElement(product) {
+        const tableRow = document.createElement("tr");
+        tableRow.innerHTML = `
+                <td>
+                  <a href="#">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                      <div class="card">
+                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                          data-mdb-ripple-color="light">
+                          <img src="/uploads/${product.image}" class="w-100" />
+                          <a href="#!"></a>
+                        </div>
+                        <div class="card-body">
+                          <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">${product.name}</h5>
+                          </a>
+                          <br>
+                          <hr>
+                          <h6 class="mb-3">R$${product.price}</h6>
+                        </div>
+                        <button type="button" class="btn btn-primary">Adicionar ao carrinho</button>
+                      </div>
+                    </div>
+                  </a>
+                </td>
+              `;
+        return tableRow;
       }
-
-      showProducts()
-
-
-
-      const btn = document.getElementById('btnLogout')
-      btn.addEventListener('click', async event => {
-        event.preventDefault()
-        await logout()
-        replaceLocation()
-        deleteSession()
-      })
-
-      const logout = async (data) => {
-        const response = await fetch('http://localhost:3000/auth/signout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-
-      }
-
-      const session = localStorage.getItem('session')
-      const sessionJson = JSON.parse(session)
-      const restaurant = sessionJson.id
-      console.log(restaurant)
-
-      const userNameSession = document.getElementById('session-name')
-      userNameSession.innerText = sessionJson.name;
-
-      function replaceLocation() {
-        window.location.replace('login.html')
-      }
+      products.forEach(product => {
+        const productElement = createProductElement(product);
+        tbody.appendChild(productElement);
+      });
 
 
-      function deleteSession() {
-        localStorage.removeItem('session');
-      }
-  
+    }
+
+    showProducts()
+
+
+
+
+    const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
+
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+    }
+
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    const userNameSession = document.getElementById('session-name')
+    userNameSession.innerText = sessionJson.name;
+
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
+
+
+    function deleteSession() {
+      localStorage.removeItem('session');
+    }
+
+
+
+
+
 
   </script>
   <!-- REQUIRED SCRIPTS -->
@@ -322,4 +364,5 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard2.js"></script>
 </body>
-</html> 
+
+</html>
