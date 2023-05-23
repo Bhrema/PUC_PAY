@@ -242,67 +242,23 @@
     </footer> -->
   </div>
   <!-- ./wrapper -->
- <!-- <script>
-    async function showRestaurants() {
-        const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
+ <script>
+    async function showProducts() {
+        const response = await fetch(`http://localhost:3000/products/restaurant/${restaurant}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
           },
         });
-
         const responseData = await response.json();
-        const users = responseData;
-        console.log(users)
+        const products = responseData;
+        console.log(products)
+        console.log(restaurant)
+      }
 
-        
-      
+      showProducts()
 
-const tableBody = document.getElementById('tbody');
-tableBody.innerHTML = '';
 
-users.forEach(item => {
-  const tableRow = document.createElement('tr');
-
-  const tableData = document.createElement('td');
-  const cardLink = document.createElement('a');
-  cardLink.href = '#';
-
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('card');
-  cardDiv.style.width = '18rem';
-
-  const userImage = item.image;
-  const image = document.createElement('img');
-  image.src = `/uploads/${userImage}`; // Adicione o caminho da imagem correspondente ao item
-
-  const cardBody = document.createElement('div');
-  cardBody.classList.add('card-body');
-
-  const cardTitle = document.createElement('h5');
-  cardTitle.classList.add('card-title');
-  cardTitle.textContent = item.name;
-
-  const cardText = document.createElement('p');
-  cardText.classList.add('card-text');
-  cardText.textContent = item.email;
-
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(cardText);
-
-  cardDiv.appendChild(image);
-  cardDiv.appendChild(cardBody);
-
-  cardLink.appendChild(cardDiv);
-
-  tableData.appendChild(cardLink);
-  tableRow.appendChild(tableData);
-
-  tableBody.appendChild(tableRow);
-});
-};
-
-    showRestaurants()
 
       const btn = document.getElementById('btnLogout')
       btn.addEventListener('click', async event => {
@@ -325,6 +281,8 @@ users.forEach(item => {
 
       const session = localStorage.getItem('session')
       const sessionJson = JSON.parse(session)
+      const restaurant = sessionJson.id
+      console.log(restaurant)
 
       const userNameSession = document.getElementById('session-name')
       userNameSession.innerText = sessionJson.name;
@@ -336,9 +294,10 @@ users.forEach(item => {
 
       function deleteSession() {
         localStorage.removeItem('session');
-      };
+      }
+  
 
-  </script> -->
+  </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>

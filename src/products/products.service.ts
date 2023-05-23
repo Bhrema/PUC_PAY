@@ -39,6 +39,12 @@ export class ProductsService {
         return this.productRepository.findOne(id);
     }
 
+    async findProductsWithIdRestaurant(idRes: number): Promise<Product[]> {
+        return this.productRepository.createQueryBuilder('product')
+          .where('restaurant_id = :idRes', { idRes })
+          .getMany();
+      }
+
     async remove(id: number) {
         const product = await this.findOne(id);
         if (!product) {

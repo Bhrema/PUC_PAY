@@ -18,15 +18,20 @@ export class ProductsController {
     }
 
     @Post()
-    @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
-    async createProduct(@Body() body: CreateProductDto, @UploadedFile() file: Express.Multer.File){
-        const product = await this.productsService.create(body.name, body.description, file.filename, body.price, body.restaurant_id)
+    async createProduct(@Body() body: CreateProductDto){
+        const product = await this.productsService.create(body.name, body.description, body.image, body.price, body.restaurant_id)
         return product;
     }
 
     @Get()
     async findAllProducts(){
         return this.productsService.findAll()
+    }
+
+    @Get('/restaurant/:id')
+    async findResProducts(@Param('id') id: string){
+        const products = await this.productsService.findProductsWithIdRestaurant(parseInt(id))
+        return products
     }
 
     @Delete('/:id')
