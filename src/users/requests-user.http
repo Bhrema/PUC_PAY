@@ -3,11 +3,11 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "mcdonaldscentro@gmail.com",
-  "name": "Mc Donalds Centro",
-  "cnpj": "10843769971321",
+  "email": "batelgrill@gmail.com",
+  "name": "Batel Grill",
+  "cnpj": "20843769971323",
   "block": "1",
-  "img": "mcdond.jpg",
+  "image": "batelgrill.jpg",
   "password": "@Livia040323"
 }
 
@@ -36,7 +36,7 @@ GET http://localhost:3000/auth/adm/restaurants
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
 ### Delete a user given id
-DELETE http://localhost:3000/auth/3
+DELETE http://localhost:3000/auth/2
 
 ### Update a user
 PATCH http://localhost:3000/auth/3

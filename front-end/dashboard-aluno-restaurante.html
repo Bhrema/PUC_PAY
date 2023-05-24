@@ -137,9 +137,9 @@
           </div>
           <div class="info" style="display:flex; gap: 12px; align-items: center;">
             <a href="dashboard-aluno-perfil.html">
-              <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px; display: block; " id="perfil-image"> -->
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+            </a>
           </div>
         </div>
 
@@ -187,10 +187,10 @@
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
       <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
-        <tbody id="tbody" style="display: flex">
+        <tbody id="tbody" style="display: flex" class="tbody">
           <tr>
             <td>
-              <a href="#">
+              <a id="goToRestaurant">
                 <div class="card" style="width: 18rem;">
                   <img src="..." clasas="crd-img-top" alt="...">
                   <div class="card-body">
@@ -203,7 +203,7 @@
           </tr>
         </tbody>
       </table>
-  </div>
+    </div>
 
     <!-- /.content-wrapper -->
 
@@ -226,99 +226,98 @@
   <!-- ./wrapper -->
   <script>
     async function showRestaurants() {
-        const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
+      const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
 
-        const responseData = await response.json();
-        const users = responseData;
-        console.log(users)
-        
-      
+      const responseData = await response.json();
+      const users = responseData;
+      console.log(users)
 
-const tableBody = document.getElementById('tbody');
-tableBody.innerHTML = '';
 
-users.forEach(item => {
-  const tableRow = document.createElement('tr');
 
-  const tableData = document.createElement('td');
-  const cardLink = document.createElement('a');
-  cardLink.href = '#';
+      const tableBody = document.getElementById('tbody');
+      tableBody.innerHTML = '';
 
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('card');
-  cardDiv.style.width = '18rem';
+      users.forEach(item => {
+        const tableRow = document.createElement('tr');
+        tableRow.classList.add(item.id)
 
-  const userImage = item.image;
-  const image = document.createElement('img');
-  image.src = `/uploads/${userImage}`; // Adicione o caminho da imagem correspondente ao item
+        const tableData = document.createElement('td');
+        const cardLink = document.createElement('a');
+        cardLink.href = `dashboard-aluno-rest-produto.html?id=${tableRow.classList}`;
 
-  const cardBody = document.createElement('div');
-  cardBody.classList.add('card-body');
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card');
+        cardDiv.style.width = '18rem';
 
-  const cardTitle = document.createElement('h5');
-  cardTitle.classList.add('card-title');
-  cardTitle.textContent = item.name;
+        const userImage = item.image;
+        const image = document.createElement('img');
+        image.src = `/uploads/${userImage}`; // Adicione o caminho da imagem correspondente ao item
 
-  const cardText = document.createElement('p');
-  cardText.classList.add('card-text');
-  cardText.textContent = item.email;
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
 
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(cardText);
+        const cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
+        cardTitle.textContent = item.name;
 
-  cardDiv.appendChild(image);
-  cardDiv.appendChild(cardBody);
+        const cardText = document.createElement('p');
+        cardText.classList.add('card-text');
+        cardText.textContent = item.email;
 
-  cardLink.appendChild(cardDiv);
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardText);
 
-  tableData.appendChild(cardLink);
-  tableRow.appendChild(tableData);
+        cardDiv.appendChild(image);
+        cardDiv.appendChild(cardBody);
 
-  tableBody.appendChild(tableRow);
-});
-};
+        cardLink.appendChild(cardDiv);
 
+        tableData.appendChild(cardLink);
+        tableRow.appendChild(tableData);
+
+        tableBody.appendChild(tableRow);
+      });
+    };
+    
     showRestaurants()
 
-      const btn = document.getElementById('btnLogout')
-      btn.addEventListener('click', async event => {
-        event.preventDefault()
-        await logout()
-        replaceLocation()
-        deleteSession()
-      })
+    const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
 
-      const logout = async (data) => {
-        const response = await fetch('http://localhost:3000/auth/signout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-      }
+    }
 
-      const session = localStorage.getItem('session')
-      const sessionJson = JSON.parse(session)
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
 
-      const userNameSession = document.getElementById('session-name')
-      userNameSession.innerText = sessionJson.name;
+    const userNameSession = document.getElementById('session-name')
+    userNameSession.innerText = sessionJson.name;
 
-      function replaceLocation() {
-        window.location.replace('login.html')
-      }
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
 
-
-      function deleteSession() {
-        localStorage.removeItem('session');
-      };
-
+    function deleteSession() {
+      localStorage.removeItem('session');
+    };
   </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
@@ -344,4 +343,5 @@ users.forEach(item => {
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard2.js"></script>
 </body>
+
 </html>

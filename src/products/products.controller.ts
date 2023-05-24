@@ -28,6 +28,12 @@ export class ProductsController {
         return this.productsService.findAll()
     }
 
+    @Get('/restaurant/:id')
+    async findResProducts(@Param('id') id: string){
+        const products = await this.productsService.findProductsWithIdRestaurant(parseInt(id))
+        return products
+    }
+
     @Delete('/:id')
     removeUser(@Param('id') id: string) {
     return this.productsService.remove(parseInt(id));

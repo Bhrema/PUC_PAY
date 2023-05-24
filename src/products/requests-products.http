@@ -3,12 +3,16 @@ POST http://localhost:3000/products
 content-type: application/json
 
 {
-  "name": "Coca-Cola",
-  "description": "Coca-cola gelada",
-  "price": "4,50",
-  "image": "coca-cola.jpg",
-  "restaurant_id": 1
+  "name": "Guaraná Litro",
+  "description": "Guaraná gelado",
+  "price": "6,50",
+  "image":"guarana.jpg",
+  "restaurant_id": 4
 }
+
+
+### Find Restaurant Products
+GET http://localhost:3000/products/restaurant/5
 
 ### Find all products
 GET http://localhost:3000/products/
