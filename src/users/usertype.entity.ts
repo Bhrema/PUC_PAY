@@ -6,5 +6,5 @@ export class UserEntity {
     id: number;
 
     @Column()
-    type: string;
+    isAdmin: boolean;
 }

@@ -21,6 +21,8 @@ Content-Type: image/jpeg
 < ./1.jpg
 --MfnBoundry--
 
+
+
 ### Find Restaurant Products
 GET http://localhost:3000/products/restaurant/5
 
@@ -34,9 +36,9 @@ GET http://localhost:3000/products/2
 DELETE http://localhost:3000/products/4
 
 ### Update a product
-PATCH http://localhost:3000/products/8
+PATCH http://localhost:3000/products/
 content-type: application/json
 
 {
-  
+  "description": "Tubaina congelante"
 }

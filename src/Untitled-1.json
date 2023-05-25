@@ -1,0 +1,1 @@
+[{"stmt":"DROP * FROM tb_user;","header":["id","email","name","cpf","cnpj","block","image","password","isAdmin"],"rows":[["1","usuario@gmail.com","usuario academico","99932132312","NULL","NULL","NULL","f1c587ef7b709395.7ee10ae413c1d079edda64932eb75eda6779ab9761b15c444e77dfe5144c6735","0"]]}]

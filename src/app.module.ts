@@ -9,6 +9,11 @@ import { Product } from './products/products.entity';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserEntity } from './users/usertype.entity';
 import { diskStorage } from 'multer';
+import { OrdersController } from './orders/orders.controller';
+import { OrdersService } from './orders/orders.service';
+import { OrdersModule } from './orders/orders.module';
+import { tb_ticket } from './orders/ticket.entity';
+import { tb_order } from './orders/order.entity';
 
 
 @Module({
@@ -16,7 +21,7 @@ import { diskStorage } from 'multer';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'bd.sqlite',
-      entities: [User, Product, UserEntity],
+      entities: [User, Product, UserEntity, tb_ticket, tb_order],
       synchronize: true,
     }),
     MulterModule.register({
@@ -24,9 +29,10 @@ import { diskStorage } from 'multer';
     }),
     UsersModule,
     ProductsModule,
+    OrdersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, OrdersController],
+  providers: [AppService, OrdersService],
 })
 
 export class AppModule {}
