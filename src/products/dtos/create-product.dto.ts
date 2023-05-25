@@ -9,14 +9,10 @@ export class CreateProductDto {
     @IsNotEmpty()
     description: string;
 
-    @IsString()
+    @IsString({message: 'preço precisa ser string'})
     @IsNotEmpty()
     price: string;
 
-    @IsString()
-    @IsNotEmpty()
-    image: string;
-
-    @IsNotEmpty()
+    @IsNumber()
     restaurant_id: number;
 }

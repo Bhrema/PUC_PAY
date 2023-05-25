@@ -2,9 +2,6 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './products.entity';
 import { Repository } from 'typeorm';
-import { User } from 'src/users/user.entity';
-import { createWriteStream } from 'fs';
-import { Express } from 'express';
 
 @Injectable()
 export class ProductsService {
@@ -15,12 +12,11 @@ export class ProductsService {
 
     async create(name: string, description: string, image: string, price:string, restaurant_id: number) {
         const products = await this.productRepository.find({ name })
-
         if (products.length) {
             throw new BadRequestException('Produto já cadastrado na base de dados');
         }
-
-        const product = this.productRepository.create({ name, description, image, price, restaurant_id })
+    
+        const product = this.productRepository.create({ name, description, image, price, restaurant_id})
         return this.productRepository.save(product)
     }
 

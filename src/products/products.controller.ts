@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Param, NotFoundException, Delete, Patch, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, NotFoundException, Delete, Patch, UseInterceptors, UploadedFile, BadRequestException} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/edit-product.dto';
@@ -7,7 +7,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 @Controller('products')
 export class ProductsController {
     constructor(private productsService: ProductsService) {}
-
     @Get('/:id')
     async findProduct(@Param('id') id: string){
         const product = await this.productsService.findOne(parseInt(id))
@@ -18,8 +17,13 @@ export class ProductsController {
     }
 
     @Post()
-    async createProduct(@Body() body: CreateProductDto){
-        const product = await this.productsService.create(body.name, body.description, body.image, body.price, body.restaurant_id)
+    @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
+    async createProduct(@UploadedFile() image: Express.Multer.File, @Body() body: CreateProductDto){
+        if (!image) {
+            throw new BadRequestException('Imagem não foi enviada');
+          }
+    
+        const product = await this.productsService.create(body.name, body.description, image.filename, body.price, body.restaurant_id)
         return product;
     }
 

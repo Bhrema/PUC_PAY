@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="POST" enctype="multipart/form-data" id="login-form" action="http://localhost:3000/products">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="description">Description</label>
+        <input type="text" name="description">
+        <label for="price">Price</label>
+        <input type="text" name="price">
+        <label for="image">Image</label>
+        <input type="file" name="image">
+        <label for="restaurant_id">restaurant_id</label>
+        <input type="text" name="restaurant_id">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+
+        const form = document.getElementById("login-form");
+
+        const login = async (data) => {
+            const response = await fetch("http://localhost:3000/products", {
+                method: "POST",
+                body: data,
+            });
+
+            const responseData = await response.json();
+
+            console.log(responseData);
+
+            return responseData;
+        };
+
+        // form.addEventListener("submit", (event) => {
+        //     event.preventDefault();
+        //     handleLogin();
+        // });
+
+        async function handleLogin() {
+            const formData = new FormData(form);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            const response = await login(data);
+            console.log(data)
+
+        }
+
+
+    </script>
+</body>
+
+</html>
