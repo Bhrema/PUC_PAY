@@ -297,9 +297,6 @@
 
     showProducts()
 
-
-
-
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
       event.preventDefault()
@@ -310,11 +307,7 @@
 
     const logout = async (data) => {
       const response = await fetch('http://localhost:3000/auth/signout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        method: 'POST'
       });
 
     }

@@ -152,7 +152,7 @@
             <a href="dashboard-aluno-perfil.html">
               <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+            </a>
           </div>
         </div>
 
@@ -260,100 +260,94 @@
     <!-- ./wrapper -->
     <script>
 
-
-      const session = localStorage.getItem('session')
-      const sessionJson = JSON.parse(session)
-      console.log(sessionJson)
-
-      const userNameSession = document.getElementById('session-name')
-      if (!sessionJson.name) {
-        userNameSession.innerText = "Faça seu login!"
-      }
-
-      userNameSession.innerText = sessionJson.name;
-
-      document.getElementById("formNome").value = sessionJson.name;
-      document.getElementById("formEmail").value = sessionJson.email;
-      document.getElementById("formCpf").value = sessionJson.cpf;
-
-      const btn = document.getElementById("btnLogout");
-      btn.addEventListener("click", async (event) => {
-        event.preventDefault();
-        await logout();
-        replaceLocation();
-        deleteSession();
-      });
+      const btn = document.getElementById('btnLogout')
+      btn.addEventListener('click', async event => {
+        event.preventDefault()
+        await logout()
+        replaceLocation()
+        deleteSession()
+      })
 
       const logout = async (data) => {
-        const response = await fetch("http://localhost:3000/auth/signout", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+        const response = await fetch('http://localhost:3000/auth/signout', {
+          method: 'POST'
         });
-      };
+      }
 
+        const session = localStorage.getItem('session')
+        const sessionJson = JSON.parse(session)
+        console.log(sessionJson)
 
-      function replaceLocationSubmit() {
-        setTimeout(function () {
+        const userNameSession = document.getElementById('session-name')
+        if (!sessionJson.name) {
+          userNameSession.innerText = "Faça seu login!"
+        }
+
+        userNameSession.innerText = sessionJson.name;
+
+        document.getElementById("formNome").value = sessionJson.name;
+        document.getElementById("formEmail").value = sessionJson.email;
+        document.getElementById("formCpf").value = sessionJson.cpf;
+
+        function replaceLocationSubmit() {
+          setTimeout(function () {
+            window.location.replace("login.html");
+          }, 3000)
+        }
+
+        function replaceLocation() {
           window.location.replace("login.html");
-        }, 3000)
-      }
+        }
 
-      function replaceLocation() {
-        window.location.replace("login.html");
-      }
+        function deleteSession() {
+          localStorage.removeItem("session");
+        }
 
-      function deleteSession() {
-        localStorage.removeItem("session");
-      }
+        const form = document.getElementById('register-form');
+        const idUser = sessionJson.id;
 
-      const form = document.getElementById('register-form');
-      const idUser = sessionJson.id;
-
-      form.addEventListener('submit', async event => {
-        event.preventDefault()
-        await handleEdit()
-        messageAlert()
-        deleteSession()
-        replaceLocationSubmit()
-      });
-
-      function messageAlert() {
-        const message = document.getElementById('message')
-        const messageRedirect = document.getElementById('messageRedirect')
-        messageRedirect.style.display = 'block';
-      }
-
-
-      async function handleEdit() {
-        const formData = new FormData(form);
-        const data = {};
-
-        formData.forEach((value, key) => {
-          data[key] = value;
+        form.addEventListener('submit', async event => {
+          event.preventDefault()
+          handleEdit()
+          messageAlert()
+          replaceLocationSubmit()
+          deleteSession()
         });
 
-        const response = await edit(data)
-        console.log(response)
-      }
+        function messageAlert() {
+          const message = document.getElementById('message')
+          const messageRedirect = document.getElementById('messageRedirect')
+          messageRedirect.style.display = 'block';
+        }
 
 
-      const edit = async (data) => {
-        const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data),
-        });
-        const responseData = await response.json();
+        async function handleEdit() {
+          const formData = new FormData(form);
+          const data = {};
 
-        return responseData
-      }
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
 
-      
+          const response = await edit(data)
+          console.log(response)
+        }
+
+
+        const edit = async (data) => {
+          const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+          });
+          const responseData = await response.json();
+
+          return responseData
+        }
+
+
     </script>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
