@@ -5,7 +5,7 @@ Content-Type: multipart/form-data; boundary=MfnBoundry
 --MfnBoundry
 Content-Disposition: form-data; name="name"
 
-nome 
+teste
 --MfnBoundry
 Content-Disposition: form-data; name="description"
 
@@ -18,7 +18,11 @@ Content-Disposition: form-data; name="price"
 Content-Disposition: form-data; name="image"; filename="1.jpg"
 Content-Type: image/jpeg
 
-< ./1.jpg
+< cerveja-gelada.jpg
+--MfnBoundry
+Content-Disposition: form-data; name="restaurant_id";
+
+7
 --MfnBoundry--
 
 

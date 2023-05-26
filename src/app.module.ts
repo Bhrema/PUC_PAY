@@ -8,7 +8,6 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/products.entity';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserEntity } from './users/usertype.entity';
-import { diskStorage } from 'multer';
 import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orders.service';
 import { OrdersModule } from './orders/orders.module';
