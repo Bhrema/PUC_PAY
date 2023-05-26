@@ -22,8 +22,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contato</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#objetivos"  >Objetivos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contato" >Contato</a></li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                             <h1 class="display-5 fw-bolder text-white mb-2">Facilitando sua vida acadêmica</h1>
                             <p class="lead text-white mb-4">Não perca seu tempo de estudos em filas gigantescas</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="auth.html">Registre-se</a>
+                                <a class="btn btn-danger btn-lg px-4 me-sm-3" href="auth.html">Registre-se</a>
                                 <a class="btn btn-outline-light btn-lg px-4" href="login.html">Realizar login</a>
                             </div>
                         </div>
@@ -46,34 +46,24 @@
             </div>
         </header>
         <!-- Features section-->
-        <section class="py-5 border-bottom" id="features">
+        <section id="objetivos" class="py-5 border-bottom" id="features">
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                        <h2 class="h4 fw-bolder">
-                        <a class="text-decoration-none" href="#!">
+                        <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <hr>
+                        <h2 class="h4 fw-bolder"><p><b>Integrar o sistema de pagamento dos restaurantes da PUCPR</b></p></h2>
                         
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                        <h2 class="h4 fw-bolder"></h2>
-                        <p></p>
-                        <a class="text-decoration-none" href="#!">
-                            
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                        <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <hr>
+                        <h2 class="h4 fw-bolder"><p><b>Facilitar o ato de pagamento em restaurantes da PUC</b></p></h2>
                     </div>
                     <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                        <h2 class="h4 fw-bolder"></h2>
-                        <p></p>
-                        <a class="text-decoration-none" href="#!">
-                            
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                        <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <hr>
+                        <h2 class="h4 fw-bolder"><p><b>Padronização dos métodos de pagamento por meio de QRCode</b></p></h2>
                     </div>
                 </div>
             </div>
@@ -92,7 +82,7 @@
                         <div class="card mb-4">
                             <div class="card-body p-4">
                                 <div class="d-flex">
-                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
+                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-danger fs-1"></i></div>
                                     <div class="ms-4">
                                         <p class="mb-1"><Em>Eu perdia muito tempo todos os dias na fila do bloco Vermelho! Com o PUCPAY, consigo otimizar muito meu tempo</Em>!</p>
                                         <div class="small text-muted">- Paulo Muzy, Curitiba</div>
@@ -104,7 +94,7 @@
                         <div class="card">
                             <div class="card-body p-4">
                                 <div class="d-flex">
-                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
+                                    <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-danger fs-1"></i></div>
                                     <div class="ms-4">
                                         <p class="mb-1">Sistema incrível! Nunca mais perco aulas para ficar em filas</p>
                                         <div class="small text-muted">- Pedro Fricks, Manaus</div>
@@ -117,10 +107,10 @@
             </div>
         </section>
         <!-- Contact section-->
-        <section class="bg-light py-5">
+        <section id="contato" class="bg-light py-5">
             <div class="container px-5 my-5 px-5">
                 <div class="text-center mb-5">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+                    <div class="feature bg-danger bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
                     <h2 class="fw-bolder">Contato</h2>
                     <p class="lead mb-0">Entre em contato com nossa equipe</p>
                 </div>
@@ -177,7 +167,7 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                            <div class="d-grid"><button class="btn btn-danger btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
                         </form>
                     </div>
                 </div>
@@ -185,9 +175,9 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; PUCPAY 2023</p></div>
         </footer>
-        <!-- Bootstrap core JS-->
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/script_home.js"></script>
