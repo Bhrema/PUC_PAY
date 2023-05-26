@@ -3,11 +3,12 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "ocostadallsos@gmail.com",
-  "name": "Otávio Costa Dallo",
-  "cnpj": "64964465000145",
-  "block": "2",
-  "password": "@Livia040323"
+  "email": "admin@admin.com",
+  "name": "admin",
+  "cnpj": "null",
+  "cpf": "12312312323",
+  "block": "null",
+  "password": "admin"
 }
 
 ### Sign in as an existing user
@@ -38,7 +39,7 @@ POST http://localhost:3000/typeuser
 DELETE http://localhost:3000/auth/3
 
 ### Update a user
-PATCH http://localhost:3000/auth/4
+PATCH http://localhost:3000/auth/6
 content-type: application/json
 
 {

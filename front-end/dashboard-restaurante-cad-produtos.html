@@ -183,6 +183,33 @@
     </aside>
 
     <!-- CONTEÚDO DO DASHBOARD -->
+    <div class="content">
+      <form method="POST" enctype="multipart/form-data" id="login-form" action="http://localhost:3000/products" style="position:relative; top:300px; left: 500px;">
+        <div class="input-group mb-3">
+          <label for="name">Name</label>
+          <input type="text" name="name">
+        </div>
+        <div class="input-group mb-3">
+          <label for="description">Description</label>
+          <input type="text" name="description">
+        </div>
+        <div class="input-group mb-3">
+          <label for="price">Price</label>
+          <input type="text" name="price">
+        </div>
+        <div class="input-group mb-3">
+          <label for="image">Image</label>
+          <input type="file" name="image">
+        </div>
+        <div class="input-group mb-3">
+          <label for="restaurant_id">restaurant_id</label>
+          <input type="text" name="restaurant_id">
+        </div>
+        <div>
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
 
     <!-- /.content-wrapper -->
 
@@ -204,8 +231,38 @@
   </div>
   <!-- ./wrapper -->
 
-
   <script>
+    const form = document.getElementById("login-form");
+
+    const login = async (data) => {
+      const response = await fetch("http://localhost:3000/products", {
+          method: "POST",
+          body: data,
+      });
+
+      const responseData = await response.json();
+
+      console.log(responseData);
+
+      return responseData;
+};
+
+// form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     handleLogin();
+// });
+
+    async function handleLogin() {
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      const response = await login(data);
+      console.log(data)
+
+}
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
       event.preventDefault()

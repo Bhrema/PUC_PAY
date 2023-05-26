@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PUCPAY - Registre-se</title>
+  <title>PUCPAY - Altere Dados</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -60,9 +60,9 @@
           <!--Span que aparece caso o Regex não retorne True-->
         </div>
 
-        <div id="endereco" style="display: none;">
+        <div id="endereco">
           <select id="enderecoInput" class="form-select mb-3" name="block">
-            <option selected></option>
+            <option value="" selected>Endereço</option>
             <option value="1">Bloco 1 Amarelo</option>
             <option value="2">Bloco 2 Azul</option>
             <option value="3">Bloco 3 Verde</option>
@@ -111,6 +111,7 @@
 <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
 <script>
+console.log(document.getElementById('enderecoInput').value)
 const set_cnpj = () => {
   document.getElementById("cnpj_div").style.display = "flex";
   document.getElementById("cpf_div").style.display = "none";

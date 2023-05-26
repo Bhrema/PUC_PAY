@@ -219,7 +219,7 @@
                           <td class="text-center align-middle">
                             <div class="btn-group align-top">
                               <button class="btn btn-sm btn-outline-secondary badge" type="button"
-                                id="button-edit">Editar</button>
+                                id="button-edit-user">Editar</button>
                               <button class="btn btn-sm btn-outline-secondary badge" type="button"
                                 id="button-delete">Deletar</button>
                             </div>
@@ -271,7 +271,7 @@
                           <td class="text-center align-middle">
                             <div class="btn-group align-top">
                               <button class="btn btn-sm btn-outline-secondary badge" type="button"
-                                id="button-edit">Editar</button>
+                                id="button-edit-restaurante">Editar</button>
                               <button class="btn btn-sm btn-outline-secondary badge" type="button"
                                 id="button-delete">Deletar</button>
                             </div>
@@ -340,7 +340,7 @@
                 <td>${elemento.cpf}</td>
                 <td>${elemento.isAdmin}</td>
                 <td>
-                  <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-edit-${elemento.id}">Editar</button>
+                  <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-edit-user-${elemento.id}">Editar</button>
                   <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-delete-${elemento.id}">Deletar</button>
                 </td>
               </tr>
@@ -378,7 +378,7 @@
                       <td>${elemento.email}</td>
                       <td>${elemento.cnpj}</td>
                       <td>
-                        <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-edit-${elemento.id}">Editar</button>
+                        <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-edit-restaurante-${elemento.id}">Editar</button>
                         <button class="btn btn-sm btn-outline-secondary badge" type="button" id="button-delete-${elemento.id}">Deletar</button>
                       </td>
                     </tr>
@@ -408,11 +408,18 @@
 
             //   }
             // })
-            const buttonsEdit = document.querySelectorAll('[id^="button-edit"]');
-            buttonsEdit.forEach(buttonEdit => {
-              buttonEdit.addEventListener('click', () => {
-                const id = buttonEdit.id.split('-')[2];
-                window.location.replace('adm-editar-restaurante.html')
+            const buttonsEditRestaurante = document.querySelectorAll('[id^="button-edit-restaurante"]');
+            buttonsEditRestaurante.forEach(buttonsEditRestaurante => {
+              buttonsEditRestaurante.addEventListener('click', () => {
+                const id = buttonsEditRestaurante.id.split('-')[3];
+                window.location.replace('./adm-editar-restaurante.html')
+              })
+            });
+            const buttonsEditUser = document.querySelectorAll('[id^="button-edit-user"]');
+            buttonsEditUser.forEach(buttonsEditUser => {
+              buttonsEditUser.addEventListener('click', () => {
+                const id = buttonsEditUser.id.split('-')[3];
+                window.location.replace('./adm-editar-acad.html')
               })
             });
 
