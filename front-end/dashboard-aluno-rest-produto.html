@@ -38,10 +38,7 @@
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <button type="button" class="btn btn-primary" onclick="goCart()">
-          <i class="fa fa-shopping-cart"></i>
-        </button>
-        <button type="button" class="ml-2 btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
         <!-- Navbar Search -->
         <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -152,10 +149,6 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Restaurantes</p>
-              </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="./dashboard-aluno.html" class="nav-link">
@@ -163,6 +156,18 @@
                     <p>
                       Carteira
                     </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Restaurantes</p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./dashboard-aluno-promo.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Promoções</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -238,9 +243,8 @@
   </div>
   <!-- ./wrapper -->
   <script>
-    const goCart = () => {
-        window.location.href = "dashboard-aluno-carrinho.html"
-      }
+    
+
 
     async function showProducts() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -293,8 +297,8 @@
         const button = document.getElementById(`product-${product.id}`);
         button.addEventListener('click', function () {
           const cartItems = localStorage.getItem('cart');
-          const session = JSON.parse(localStorage.getItem('session')) || {};
           let cart = session.cart || [];
+          const session = JSON.parse(localStorage.getItem('session')) || {};
 
           if (cartItems && cartItems !== 'undefined') {
             cart = JSON.parse(cartItems);
