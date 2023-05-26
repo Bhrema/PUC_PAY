@@ -186,10 +186,10 @@
 
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
-      <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
-        <tbody id="tbody" style="display: flex">
+      <table cellpadding="5" cellspacing="5" style="position: relative; top:100px; left:300px; width:75%" id="table">
+        <tbody id="tbody" style="display: flex;">
 
-          <tr>
+          <tr style="width:200px";>
             <td>
               <a href="#">
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -264,14 +264,15 @@
 
       function createProductElement(product) {
         const tableRow = document.createElement("tr");
+        tableRow.style.width = "250px";
         tableRow.innerHTML = `
                 <td>
                   <a href="#">
                     <div class="col-lg-4 col-md-6 mb-4">
-                      <div class="card">
+                      <div class="card" style="width:204.3px;">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                           data-mdb-ripple-color="light">
-                          <img src="/uploads/${product.image}" class="w-100" />
+                          <img src="/uploads/${product.image}" style="width:204.3px; height:200px" />
                           <a href="#!"></a>
                         </div>
                         <div class="card-body">
