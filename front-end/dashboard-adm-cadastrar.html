@@ -19,8 +19,6 @@
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
-
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
       <!-- Left navbar links -->
@@ -467,7 +465,6 @@
       }
     }
 
-
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
       event.preventDefault()
@@ -476,12 +473,10 @@
       deleteSession()
     })
 
-
     const logout = async (data) => {
       const response = await fetch('http://localhost:3000/auth/signout', {
         method: 'POST'
       })
-
     }
 
     function replaceLocation() {

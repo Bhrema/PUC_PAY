@@ -39,12 +39,12 @@ export class ProductsController {
     }
 
     @Delete('/:id')
-    removeUser(@Param('id') id: string) {
+    removeProduct(@Param('id') id: string) {
     return this.productsService.remove(parseInt(id));
   }
 
     @Patch('/:id')
-    updateUser(@Param('id') id: string, @Body() body: UpdateProductDto) {
+    updateProduct(@Param('id') id: string, @Body() body: UpdateProductDto) {
         return this.productsService.update(parseInt(id), body);
     }
 }

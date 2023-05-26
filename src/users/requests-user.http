@@ -43,5 +43,5 @@ PATCH http://localhost:3000/auth/3
 content-type: application/json
 
 {
-  "IsAdmin": true
+  "password":
 }

@@ -243,9 +243,6 @@
   </div>
   <!-- ./wrapper -->
   <script>
-    
-
-
     async function showProducts() {
       const urlParams = new URLSearchParams(window.location.search);
       const restaurantId = urlParams.get("id");
@@ -297,8 +294,8 @@
         const button = document.getElementById(`product-${product.id}`);
         button.addEventListener('click', function () {
           const cartItems = localStorage.getItem('cart');
-          const session = JSON.parse(localStorage.getItem('session')) || {};
           let cart = session.cart || [];
+          const session = JSON.parse(localStorage.getItem('session')) || {};
 
           if (cartItems && cartItems !== 'undefined') {
             cart = JSON.parse(cartItems);
