@@ -95,6 +95,8 @@
         data[key] = value;
       });
 
+      data.cart = []
+
       const response = await login(data);
 
       if (response.isAdmin) {
@@ -110,7 +112,6 @@
         setTimeout(function () {
 
           const user = JSON.stringify(response)
-
           localStorage.setItem('session', user)
 
           window.location.replace('dashboard-aluno.html');

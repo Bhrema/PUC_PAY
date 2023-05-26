@@ -36,7 +36,7 @@ GET http://localhost:3000/auth/adm/restaurants
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
 ### Delete a user given id
-DELETE http://localhost:3000/auth/2
+DELETE http://localhost:3000/auth/6
 
 ### Update a user
 PATCH http://localhost:3000/auth/3

@@ -14,7 +14,6 @@ import { OrdersModule } from './orders/orders.module';
 import { tb_ticket } from './orders/ticket.entity';
 import { tb_order } from './orders/order.entity';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
