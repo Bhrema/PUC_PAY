@@ -142,7 +142,7 @@
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
               <div class="card" style="width: 234px; height:95px;">
                 <div class="card-body">
-                  <img src="../uploads/user 64.png" style="float: left; height:40px; width:40px;">
+                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:40px; width:40px;">
                   <div style="position:absolute; left:100px; top:30px; width:50px;">
                     <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
                     <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
@@ -243,12 +243,29 @@
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
 
+    const userProfilePic = document.getElementById('profile-pic')
+    const userBalSession = document.getElementById('session-bal')
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
       userNameSession.innerText = "Faça seu login!"
     }
 
     userNameSession.innerText = sessionJson.name;
+    if (!sessionJson.saldo) {
+      userBalSession = 0;
+      console.log('Esta Zerado')
+    }
+
+    if (sessionJson.image === null) {
+      console.log('não')
+    }
+    console.log(sessionJson.image)
+    userBalSession.innerText = sessionJson.saldo.toString();
+    if (!sessionJson.image){
+      userProfilePic.src = '../uploads/user 64.png';
+      console.log('Sem Imagem')
+    }
+    userProfilePic.src = sessionJson.image;
 
   </script>
 
