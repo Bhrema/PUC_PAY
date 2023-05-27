@@ -136,15 +136,19 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <i class="fas-fa-user"></i>
-          </div>
-          <div class="info" style="display:flex; gap: 12px; align-items: center;">
-            <a href="dashboard-aluno-perfil.html">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
-              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+        <div class="user-panel mt-3 mb-3 d-flex">
+          <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
+              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
+              <div class="card" style="width: 234px; height:95px;">
+                <div class="card-body">
+                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:40px; width:40px;">
+                  <div style="position:absolute; left:100px; top:30px; width:50px;">
+                    <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
+                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
+                  </div>
+                </div>
+              </div>  
           </div>
         </div>
 
@@ -154,19 +158,22 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="./dashboard-aluno-restaurante.html" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Restaurantes</p>
-              </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+              <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Restaurantes</p>
+              </a>
+            </li>
+              </ul>
+                  <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                       Carteira
                     </p>
                   </a>
-                </li>
+
+                <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="./dashboard-aluno-perfil.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -236,12 +243,31 @@
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
 
+    const userProfilePic = document.getElementById('profile-pic')
+    const userBalSession = document.getElementById('session-bal')
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
       userNameSession.innerText = "Faça seu login!"
     }
 
     userNameSession.innerText = sessionJson.name;
+    //Não ta funfando Otávio
+    if (!sessionJson.saldo) {
+      userBalSession = 0;
+      console.log('Esta Zerado')
+    }
+
+    if (sessionJson.image === null) {
+      console.log('não')
+    }
+    //Não ta funfando Otávio
+    console.log(sessionJson.image)
+    userBalSession.innerText = sessionJson.saldo.toString();
+    if (!sessionJson.image){
+      userProfilePic.src = '../uploads/user 64.png';
+      console.log('Sem Imagem')
+    }
+    userProfilePic.src = sessionJson.image;
 
     const cartQtd = document.getElementById('cart-qtd')
     cartQtd.innerHTML = sessionJson.cart.length;
