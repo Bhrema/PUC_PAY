@@ -251,6 +251,7 @@
     }
 
     userNameSession.innerText = sessionJson.name;
+    //Não ta funfando Otávio
     if (!sessionJson.saldo) {
       userBalSession = 0;
       console.log('Esta Zerado')
@@ -259,6 +260,7 @@
     if (sessionJson.image === null) {
       console.log('não')
     }
+    //Não ta funfando Otávio
     console.log(sessionJson.image)
     userBalSession.innerText = sessionJson.saldo.toString();
     if (!sessionJson.image){
