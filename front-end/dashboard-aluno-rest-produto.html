@@ -297,8 +297,8 @@
         const button = document.getElementById(`product-${product.id}`);
         button.addEventListener('click', function () {
           const cartItems = localStorage.getItem('cart');
-          let cart = session.cart || [];
           const session = JSON.parse(localStorage.getItem('session')) || {};
+          let cart = session.cart || [];
 
           if (cartItems && cartItems !== 'undefined') {
             cart = JSON.parse(cartItems);
