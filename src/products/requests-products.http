@@ -37,7 +37,7 @@ GET http://localhost:3000/products/
 GET http://localhost:3000/products/2
 
 ### Delete a product
-DELETE http://localhost:3000/products/4
+DELETE http://localhost:3000/products/13
 
 ### Update a product
 PATCH http://localhost:3000/products/

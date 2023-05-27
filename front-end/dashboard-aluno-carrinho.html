@@ -206,12 +206,14 @@
                     </thead>
                     <tbody id="tbody">
                       <tr>
+                        <td id="image"><img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                         style="max-width: 50px;" /></td>
                         <td id="name">Produto 1</td>
                         <td id="price">R$10.00</td>
                         <td id="qtd">2</td>
                         <td id="totalPrice">R$20.00</td>
                         <td>
-                          <button class="btn btn-sm btn-danger">Remover</button>
+                          <button class="btn btn-sm btn-danger" id="button-delete">Remover</button>
                         </td>
                       </tr>
                     </tbody>
@@ -276,12 +278,12 @@
     cartProducts.forEach(function (item) {
       tableHTML += `
     <tr>
-      <td>${item.name}</td>
+      <td><img src="/uploads/${item.image}" style="max-width: 25px; margin-right: 10px;"/>${item.name}</td>
       <td>R$${item.price}</td>
       <td>1</td>
       <td>R$${item.price}</td>
       <td>
-        <button class="btn btn-sm btn-danger">Remover</button>
+        <button class="btn btn-sm btn-danger" id="button-delete">Remover</button>
       </td>
     </tr>
   `;

@@ -39,9 +39,9 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 DELETE http://localhost:3000/auth/6
 
 ### Update a user
-PATCH http://localhost:3000/auth/3
+PATCH http://localhost:3000/auth/7
 content-type: application/json
 
 {
-  "password":
+  "image": "thedripper.png"
 }

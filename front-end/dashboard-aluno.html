@@ -244,7 +244,7 @@
     const sessionJson = JSON.parse(session)
 
     const userProfilePic = document.getElementById('profile-pic')
-    const userBalSession = document.getElementById('session-bal')
+    let userBalSession = document.getElementById('session-bal')
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
       userNameSession.innerText = "Faça seu login!"

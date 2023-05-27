@@ -246,9 +246,9 @@
   </div>
   <!-- ./wrapper -->
   <script>
-    
-
-
+    const goCart = () => {
+        window.location.href = "dashboard-aluno-carrinho.html"
+      }
     async function showProducts() {
       const urlParams = new URLSearchParams(window.location.search);
       const restaurantId = urlParams.get("id");
@@ -311,6 +311,7 @@
             id: product.id,
             name: product.name,
             price: product.price,
+            image: product.image,
             idComprador: sessionJson.id
           });
 

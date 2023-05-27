@@ -28,4 +28,8 @@ export class UpdateUserDto {
   @IsString()
   @IsOptional()
   cnpj: string
+
+  @IsString()
+  @IsOptional()
+  image: string;
 }
