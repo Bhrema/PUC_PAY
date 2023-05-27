@@ -7,7 +7,8 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -144,7 +145,7 @@
             <a href="dashboard-aluno-perfil.html">
               <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+            </a>
           </div>
         </div>
 
@@ -173,7 +174,7 @@
                     <p>Perfil</p>
                   </a>
                 </li>
-                
+
 
               </ul>
         </nav>
@@ -203,30 +204,12 @@
                         <th>Ações</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                       <tr>
-                        <td>Produto 1</td>
-                        <td>R$10.00</td>
-                        <td>2</td>
-                        <td>R$20.00</td>
-                        <td>
-                          <button class="btn btn-sm btn-danger">Remover</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Produto 2</td>
-                        <td>R$15.00</td>
-                        <td>1</td>
-                        <td>R$15.00</td>
-                        <td>
-                          <button class="btn btn-sm btn-danger">Remover</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Produto 3</td>
-                        <td>R$12.00</td>
-                        <td>3</td>
-                        <td>R$36.00</td>
+                        <td id="name">Produto 1</td>
+                        <td id="price">R$10.00</td>
+                        <td id="qtd">2</td>
+                        <td id="totalPrice">R$20.00</td>
                         <td>
                           <button class="btn btn-sm btn-danger">Remover</button>
                         </td>
@@ -258,7 +241,7 @@
     </aside>
     <!-- /.control-sidebar -->
 
-    
+
 
     <!-- Main Footer -->
     <footer class="main-footer">
@@ -274,9 +257,50 @@
 
 
   <script>
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    const userNameSession = document.getElementById('session-name')
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
+    }
+
+    userNameSession.innerText = sessionJson.name;
+
+
+    const tbody = document.getElementById("tbody");
+
+    let tableHTML = "";
+    const cartProducts = sessionJson.cart
+
+    cartProducts.forEach(function (item) {
+      tableHTML += `
+    <tr>
+      <td>${item.name}</td>
+      <td>R$${item.price}</td>
+      <td>1</td>
+      <td>R$${item.price}</td>
+      <td>
+        <button class="btn btn-sm btn-danger">Remover</button>
+      </td>
+    </tr>
+  `;
+    });
+
+    tbody.innerHTML = tableHTML;
+
+    const total = cartProducts.reduce(function (acc, item) {
+      return acc + parseFloat(item.price);
+    }, 0);
+
+    const totalElement = document.querySelector(".card-footer h5");
+
+    totalElement.textContent = "Total da Compra: R$" + total.toFixed(2);
+
+
     const goCart = () => {
-        window.location.href = "dashboard-aluno-carrinho.html"
-      }
+      window.location.href = "dashboard-aluno-carrinho.html"
+    }
 
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
@@ -301,18 +325,6 @@
     function deleteSession() {
       localStorage.removeItem('session');
     }
-
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
-
-    const userNameSession = document.getElementById('session-name')
-    if (!sessionJson.name) {
-      userNameSession.innerText = "Faça seu login!"
-    }
-
-    userNameSession.innerText = sessionJson.name;
-
-
   </script>
 
 

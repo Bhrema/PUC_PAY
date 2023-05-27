@@ -191,7 +191,7 @@
               <div class="card-body p-5"><!--  Input Control -->
                 <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Cadastrar Conta</h2>
 
-                <form id="register-form" style="position: relative; bottom: 40px;">
+                <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
 
                   <div class="form-outline mb-1">
                     <label class="form-label" for="name">Nome</label>
@@ -257,9 +257,13 @@
     const sessionJson = JSON.parse(session)
     const restaurant_id = document.getElementById('restaurant_id');
     restaurant_id.value = sessionJson.id;
-    console.log(sessionJson)
+    const userNameSession = document.getElementById('session-name')
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
+    }
 
-    document.getElementById("login-form").addEventListener("submit", function(event) {
+    userNameSession.innerText = sessionJson.name;
+    document.getElementById("register-form").addEventListener("submit", function(event) {
     event.preventDefault()
 
     var formData = new FormData(this);
@@ -278,6 +282,7 @@
     };
     xhr.send(formData);
   });
+
   
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
@@ -304,12 +309,7 @@
     }
 
 
-    const userNameSession = document.getElementById('session-name')
-    if (!sessionJson.name) {
-      userNameSession.innerText = "Faça seu login!"
-    }
 
-    userNameSession.innerText = sessionJson.name;
 
   </script>
 

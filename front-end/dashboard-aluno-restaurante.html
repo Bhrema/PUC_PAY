@@ -38,9 +38,9 @@
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <button type="button" class="btn btn-primary" onclick="goCart()">
-          <i class="fa fa-shopping-cart"></i>
-        </button>
+          <button type="button" class="btn btn-primary" onclick="goCart()">
+            <i class="fa fa-shopping-cart"><span id="cart-qtd" style="margin-left: 10px;">0</span></i>
+          </button>
         <button type="button" class="ml-2 btn btn-outline-danger float-right" id="btnLogout">Logout</button>
         <!-- Navbar Search -->
         <li class="nav-item">
@@ -158,7 +158,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./dashboard-aluno.html" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                       Carteira
@@ -303,6 +303,9 @@
 
     const userNameSession = document.getElementById('session-name')
     userNameSession.innerText = sessionJson.name;
+
+    const cartQtd = document.getElementById('cart-qtd')
+    cartQtd.innerHTML = sessionJson.cart.length;
 
     function replaceLocation() {
       window.location.replace('login.html')
