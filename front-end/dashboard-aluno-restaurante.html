@@ -134,15 +134,19 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <i class="fas-fa-user"></i>
-          </div>
-          <div class="info" style="display:flex; gap: 12px; align-items: center;">
-            <a href="dashboard-aluno-perfil.html">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px; display: block; " id="perfil-image"> -->
-              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-            </a>
+        <div class="user-panel mt-3 mb-3 d-flex">
+          <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
+              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
+              <div class="card" style="width: 234px; height:95px;">
+                <div class="card-body">
+                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
+                  <div style="position:absolute; left:100px; top:15px; width:50px;">
+                    <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
+                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
+                  </div>
+                </div>
+              </div>  
           </div>
         </div>
 
@@ -158,7 +162,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="./dashboard-aluno.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
                       Carteira
