@@ -1,235 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PUCPAY</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PUCPAY</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- icheck bootstrap -->
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      href="../node_modules/admin-lte/dist/css/adminlte.min.css"
+    />
+  </head>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css">
-</head>
+  <body
+    class="
+      hold-transition
+      dark-mode
+      sidebar-mini
+      layout-fixed layout-navbar-fixed layout-footer-fixed
+    "
+  >
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="index3.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contato</a>
+          </li>
+        </ul>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <div class="wrapper">
-
-
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contato</a>
-        </li>
-      </ul>
-
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <button type="button" class="btn btn-primary" onclick="goCart()">
-          <i class="fa fa-shopping-cart"><span id="cart-qtd" style="margin-left: 10px;">0</span></i>
-        </button>
-        <button type="button" class="ml-2 btn btn-outline-danger float-right" id="btnLogout">Logout</button>
-        <!-- Navbar Search -->
-        <li class="nav-item">
-          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-          </a>
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
-
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Brad Diesel
-                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">Call me whenever you can...</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <button type="button" class="btn btn-primary" onclick="goCart()">
+            <i class="fa fa-shopping-cart"
+              ><span id="cart-qtd" style="margin-left: 10px">0</span></i
+            >
+          </button>
+          <button
+            type="button"
+            class="ml-2 btn btn-outline-danger float-right"
+            id="btnLogout"
+          >
+            Logout
+          </button>
+          <!-- Navbar Search -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-widget="navbar-search"
+              href="#"
+              role="button"
+            >
+              <i class="fas fa-search"></i>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    John Pierce
-                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">I got your message bro</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <!-- Message Start -->
-              <div class="media">
-                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    Nora Silvester
-                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                  </h3>
-                  <p class="text-sm">The subject goes here</p>
-                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                </div>
-              </div>
-              <!-- Message End -->
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-          </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-      </ul>
-    </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light" style="margin-left:33px;">PUCPAY</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <i class="fas-fa-user"></i>
-          </div>
-          <div class="info" style="display:flex; gap: 12px; align-items: center;">
-            <a href="dashboard-aluno-perfil.html">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
-              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-            </a>
-          </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Restaurantes</p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>
-                      Carteira
-                    </p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./dashboard-aluno-perfil.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Perfil</p>
-                  </a>
-                </li>
-
-              </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
-
-    <!-- CONTEÚDO DO DASHBOARD -->
-    <div class="content">
-      <table cellpadding="5" cellspacing="5" style="position: relative; top:100px; left:300px; width:75%" id="table">
-        <tbody id="tbody" style="display: flex;">
-
-          <tr style="width:200px";>
-            <td>
-              <a href="#">
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                        class="w-100" />
-                      <a href="#!"></a>
-                    </div>
-                    <div class="card-body">
-                      <a href="" class="text-reset">
-                        <h5 class="card-title mb-3" id="name">Nome do Produto</h5>
-                      </a>
-                      <br>
-                      <hr>
-                      <h6 class="mb-3" id="price">$Price</h6>
-                    </div>
-                    <button type="button" class="btn btn-primary">Adicionar ao carrinho</button>
+            <div class="navbar-search-block">
+              <form class="form-inline">
+                <div class="input-group input-group-sm">
+                  <input
+                    class="form-control form-control-navbar"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button
+                      class="btn btn-navbar"
+                      type="button"
+                      data-widget="navbar-search"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
                   </div>
                 </div>
+              </form>
+            </div>
+          </li>
+
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img
+                    src="dist/img/user1-128x128.jpg"
+                    alt="User Avatar"
+                    class="img-size-50 mr-3 img-circle"
+                  />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-right text-sm text-danger"
+                        ><i class="fas fa-star"></i
+                      ></span>
+                    </h3>
+                    <p class="text-sm">Call me whenever you can...</p>
+                    <p class="text-sm text-muted">
+                      <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+                <!-- Message End -->
               </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img
+                    src="dist/img/user8-128x128.jpg"
+                    alt="User Avatar"
+                    class="img-size-50 img-circle mr-3"
+                  />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-right text-sm text-muted"
+                        ><i class="fas fa-star"></i
+                      ></span>
+                    </h3>
+                    <p class="text-sm">I got your message bro</p>
+                    <p class="text-sm text-muted">
+                      <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img
+                    src="dist/img/user3-128x128.jpg"
+                    alt="User Avatar"
+                    class="img-size-50 img-circle mr-3"
+                  />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-right text-sm text-warning"
+                        ><i class="fas fa-star"></i
+                      ></span>
+                    </h3>
+                    <p class="text-sm">The subject goes here</p>
+                    <p class="text-sm text-muted">
+                      <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                    </p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer"
+                >See All Messages</a
+              >
+            </div>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+        </ul>
+      </nav>
+      <!-- /.navbar -->
 
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="index3.html" class="brand-link" style="text-align: center">
+          <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+          <span class="brand-text font-weight-light">PUCPAY</span>
+        </a>
 
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 mb-3 d-flex">
+            <div
+              class="info"
+              style="
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                width: 234px;
+              "
+            >
+              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
+              <div class="card" style="width: 234px; height: 95px">
+                <div class="card-body">
+                  <img
+                    id="profile-pic"
+                    src="../uploads/user 64.png"
+                    style="float: left; height: 50px; width: 50px"
+                  />
+                  <div
+                    style="
+                      position: absolute;
+                      left: 100px;
+                      top: 15px;
+                      width: 50px;
+                    "
+                  >
+                    <a
+                      href=""
+                      class="d-block"
+                      id="session-name"
+                      style="align-items: center; padding-bottom: 10px"
+                    >
+                      Faça seu Login</a
+                    >
+                    <a
+                      href=""
+                      class="d-block"
+                      id="session-bal"
+                      style="align-items: center"
+                      >Saldo: 0</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    </div>
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+              <li class="nav-item menu-open">
+                <a href="./dashboard-aluno.html" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Restaurantes</p>
+                </a>
+                <ul class="nav nav-treeview"></ul>
+              </li>
 
+              <li class="nav-item">
+                <a href="./dashboard-aluno.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Carteira</p>
+                </a>
+              </li>
 
+              <li class="nav-item">
+                <a href="./dashboard-aluno-perfil.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Perfil</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
 
-    <!-- /.content-wrapper -->
+      <!-- CONTEÚDO DO DASHBOARD -->
+      <div class="content">
+        <table
+          cellpadding="5"
+          cellspacing="5"
+          style="position: relative; top: 100px; left: 300px; width: 75%"
+          id="table"
+        >
+          <tbody id="tbody" style="display: flex">
+            <tr style="width: 200px" ;>
+              <td>
+                <a href="#">
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                      <div
+                        class="
+                          bg-image
+                          hover-zoom
+                          ripple ripple-surface ripple-surface-light
+                        "
+                        data-mdb-ripple-color="light"
+                      >
+                        <img
+                          src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                          class="w-100"
+                        />
+                        <a href="#!"></a>
+                      </div>
+                      <div class="card-body">
+                        <a href="" class="text-reset">
+                          <h5 class="card-title mb-3" id="name">
+                            Nome do Produto
+                          </h5>
+                        </a>
+                        <br />
+                        <hr />
+                        <h6 class="mb-3" id="price">$Price</h6>
+                      </div>
+                      <button type="button" class="btn btn-primary">
+                        Adicionar ao carrinho
+                      </button>
+                    </div>
+                  </div>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+      <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
-    <!-- <footer class="main-footer">
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+      <!-- <footer class="main-footer">
       <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
 
       All rights reserved.
@@ -237,32 +352,35 @@
         <b>Version</b> 3.2.0
       </div>
     </footer> -->
-  </div>
-  <!-- ./wrapper -->
-  <script>
-    const goCart = () => {
-        window.location.href = "dashboard-aluno-carrinho.html"
-      }
-    async function showProducts() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const restaurantId = urlParams.get("id");
-      const response = await fetch(`http://localhost:3000/products/restaurant/${restaurantId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });
-      const responseData = await response.json();
-      const products = responseData;
-      console.log(products)
+    </div>
+    <!-- ./wrapper -->
+    <script>
+      const goCart = () => {
+        window.location.href = "dashboard-aluno-carrinho.html";
+      };
+      async function showProducts() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const restaurantId = urlParams.get("id");
+        const response = await fetch(
+          `http://localhost:3000/products/restaurant/${restaurantId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const responseData = await response.json();
+        const products = responseData;
+        console.log(products);
 
-      const tbody = document.getElementById('tbody');
-      tbody.innerHTML = '';
+        const tbody = document.getElementById("tbody");
+        tbody.innerHTML = "";
 
-      function createProductElement(product) {
-        const tableRow = document.createElement("tr");
-        tableRow.style.width = "250px";
-        tableRow.innerHTML = `
+        function createProductElement(product) {
+          const tableRow = document.createElement("tr");
+          tableRow.style.width = "250px";
+          tableRow.innerHTML = `
                 <td>
                   <a href="#">
                     <div class="col-lg-4 col-md-6 mb-4">
@@ -286,95 +404,92 @@
                   </a>
                 </td>
               `;
-        return tableRow;
-      }
-      products.forEach(product => {
-        const productElement = createProductElement(product);
-        tbody.appendChild(productElement);
+          return tableRow;
+        }
+        products.forEach((product) => {
+          const productElement = createProductElement(product);
+          tbody.appendChild(productElement);
 
-        const button = document.getElementById(`product-${product.id}`);
-        button.addEventListener('click', function () {
-          const cartItems = localStorage.getItem('cart');
-          const session = JSON.parse(localStorage.getItem('session')) || {};
-          let cart = session.cart || [];
+          const button = document.getElementById(`product-${product.id}`);
+          button.addEventListener("click", function () {
+            const cartItems = localStorage.getItem("cart");
+            const session = JSON.parse(localStorage.getItem("session")) || {};
+            let cart = session.cart || [];
 
-          if (cartItems && cartItems !== 'undefined') {
-            cart = JSON.parse(cartItems);
-          }
-          cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            idComprador: sessionJson.id
+            if (cartItems && cartItems !== "undefined") {
+              cart = JSON.parse(cartItems);
+            }
+            cart.push({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              idComprador: sessionJson.id,
+            });
+
+            session.cart = cart;
+
+            localStorage.setItem("session", JSON.stringify(session));
+            location.reload();
           });
-
-          session.cart = cart;
-
-          localStorage.setItem('session', JSON.stringify(session));
-          location.reload()
         });
-      });
-    };
+      }
 
-    showProducts()
+      showProducts();
 
-    const btn = document.getElementById('btnLogout')
-    btn.addEventListener('click', async event => {
-      event.preventDefault()
-      await logout()
-      replaceLocation()
-      deleteSession()
-    })
-
-    const logout = async (data) => {
-      const response = await fetch('http://localhost:3000/auth/signout', {
-        method: 'POST'
+      const btn = document.getElementById("btnLogout");
+      btn.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+        replaceLocation();
+        deleteSession();
       });
 
-    }
+      const logout = async (data) => {
+        const response = await fetch("http://localhost:3000/auth/signout", {
+          method: "POST",
+        });
+      };
 
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
+      const session = localStorage.getItem("session");
+      const sessionJson = JSON.parse(session);
 
-    const userNameSession = document.getElementById('session-name')
-    userNameSession.innerText = sessionJson.name;
+      const userNameSession = document.getElementById("session-name");
+      userNameSession.innerText = sessionJson.name;
 
-    const cartQtd = document.getElementById('cart-qtd')
-    cartQtd.innerHTML = sessionJson.cart.length;
+      const cartQtd = document.getElementById("cart-qtd");
+      cartQtd.innerHTML = sessionJson.cart.length;
 
-    function replaceLocation() {
-      window.location.replace('login.html')
-    }
+      function replaceLocation() {
+        window.location.replace("login.html");
+      }
 
-    function deleteSession() {
-      localStorage.removeItem('session');
-    }
+      function deleteSession() {
+        localStorage.removeItem("session");
+      }
+    </script>
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
 
-  </script>
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
 
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard2.js"></script>
-</body>
-
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+  </body>
 </html>
