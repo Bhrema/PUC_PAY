@@ -141,7 +141,7 @@
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light">PUCPAY</span>
+        <span class="brand-text font-weight-light" style="margin-left:33px;">PUCPAY</span>
       </a>
 
       <!-- Sidebar -->
@@ -258,7 +258,6 @@
     </div>
     <!-- ./wrapper -->
     <script>
-
       const goCart = () => {
         window.location.href = "dashboard-aluno-carrinho.html"
       }
@@ -288,12 +287,16 @@
 
         userNameSession.innerText = sessionJson.name;
 
-        const cartQtd = document.getElementById('cart-qtd')
-        cartQtd.innerHTML = sessionJson.cart.length;
+        function cartQtd(){
+          const cartQtd = document.getElementById('cart-qtd')
+          cartQtd.innerHTML = sessionJson.cart.length;
+        }
 
         document.getElementById("formNome").value = sessionJson.name;
         document.getElementById("formEmail").value = sessionJson.email;
         document.getElementById("formCpf").value = sessionJson.cpf;
+
+        cartQtd()
 
         function replaceLocationSubmit() {
           setTimeout(function () {

@@ -131,7 +131,7 @@
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light">PUCPAY</span>
+        <span class="brand-text font-weight-light" style="margin-left:33px;">PUCPAY</span>
       </a>
 
       <!-- Sidebar -->
@@ -221,7 +221,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="float-right">
-                    <h5>Total da Compra: R$71.00</h5>
+                    <h5></h5>
                   </div>
                   <button class="btn btn-danger mr-2">Continuar comprando</button>
                   <button class="btn btn-primary">Finalizar Compra</button>
@@ -271,6 +271,7 @@
 
 
     const tbody = document.getElementById("tbody");
+    tbody.innerHTML = '';
 
     let tableHTML = "";
     const cartProducts = sessionJson.cart
