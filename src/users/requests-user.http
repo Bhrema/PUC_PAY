@@ -39,9 +39,36 @@ GET http://localhost:3000/auth?email=asdf@asdf.com
 DELETE http://localhost:3000/auth/6
 
 ### Update a user
-PATCH http://localhost:3000/auth/2
-content-type: application/json
+PATCH http://localhost:3000/auth/2 HTTP/1.1
+Content-Type: multipart/form-data; boundary=MfnBoundry
 
-{
-  "image": "thedripper.png"
-}
+--MfnBoundry
+Content-Disposition: form-data; name="email"
+
+thedripper@gmail.com
+--MfnBoundry
+Content-Disposition: form-data; name="name"
+
+description de teste
+--MfnBoundry
+Content-Disposition: form-data; name="cpf"
+
+--MfnBoundry
+Content-Disposition: form-data; name="cnpj"
+
+99932123132152
+--MfnBoundry
+Content-Disposition: form-data; name="block"
+
+2
+--MfnBoundry
+Content-Disposition: form-data; name="image"; filename="cerveja-gelada.jpg"
+Content-Type: image/jpeg
+
+< cerveja-gelada.jpg
+--MfnBoundry
+Content-Disposition: form-data; name="restaurant_id";
+
+7
+--MfnBoundry--
+

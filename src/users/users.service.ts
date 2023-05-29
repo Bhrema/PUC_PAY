@@ -20,6 +20,7 @@ export class UsersService {
     return this.repo.findOne(id);
   }
 
+
   find(email: string) {
     return this.repo.find({ email });
   }

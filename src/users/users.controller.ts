@@ -10,6 +10,8 @@ import {
   NotFoundException,
   Session,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -17,10 +19,11 @@ import { UsersService } from './users.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { AuthService } from '../auth/auth.service';
-import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
-import { AuthGuard } from '../guards/auth.guard';
 import { LoginUserDto } from './dtos/login-user.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -30,30 +33,25 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
-  @Get('/whoami')
-  @UseGuards(AuthGuard)
-  whoAmI(@CurrentUser() user: User) {
-    return user;
-  }
-
   @Post('/signout')
   signOut(@Session() session: any) {
     session.userId = null;
     return session.userId
   }
+  
 
   @Post('/signin')
-    async signin(@Body() body: LoginUserDto, @Session() session: any) {
+    async signin(@Body() body: LoginUserDto) {
         const user = await this.authService.signin(body.email, body.password);
-        session.userId = user.id;
         return user;
     }
 
   @Post('/signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+  async createUser(@Body() body: CreateUserDto) {
     const user = await this.authService.signup(body.email, body.name, body.cpf, body.cnpj, body.block, body.image, body.password);
     return user;
   }
+
 
   @Get('/:id')
   async findUser(@Param('id') id: string) {
@@ -85,7 +83,8 @@ export class UsersController {
   }
 
   @Patch('/:id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+  @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
+  updateUser(@UploadedFile('image') image: Express.Multer.File, @Param('id') id: string, @Body() body: UpdateUserDto) {
     return this.usersService.update(parseInt(id), body);
   }
 }
