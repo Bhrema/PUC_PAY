@@ -182,7 +182,6 @@
 
       const responseData = await response.json();
       const users = responseData;
-      console.log(users)
 
       const tableBody = document.getElementById('tbody');
       tableBody.innerHTML = '';
@@ -252,9 +251,6 @@
     const userNameSession = document.getElementById('session-name')
     userNameSession.innerText = sessionJson.name;
 
-    const cartQtd = document.getElementById('cart-qtd')
-    cartQtd.innerHTML = sessionJson.cart.length;
-
     function replaceLocation() {
       window.location.replace('login.html')
     }
@@ -262,6 +258,23 @@
     function deleteSession() {
       localStorage.removeItem('session');
     };
+
+
+    const userProfilePic = document.getElementById('profile-pic')
+    let userBalSession = document.getElementById('session-bal')
+    const userImage = sessionJson.image
+
+    if (sessionJson.saldo > 0)
+      userBalSession.innerText = sessionJson.saldo.toString();
+    if (sessionJson.image === null) {
+      userProfilePic.src = '../uploads/user 64.png';
+    }
+    userProfilePic.src = `../uploads/${userImage}`
+
+    const cartQtd = document.getElementById('cart-qtd')
+    if (sessionJson.cart) {
+      cartQtd.innerHTML = sessionJson.cart.length;
+    }
   </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->

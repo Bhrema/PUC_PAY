@@ -64,9 +64,9 @@ export class ProductsController {
     return this.productsService.remove(parseInt(id));
   }
 
-  @Put("/:id")
+  @Put('/:id')
   @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
-  async updateProduct(@Param("id") id: number, @Body() body: UpdateProductDto, @UploadedFile() image: Express.Multer.File) {
+  async updateProduct(@UploadedFile() image: Express.Multer.File, @Param("id") id: number, @Body() body: UpdateProductDto) {
     const product = await this.productsService.findOne(id);
     if (!product) {
       throw new NotFoundException('Produto não encontrado');

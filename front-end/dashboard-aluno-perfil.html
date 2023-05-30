@@ -87,17 +87,18 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 mb-3 d-flex">
           <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+            <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
-              <div class="card" style="width: 234px; height:95px;">
-                <div class="card-body">
-                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
-                  <div style="position:absolute; left:100px; top:15px; width:50px;">
-                    <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
-                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
-                  </div>
+            <div class="card" style="width: 234px; height:95px;">
+              <div class="card-body">
+                <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
+                <div style="position:absolute; left:100px; top:15px; width:50px;">
+                  <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
+                    seu Login</a>
+                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
                 </div>
-              </div>  
+              </div>
+            </div>
           </div>
         </div>
 
@@ -109,11 +110,11 @@
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-              <a href="./dashboard-aluno-restaurante.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Restaurantes</p>
-              </a>
-              
+                  <a href="./dashboard-aluno-restaurante.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Restaurantes</p>
+                  </a>
+
                 <li class="nav-item">
                   <a href="./dashboard-aluno.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -122,13 +123,13 @@
                     </p>
                   </a>
                 </li>
-                </ul>
-                  <a href="./dashboard-aluno-perfil.html" class="nav-link active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>Perfil</p>
-                  </a>
-
               </ul>
+              <a href="./dashboard-aluno-perfil.html" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Perfil</p>
+              </a>
+
+          </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -218,85 +219,93 @@
         });
       }
 
-        const session = localStorage.getItem('session')
-        const sessionJson = JSON.parse(session)
-        console.log(sessionJson)
+      const session = localStorage.getItem('session')
+      const sessionJson = JSON.parse(session)
 
-        const userNameSession = document.getElementById('session-name')
-        if (!sessionJson.name) {
-          userNameSession.innerText = "Faça seu login!"
-        }
+      const userNameSession = document.getElementById('session-name')
+      if (!sessionJson.name) {
+        userNameSession.innerText = "Faça seu login!"
+      }
 
-        userNameSession.innerText = sessionJson.name;
+      userNameSession.innerText = sessionJson.name;
 
-        function cartQtd(){
-          const cartQtd = document.getElementById('cart-qtd')
-          cartQtd.innerHTML = sessionJson.cart.length;
-        }
+      document.getElementById("formNome").value = sessionJson.name;
+      document.getElementById("formEmail").value = sessionJson.email;
+      document.getElementById("formCpf").value = sessionJson.cpf;
 
-        document.getElementById("formNome").value = sessionJson.name;
-        document.getElementById("formEmail").value = sessionJson.email;
-        document.getElementById("formCpf").value = sessionJson.cpf;
-
-        cartQtd()
-
-        function replaceLocationSubmit() {
-          setTimeout(function () {
-            window.location.replace("login.html");
-          }, 3000)
-        }
-
-        function replaceLocation() {
+      function replaceLocationSubmit() {
+        setTimeout(function () {
           window.location.replace("login.html");
-        }
+        }, 3000)
+      }
 
-        function deleteSession() {
-          localStorage.removeItem("session");
-        }
+      function replaceLocation() {
+        window.location.replace("login.html");
+      }
 
-        const form = document.getElementById('register-form');
-        const idUser = sessionJson.id;
+      function deleteSession() {
+        localStorage.removeItem("session");
+      }
 
-        form.addEventListener('submit', async event => {
-          event.preventDefault()
-          handleEdit()
-          messageAlert()
-          replaceLocationSubmit()
-          deleteSession()
+      const form = document.getElementById('register-form');
+      const idUser = sessionJson.id;
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault()
+        handleEdit()
+        messageAlert()
+        replaceLocationSubmit()
+        deleteSession()
+      });
+
+      function messageAlert() {
+        const message = document.getElementById('message')
+        const messageRedirect = document.getElementById('messageRedirect')
+        messageRedirect.style.display = 'block';
+      }
+
+
+      async function handleEdit() {
+        const formData = new FormData(form);
+        const data = {};
+
+        formData.forEach((value, key) => {
+          data[key] = value;
         });
 
-        function messageAlert() {
-          const message = document.getElementById('message')
-          const messageRedirect = document.getElementById('messageRedirect')
-          messageRedirect.style.display = 'block';
-        }
+        const response = await edit(data)
+        console.log(response)
+      }
 
 
-        async function handleEdit() {
-          const formData = new FormData(form);
-          const data = {};
+      const edit = async (data) => {
+        const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data),
+        });
+        const responseData = await response.json();
 
-          formData.forEach((value, key) => {
-            data[key] = value;
-          });
+        return responseData
+      }
 
-          const response = await edit(data)
-          console.log(response)
-        }
+      const userProfilePic = document.getElementById('profile-pic')
+      let userBalSession = document.getElementById('session-bal')
+      const userImage = sessionJson.image
 
+      if (sessionJson.saldo > 0)
+        userBalSession.innerText = sessionJson.saldo.toString();
+      if (sessionJson.image === null) {
+        userProfilePic.src = '../uploads/user 64.png';
+      }
+      userProfilePic.src = `../uploads/${userImage}`
 
-        const edit = async (data) => {
-          const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
-          });
-          const responseData = await response.json();
-
-          return responseData
-        }
+      const cartQtd = document.getElementById('cart-qtd')
+      if (sessionJson.cart) {
+        cartQtd.innerHTML = sessionJson.cart.length;
+      }
 
 
     </script>

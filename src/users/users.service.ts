@@ -48,13 +48,9 @@ export class UsersService {
     return await this.repo.createQueryBuilder('user').getMany();
   }
 
-  async update(id: number, attrs: Partial<User>) {
-    const user = await this.findOne(id);
-    if (!user) {
-      throw new NotFoundException('user not found');
-    }
-    Object.assign(user, attrs);
-    return this.repo.save(user);
+  async update(user: User): Promise<User> {
+    const updatedUser = await this.repo.save(user)
+    return updatedUser;
   }
 
   async remove(id: number) {

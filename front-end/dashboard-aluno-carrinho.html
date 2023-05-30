@@ -225,8 +225,9 @@
     let tableHTML = "";
     const cartProducts = sessionJson.cart
 
-    cartProducts.forEach(function (item) {
-      tableHTML += `
+    if (cartProducts) {
+      cartProducts.forEach(function (item) {
+        tableHTML += `
     <tr>
       <td><img src="/uploads/${item.image}" style="max-width: 25px; margin-right: 10px;"/>${item.name}</td>
       <td>R$${item.price}</td>
@@ -237,17 +238,18 @@
       </td>
     </tr>
   `;
-    });
+      });
 
-    tbody.innerHTML = tableHTML;
+      tbody.innerHTML = tableHTML;
 
-    const total = cartProducts.reduce(function (acc, item) {
-      return acc + parseFloat(item.price);
-    }, 0);
+      const total = cartProducts.reduce(function (acc, item) {
+        return acc + parseFloat(item.price);
+      }, 0);
 
-    const totalElement = document.querySelector(".card-footer h5");
+      const totalElement = document.querySelector(".card-footer h5");
 
-    totalElement.textContent = "Total da Compra: R$" + total.toFixed(2);
+      totalElement.textContent = "Total da Compra: R$" + total.toFixed(2);
+    }
 
 
     // const order = async (data) => {
@@ -259,15 +261,15 @@
     //   },
     //   body: JSON.stringify(data)
     // })
-    
+
     const buttonOrder = document.getElementById('button-order')
-    buttonOrder.addEventListener("click", function(event) {
+    buttonOrder.addEventListener("click", function (event) {
       event.preventDefault()
       const dataCart = sessionJson.cart
       const data = {
-        cartItems: dataCart.map(item => ({ id: item.id, idComprador: item.idComprador })) 
+        cartItems: dataCart.map(item => ({ id: item.id, idComprador: item.idComprador }))
       }
-  });
+    });
 
 
     const goCart = () => {
@@ -296,6 +298,22 @@
 
     function deleteSession() {
       localStorage.removeItem('session');
+    }
+
+    const userProfilePic = document.getElementById('profile-pic')
+    let userBalSession = document.getElementById('session-bal')
+    const userImage = sessionJson.image
+
+    if (sessionJson.saldo > 0)
+      userBalSession.innerText = sessionJson.saldo.toString();
+    if (sessionJson.image === null) {
+      userProfilePic.src = '../uploads/user 64.png';
+    }
+    userProfilePic.src = `../uploads/${userImage}`
+
+    const cartQtd = document.getElementById('cart-qtd')
+    if (sessionJson.cart) {
+      cartQtd.innerHTML = sessionJson.cart.length;
     }
   </script>
 

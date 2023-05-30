@@ -12,6 +12,7 @@ import {
   UseGuards,
   UseInterceptors,
   UploadedFile,
+  Put,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -29,20 +30,20 @@ export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @Post('/signout')
   signOut(@Session() session: any) {
     session.userId = null;
     return session.userId
   }
-  
+
 
   @Post('/signin')
-    async signin(@Body() body: LoginUserDto) {
-        const user = await this.authService.signin(body.email, body.password);
-        return user;
-    }
+  async signin(@Body() body: LoginUserDto) {
+    const user = await this.authService.signin(body.email, body.password);
+    return user;
+  }
 
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto) {
@@ -80,9 +81,37 @@ export class UsersController {
     return this.usersService.remove(parseInt(id));
   }
 
-  @Patch('/:id')
+  @Put('/:id')
   @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
-  updateUser(@UploadedFile('image') image: Express.Multer.File, @Param('id') id: string, @Body() body: UpdateUserDto) {
-    return this.usersService.update(parseInt(id), body);
+  async updateUser(
+    @UploadedFile() image: Express.Multer.File,
+    @Param("id") id: number,
+    @Body() body: UpdateUserDto
+  ) {
+    const user = await this.usersService.findOne(id);
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+    if (body.email) {
+      user.email = body.email;
+    }
+    if (body.name) {
+      user.name = body.name;
+    }
+    if (body.cnpj) {
+      user.cnpj = body.cnpj;
+    }
+    if (body.block) {
+      user.block = body.block;
+    }
+    if (image) {
+      user.image = image.filename;
+    }
+    if (body.cpf) {
+      user.cpf = body.cpf;
+    }
+
+    const updatedUser = await this.usersService.update(user);
+    return updatedUser;
   }
 }

@@ -184,35 +184,28 @@
 
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
-
-    const userProfilePic = document.getElementById('profile-pic')
-    let userBalSession = document.getElementById('session-bal')
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
       userNameSession.innerText = "Faça seu login!"
     }
 
     userNameSession.innerText = sessionJson.name;
-    //Não ta funfando Otávio
-    if (!sessionJson.saldo) {
-      userBalSession = 0;
-      console.log('Esta Zerado')
-    }
 
+    const userProfilePic = document.getElementById('profile-pic')
+    let userBalSession = document.getElementById('session-bal')
+    const userImage = sessionJson.image
+
+    if (sessionJson.saldo > 0)
+      userBalSession.innerText = sessionJson.saldo.toString();
     if (sessionJson.image === null) {
-      console.log('não')
-    }
-    //Não ta funfando Otávio
-    console.log(sessionJson.image)
-    // userBalSession.innerText = sessionJson.saldo.toString();
-    if (!sessionJson.image){
       userProfilePic.src = '../uploads/user 64.png';
-      console.log('Sem Imagem')
     }
-    userProfilePic.src = sessionJson.image;
+    userProfilePic.src = `../uploads/${userImage}`
 
     const cartQtd = document.getElementById('cart-qtd')
-    cartQtd.innerHTML = sessionJson.cart.length;
+    if (sessionJson.cart) {
+      cartQtd.innerHTML = sessionJson.cart.length;
+    }
 
   </script>
 
