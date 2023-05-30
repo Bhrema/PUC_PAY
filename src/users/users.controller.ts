@@ -21,8 +21,6 @@ import { UserDto } from './dtos/user.dto';
 import { AuthService } from '../auth/auth.service';
 import { User } from './user.entity';
 import { LoginUserDto } from './dtos/login-user.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { CurrentUser } from './decorators/current-user.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')

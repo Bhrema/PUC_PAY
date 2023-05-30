@@ -43,7 +43,7 @@ export class User {
   @Column( { default: false } )
   isAdmin: boolean;
 
-  @OneToMany(() => tb_order, (order) => order.buyer)
+  @OneToMany(() => tb_order, (order) => order.idComprador)
   orders: tb_order[]
   
   @AfterInsert()
