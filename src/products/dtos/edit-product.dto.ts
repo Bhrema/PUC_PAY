@@ -8,11 +8,11 @@ export class UpdateProductDto {
     @IsString()
     @IsOptional()
     description: string;
-
+    
     @IsString()
     @IsOptional()
     price: string;
-    
+
     @IsString()
     @IsOptional()
     image: string;

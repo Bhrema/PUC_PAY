@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
   BadRequestException,
+  Put,
 } from "@nestjs/common";
 import { ProductsService } from "./products.service";
 import { CreateProductDto } from "./dtos/create-product.dto";
@@ -18,7 +19,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller("products")
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService) { }
   @Get("/:id")
   async findProduct(@Param("id") id: string) {
     const product = await this.productsService.findOne(parseInt(id));
@@ -30,10 +31,7 @@ export class ProductsController {
 
   @Post()
   @UseInterceptors(FileInterceptor("image", { dest: "./uploads" }))
-  async createProduct(
-    @UploadedFile() image: Express.Multer.File,
-    @Body() body: CreateProductDto
-  ) {
+  async createProduct(@UploadedFile() image: Express.Multer.File, @Body() body: CreateProductDto) {
     if (!image) {
       throw new BadRequestException("Imagem não foi enviada");
     }
@@ -66,9 +64,28 @@ export class ProductsController {
     return this.productsService.remove(parseInt(id));
   }
 
-  @Patch("/:id")
-  updateProduct(@Param("id") id: string, @Body() body: UpdateProductDto) {
-    return this.productsService.update(parseInt(id), body);
+  @Put("/:id")
+  @UseInterceptors(FileInterceptor('image', { dest: './uploads' }))
+  async updateProduct(@Param("id") id: number, @Body() body: UpdateProductDto, @UploadedFile() image: Express.Multer.File) {
+    const product = await this.productsService.findOne(id);
+    if (!product) {
+      throw new NotFoundException('Produto não encontrado');
+    }
+    if (body.name) {
+      product.name = body.name;
+    }
+    if (body.description) {
+      product.description = body.description;
+    }
+    if (image) {
+      product.image = image.filename;
+    }
+    if (body.price) {
+      product.price = body.price;
+    }
+
+    const updatedProduct = await this.productsService.update(product);
+    return updatedProduct;
   }
 
   @Delete("/restaurant/:id")

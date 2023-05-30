@@ -40,9 +40,28 @@ GET http://localhost:3000/products/2
 DELETE http://localhost:3000/products/13
 
 ### Update a product
-PATCH http://localhost:3000/products/
-content-type: application/json
+PUT http://localhost:3000/products/5 HTTP/1.1
+Content-Type: multipart/form-data; boundary=MfnBoundry
 
-{
-  "description": "Tubaina congelante"
-}
+--MfnBoundry
+Content-Disposition: form-data; name="name"
+
+Cerveja
+--MfnBoundry
+Content-Disposition: form-data; name="description"
+
+Gelada
+--MfnBoundry
+Content-Disposition: form-data; name="price"
+
+3.50
+--MfnBoundry
+Content-Disposition: form-data; name="image"; filename="coca-cola.jpg"
+Content-Type: image/jpeg
+
+< coca-cola.jpg
+--MfnBoundry
+Content-Disposition: form-data; name="restaurant_id";
+
+2
+--MfnBoundry--

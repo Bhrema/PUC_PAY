@@ -49,12 +49,8 @@ export class ProductsService {
         return this.productRepository.remove(product);
     }
 
-    async update(id: number, attrs: Partial<Product>) {
-        const product = await this.findOne(id);
-        if (!product) {
-            throw new NotFoundException('user not found');
-        }
-        Object.assign(product, attrs);
-        return this.productRepository.save(product);
-    }
+    async update(product: Product): Promise<Product> {
+        const updatedProduct = await this.productRepository.save(product);
+        return updatedProduct;
+      }
 }
