@@ -257,6 +257,54 @@
       <div class="content">
         <button type="button" class="btn-app"  onclick="window.location.replace('./dashboard-restaurante-cad-produtos.html')" style="position:fixed; bottom: 600px; left: 1290px;">Registrar Produto</button>
       </div>
+      <div class="content">
+        <table
+          cellpadding="5"
+          cellspacing="5"
+          style="position: relative; top: 100px; left: 300px; width: 75%"
+          id="table"
+        >
+          <tbody id="tbody" style="display: flex">
+            <tr style="width: 200px" ;>
+              <td>
+                <a href="#">
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                      <div
+                        class="
+                          bg-image
+                          hover-zoom
+                          ripple ripple-surface ripple-surface-light
+                        "
+                        data-mdb-ripple-color="light"
+                      >
+                        <img
+                          src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                          class="w-100"
+                        />
+                        <a href="#!"></a>
+                      </div>
+                      <div class="card-body">
+                        <a href="" class="text-reset">
+                          <h5 class="card-title mb-3" id="name">
+                            Nome do Produto
+                          </h5>
+                        </a>
+                        <br />
+                        <hr />
+                        <h6 class="mb-3" id="price">$Price</h6>
+                      </div>
+                      <button type="button" class="btn btn-primary">
+                        Adicionar ao carrinho
+                      </button>
+                    </div>
+                  </div>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <!-- /.content-wrapper -->
 
       <!-- Control Sidebar -->
@@ -281,6 +329,111 @@
     <!-- ./wrapper -->
 
     <script>
+      testarDelete();
+      const session = localStorage.getItem("session");
+      const sessionJson = JSON.parse(session);
+
+      const userNameSession = document.getElementById("session-name");
+      if (!sessionJson.name) {
+        userNameSession.innerText = "Faça seu login!";
+      }
+
+      userNameSession.innerText = sessionJson.name;
+
+      async function showProducts() {
+
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const restaurantId = sessionJson.id;
+        const response = await fetch(
+          `http://localhost:3000/products/restaurant/${restaurantId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const responseData = await response.json();
+        const products = responseData;
+        console.log(products);
+
+        const tbody = document.getElementById("tbody");
+        tbody.innerHTML = "";
+
+        function createProductElement(product) {
+          const tableRow = document.createElement("tr");
+          tableRow.style.width = "250px";
+          tableRow.innerHTML = `
+                <td>
+                  <a href="#">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                      <div class="card" style="width:204.3px;">
+                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                          data-mdb-ripple-color="light">
+                          <img src="/uploads/${product.image}" style="width:204.3px; height:200px" />
+                          <a href="#!"></a>
+                        </div>
+                        <div class="card-body">
+                          <a href="" class="text-reset">
+                            <h5 class="card-title mb-3">${product.name}</h5>
+                          </a>
+                          <br>
+                          <hr>
+                          <h6 class="mb-3">R$${product.price}</h6>
+                        </div>
+                        <div>
+                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-deletar-${product.id}">Deletar</button>
+                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-${product.id}-editar">Editar</button>
+                        <div>
+                      </div>
+                    </div>
+                  </a>
+                </td>
+              `;
+          return tableRow;
+        }
+        products.forEach((product) => {
+          const productElement = createProductElement(product);
+          tbody.appendChild(productElement);
+        });
+      }
+
+      showProducts();
+
+      const restaurantId = sessionJson.id;
+      function testarDelete() {
+      const buttonsDelete = document.querySelectorAll('[id^="product-deletar"]');
+      buttonsDelete.forEach((buttonDelete) => {
+          buttonDelete.addEventListener('click', () => {
+            console.log(buttonDelete)
+            const id = buttonDelete.id.split('-')[2];
+            deleteUser(id);
+          });
+        });
+      };
+      async function deleteUser(id) {
+              try {
+                const response = await fetch(`http://localhost:3000/products/restaurant/${id}`, {
+                  method: 'DELETE',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                });
+
+                if (response.ok) {
+                  const row = document.querySelector(`#product-deletar-${id}`).parentNode.parentNode;
+                  row.parentNode.removeChild(row);
+                } else {
+                  console.error('Erro ao deletar usuário.');
+                }
+              } catch (error) {
+                console.error(error);
+              }
+            }
+
+
       const btn = document.getElementById("btnLogout");
       btn.addEventListener("click", async (event) => {
         event.preventDefault();
@@ -303,15 +456,7 @@
         localStorage.removeItem("session");
       }
 
-      const session = localStorage.getItem("session");
-      const sessionJson = JSON.parse(session);
-
-      const userNameSession = document.getElementById("session-name");
-      if (!sessionJson.name) {
-        userNameSession.innerText = "Faça seu login!";
-      }
-
-      userNameSession.innerText = sessionJson.name;
+      
     </script>
 
     <!-- REQUIRED SCRIPTS -->
