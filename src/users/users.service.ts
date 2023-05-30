@@ -36,7 +36,7 @@ export class UsersService {
       .getMany();
   }
 
-  
+ 
   async findUsersWithCnpj(): Promise<User[]> {
     return this.repo.createQueryBuilder('user')
       .where('user.cnpj IS NOT NULL')

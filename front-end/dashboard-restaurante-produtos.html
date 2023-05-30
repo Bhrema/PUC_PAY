@@ -329,7 +329,6 @@
     <!-- ./wrapper -->
 
     <script>
-      testarDelete();
       const session = localStorage.getItem("session");
       const sessionJson = JSON.parse(session);
 
@@ -341,9 +340,6 @@
       userNameSession.innerText = sessionJson.name;
 
       async function showProducts() {
-
-
-
         const urlParams = new URLSearchParams(window.location.search);
         const restaurantId = sessionJson.id;
         const response = await fetch(
@@ -357,7 +353,6 @@
         );
         const responseData = await response.json();
         const products = responseData;
-        console.log(products);
 
         const tbody = document.getElementById("tbody");
         tbody.innerHTML = "";
@@ -397,22 +392,22 @@
         products.forEach((product) => {
           const productElement = createProductElement(product);
           tbody.appendChild(productElement);
+          testarDelete()
         });
       }
 
-      showProducts();
+      showProducts()
 
-      const restaurantId = sessionJson.id;
       function testarDelete() {
       const buttonsDelete = document.querySelectorAll('[id^="product-deletar"]');
       buttonsDelete.forEach((buttonDelete) => {
           buttonDelete.addEventListener('click', () => {
-            console.log(buttonDelete)
             const id = buttonDelete.id.split('-')[2];
             deleteUser(id);
           });
         });
-      };
+      }
+      
       async function deleteUser(id) {
               try {
                 const response = await fetch(`http://localhost:3000/products/restaurant/${id}`, {
@@ -432,7 +427,6 @@
                 console.error(error);
               }
             }
-
 
       const btn = document.getElementById("btnLogout");
       btn.addEventListener("click", async (event) => {
@@ -455,8 +449,6 @@
       function deleteSession() {
         localStorage.removeItem("session");
       }
-
-      
     </script>
 
     <!-- REQUIRED SCRIPTS -->

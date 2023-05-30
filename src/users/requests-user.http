@@ -3,11 +3,9 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "pizzaria@gmail.com",
-  "name": "pizzaria Grill",
-  "cnpj": "20843769921323",
-  "block": "1",
-  "image": "batelgrill.jpg",
+  "email": "otaviodallo@gmail.com",
+  "name": "Otávio Dallo",
+  "cpf": "10843769931",
   "password": "@Livia040323"
 }
 
