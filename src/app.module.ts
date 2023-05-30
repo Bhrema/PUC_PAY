@@ -29,8 +29,8 @@ import { tb_order } from './orders/order.entity';
     ProductsModule,
     OrdersModule,
   ],
-  controllers: [AppController, OrdersController],
-  providers: [AppService, OrdersService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 
 export class AppModule {}

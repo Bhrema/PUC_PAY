@@ -1,10 +1,9 @@
 import { IsNumber } from "class-validator";
-import { Product } from "src/products/products.entity";
 
-
-export class CreateOrderDto{
+export class CartItemDto {
     @IsNumber()
-    id: number
-
-    products: Product[]
-}
+    productId: number;
+    
+    @IsNumber()
+    idComprador: number;
+  }

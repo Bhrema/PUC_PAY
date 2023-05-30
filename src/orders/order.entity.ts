@@ -1,6 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { tb_ticket } from "./ticket.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "src/users/user.entity";
+import { Product } from "src/products/products.entity";
 
 
 @Entity()
@@ -8,13 +8,16 @@ export class tb_order{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => tb_ticket)
-    @JoinColumn()
-    ticket: tb_ticket
+    @Column()
+    idProduto: number
 
     @ManyToOne(() => User, (user) => user.orders)
-    restaurant: User
+    restaurant: number
 
     @ManyToOne(() => User, (user) => user.orders)
-    buyer: User
+    idComprador: number
+
+    @ManyToMany(() => Product)
+    @JoinTable()
+    products: Product[];
 }
