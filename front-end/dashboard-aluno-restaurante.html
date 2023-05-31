@@ -268,8 +268,9 @@
       userBalSession.innerText = sessionJson.saldo.toString();
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
+    } else {
+        userProfilePic.src = `../uploads/${userImage}`
     }
-    userProfilePic.src = `../uploads/${userImage}`
 
     const cartQtd = document.getElementById('cart-qtd')
     if (sessionJson.cart) {

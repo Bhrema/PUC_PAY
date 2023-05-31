@@ -145,7 +145,13 @@
               <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
                 <div class="card-body p-5"><!--  Input Control -->
                   <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Editar perfil</h2>
-                  <form id="register-form" style="position: relative; bottom: 40px;">
+                  <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
+
+                    <div class="form-outline mb-1">
+                      <label for="image">Foto de Perfil</label>
+                      <input type="file" id="image"  class="form-control form-control-lg" name="image">
+                    </div>
+
                     <div class="form-outline mb-1">
                       <label class="form-label" for="formAcaEmail">Email</label>
                       <input id="formEmail" type="email" class="form-control form-control-lg" name="email" />
@@ -235,9 +241,10 @@
 
       function replaceLocationSubmit() {
         setTimeout(function () {
-          window.location.replace("login.html");
-        }, 3000)
-      }
+          window.location.href = "login.html";
+            }, 3000);
+}
+
 
       function replaceLocation() {
         window.location.replace("login.html");
@@ -249,14 +256,6 @@
 
       const form = document.getElementById('register-form');
       const idUser = sessionJson.id;
-
-      form.addEventListener('submit', async event => {
-        event.preventDefault()
-        handleEdit()
-        messageAlert()
-        replaceLocationSubmit()
-        deleteSession()
-      });
 
       function messageAlert() {
         const message = document.getElementById('message')
@@ -277,19 +276,35 @@
         console.log(response)
       }
 
+      document.getElementById("register-form").addEventListener("submit", async function(event) {
+      event.preventDefault()
 
-      const edit = async (data) => {
-        const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data),
-        });
-        const responseData = await response.json();
+      var formData = new FormData(this);
 
-        return responseData
-      }
+      var xhr = new XMLHttpRequest();
+      xhr.open("PUT", `http://localhost:3000/auth/${idUser}`);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            
+          } else {
+            console.log("Erro na solicitação: " + xhr.status);
+          }
+        }
+      };
+
+      
+      messageAlert()  
+      deleteSession()
+      setTimeout(function () {
+           
+          replaceLocation();
+          xhr.send(formData);
+            }, 3000);
+      
+    });
 
       const userProfilePic = document.getElementById('profile-pic')
       let userBalSession = document.getElementById('session-bal')
@@ -299,8 +314,10 @@
         userBalSession.innerText = sessionJson.saldo.toString();
       if (sessionJson.image === null) {
         userProfilePic.src = '../uploads/user 64.png';
+      } else {
+        userProfilePic.src = `../uploads/${userImage}`
       }
-      userProfilePic.src = `../uploads/${userImage}`
+      
 
       const cartQtd = document.getElementById('cart-qtd')
       if (sessionJson.cart) {
