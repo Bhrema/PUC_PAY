@@ -8,9 +8,8 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, (user) => user.orders)
-    @JoinColumn({ name: "comprador_id", referencedColumnName: "id" })
-    comprador_id: User;
+    @Column()
+    comprador_id: number;
 
     @ManyToOne(() => User, (user) => user.orders)
     @JoinColumn({ name: "idRestaurante", referencedColumnName: "id" })
