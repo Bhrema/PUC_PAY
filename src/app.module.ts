@@ -8,18 +8,16 @@ import { ProductsModule } from './products/products.module';
 import { Product } from './products/products.entity';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserEntity } from './users/usertype.entity';
-import { OrdersController } from './orders/orders.controller';
-import { OrdersService } from './orders/orders.service';
 import { OrdersModule } from './orders/orders.module';
-import { tb_ticket } from './orders/ticket.entity';
-import { tb_order } from './orders/order.entity';
+import { Ticket } from './orders/ticket.entity';
+import { Order } from './orders/order.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'bd.sqlite',
-      entities: [User, Product, UserEntity, tb_ticket, tb_order],
+      entities: [User, Product, UserEntity, Ticket, Order],
       synchronize: true,
     }),
     MulterModule.register({

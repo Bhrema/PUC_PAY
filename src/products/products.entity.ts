@@ -4,10 +4,11 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
-  ManyToMany
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
-import { tb_order } from 'src/orders/order.entity';
+import { Order } from 'src/orders/order.entity';
 
 @Entity()
 export class Product {
@@ -30,6 +31,6 @@ export class Product {
     @JoinColumn({ name: "restaurant_id", referencedColumnName: "id"})
     restaurant_id: number;
 
-    @ManyToMany(() => tb_order, order => order.products)
-    orders: tb_order[];
+    @ManyToMany(() => Order, (order) => order.products)
+    orders: Order[];
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class tb_ticket {
+export class Ticket {
     @PrimaryGeneratedColumn()
     id: number;
 

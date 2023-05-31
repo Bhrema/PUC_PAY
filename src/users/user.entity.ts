@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { Product } from 'src/products/products.entity';
-import { tb_order } from 'src/orders/order.entity';
+import { Order } from 'src/orders/order.entity';
 
 @Entity()
 export class User {
@@ -43,8 +43,8 @@ export class User {
   @Column( { default: false } )
   isAdmin: boolean;
 
-  @OneToMany(() => tb_order, (order) => order.idComprador)
-  orders: tb_order[]
+  @OneToMany(() => Order, (order) => order.comprador_id)
+  orders: Order[]
   
   @AfterInsert()
   logInsert() {
