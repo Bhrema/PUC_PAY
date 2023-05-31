@@ -207,7 +207,7 @@
   <!-- ./wrapper -->
 
 
-  <script>
+  <script type="module">
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
 
@@ -262,14 +262,14 @@
     //   body: JSON.stringify(data)
     // })
 
-    const buttonOrder = document.getElementById('button-order')
-    buttonOrder.addEventListener("click", function (event) {
-      event.preventDefault()
-      const dataCart = sessionJson.cart
-      const data = {
-        cartItems: dataCart.map(item => ({ id: item.id, idComprador: item.idComprador }))
-      }
-    });
+    // const buttonOrder = document.getElementById('button-order')
+    // buttonOrder.addEventListener("click", function (event) {
+    //   event.preventDefault()
+    //   const dataCart = sessionJson.cart
+    //   const data = {
+    //     cartItems: dataCart.map(item => ({ id: item.id, idComprador: item.idComprador }))
+    //   }
+    // });
 
 
     const goCart = () => {
@@ -312,10 +312,43 @@
         userProfilePic.src = `../uploads/${userImage}`
     }
 
-    const cartQtd = document.getElementById('cart-qtd')
-    if (sessionJson.cart) {
-      cartQtd.innerHTML = sessionJson.cart.length;
+    // const cartQtd = document.getElementById('cart-qtd')
+    // if (sessionJson.cart) {
+    //   cartQtd.innerHTML = sessionJson.cart.length;
+    // }
+
+    import axios from 'https://cdn.skypack.dev/axios';
+    const products = sessionJson.cart;
+    const buttonOrder = document.getElementById('button-order');
+    buttonOrder.addEventListener('click', async event => {
+      event.preventDefault();
+      createOrder(products);
+    });
+
+    const createOrder = async (products) => {
+      const url = 'http://localhost:3000/order';
+      const compradorId = sessionJson.id;
+      console.log(compradorId)
+
+      const createOrderDto = {
+        compradorId,
+        produtos: products
+      };
+      console.log(createOrderDto)
+
+      try {
+        const response = await axios.post(url, createOrderDto, {
+           headers: {
+      'Content-Type': 'application/json'
     }
+        });
+        console.log(response.data);
+      } catch (response) {
+        console.log(response.data);
+      }
+    };
+
+
   </script>
 
 

@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { json } from 'express';
 const cookieSession = require('cookie-session');
 
 async function bootstrap() {
@@ -22,6 +23,7 @@ async function bootstrap() {
     res.removeHeader('date');
     next();
   });
+  app.use(json());
   await app.listen(3000);
 }
 bootstrap();
