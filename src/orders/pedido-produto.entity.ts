@@ -20,6 +20,4 @@ export class orderProduct {
     inverseJoinColumns: [{ name: 'idProduto' }],
   })
   produtos: Product[];
-
-  
 }
