@@ -9,6 +9,6 @@ export class OrdersController {
 
     @Post()
     async createOrder(@Body() body: CreateOrderDto) {
-      console.log(body)
+      return body
     }
 }

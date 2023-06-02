@@ -34,6 +34,9 @@ export class User {
   @Column({ nullable: true, default: null })
   image: string;
 
+  @Column({ default: 0 })
+  quantity: number;
+
   @Column()
   password: string;
 

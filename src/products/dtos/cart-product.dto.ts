@@ -14,5 +14,8 @@ export class cartProduct {
     image: string
 
     @Expose()
+    quantity: number
+
+    @Expose()
     idComprador: number
 }
