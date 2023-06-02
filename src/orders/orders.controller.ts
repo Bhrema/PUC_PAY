@@ -10,10 +10,5 @@ export class OrdersController {
     @Post()
     async createOrder(@Body() body: CreateOrderDto) {
       console.log(body)
-      const order = await this.ordersService.criarPedido(
-        body.compradorId,
-        body.produtos
-      );
-      return order;
     }
 }

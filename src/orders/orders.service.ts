@@ -18,35 +18,5 @@ export class OrdersService {
         private orderProductRepo: Repository<orderProduct>,
     ) {}
 
-    async criarPedido(compradorId: number, produtos: cartProduct[]): Promise<Order> {
-        const order = new Order();
-
-        const products: Product[] = [];
-
-        for (const produtoData of produtos) {
-            const product = new Product();
-            product.id = produtoData.id;
-            product.name = produtoData.name;
-            product.price = produtoData.price;
-            product.image = produtoData.image;
-            product.restaurant_id = produtoData.idComprador;
-          
-            products.push(product);
-          }
-
-        order.products = products;
-        order.comprador_id = compradorId;
-
-        const createdOrder = await this.orderRepo.save(order);
-
-        const tbOrderProduct = new orderProduct();
-        tbOrderProduct.orders = []; 
-        tbOrderProduct.orders.push(createdOrder);
-        tbOrderProduct.produtos = []; 
-        tbOrderProduct.produtos.push(...products);
-
-        await this.orderProductRepo.save(tbOrderProduct);
-
-        return createdOrder;
-    }
+    
 }
