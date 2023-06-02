@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsBoolean } from "class-validator";
+import { IsOptional, IsString, IsBoolean, IsNumber } from "class-validator";
 
 export class UpdateProductDto {
     @IsString()
@@ -16,5 +16,9 @@ export class UpdateProductDto {
     @IsString()
     @IsOptional()
     image: string;
+
+    @IsNumber()
+    @IsOptional()
+    quantity: number
   }
   

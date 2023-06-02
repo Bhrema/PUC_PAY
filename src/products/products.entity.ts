@@ -27,6 +27,9 @@ export class Product {
     @Column()
     image: string;
 
+    @Column({default: 0})
+    quantity: number
+
     @ManyToOne(() => User, user => user.products)
     @JoinColumn({ name: "restaurant_id", referencedColumnName: "id"})
     restaurant_id: number;
