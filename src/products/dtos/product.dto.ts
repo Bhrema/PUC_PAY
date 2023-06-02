@@ -18,7 +18,4 @@ export class ProductDto {
 
     @Expose()
     restaurant_id: number
-
-    @Expose()
-    quantity: number
 }

@@ -10,13 +10,13 @@ export class ProductsService {
         private productRepository: Repository<Product>,
     ) {}
 
-    async create(name: string, description: string, image: string, price:string, restaurant_id: number, quantity: number) {
+    async create(name: string, description: string, image: string, price:string, restaurant_id: number) {
         const products = await this.productRepository.find({ name })
         if (products.length) {
             throw new BadRequestException('Produto já cadastrado na base de dados');
         }
     
-        const product = this.productRepository.create({ name, description, image, price, restaurant_id, quantity })
+        const product = this.productRepository.create({ name, description, image, price, restaurant_id})
         return this.productRepository.save(product)
     }
 

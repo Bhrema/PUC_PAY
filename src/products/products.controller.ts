@@ -42,7 +42,6 @@ export class ProductsController {
       image.filename,
       body.price,
       body.restaurant_id,
-      body.quantity
     );
     return product;
   }
