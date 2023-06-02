@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "src/users/user.entity";
-import { Product } from "src/products/products.entity";
+import { orderProduct } from "./pedido-produto.entity";
 
 
 @Entity()
@@ -8,14 +8,12 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @ManyToMany(() => orderProduct, orderproduct => orderproduct.id)
+    produto: number;
+
     @Column()
     comprador_id: number;
 
     @ManyToOne(() => User, (user) => user.orders)
-    @JoinColumn({ name: "idRestaurante", referencedColumnName: "id" })
-    idRestaurante: User;
-
-    @ManyToMany(() => Product)
-    @JoinTable()
-    products: Product[];
+    idRestaurante: number;
 }
