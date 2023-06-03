@@ -63,3 +63,12 @@ Content-Type: image/jpeg
 < thedripper.png
 --MfnBoundry--
 
+### Update balance
+PUT http://localhost:3000/auth/1
+content-type: application/json
+
+{
+  "balance": 0
+}
+
+

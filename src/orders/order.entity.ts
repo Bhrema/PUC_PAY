@@ -9,7 +9,7 @@ export class Order {
     id: number;
 
     @ManyToMany(() => orderProduct, orderproduct => orderproduct.id)
-    produto: number;
+    produtos: orderProduct[];
 
     @Column()
     comprador_id: number;

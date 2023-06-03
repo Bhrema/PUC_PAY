@@ -3,13 +3,11 @@ import {
   Controller,
   Post,
   Get,
-  Patch,
   Delete,
   Param,
   Query,
   NotFoundException,
   Session,
-  UseGuards,
   UseInterceptors,
   UploadedFile,
   Put,
@@ -109,6 +107,9 @@ export class UsersController {
     }
     if (body.cpf) {
       user.cpf = body.cpf;
+    }
+    if(body.balance) {
+      user.balance = body.balance
     }
 
     const updatedUser = await this.usersService.update(user);

@@ -89,7 +89,7 @@
                 <div style="position:absolute; left:100px; top:15px; width:50px;">
                   <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
                     seu Login</a>
-                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
+                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span id="balance">0</span></a>
                 </div>
               </div>
             </div>
@@ -322,7 +322,6 @@
     const createOrder = async (products) => {
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
-      console.log(compradorId)
 
       const createOrderDto = {
         compradorId,
@@ -337,8 +336,8 @@
           }
         });
         console.log(response.data);
-      } catch (response) {
-        console.log(response.data);
+      } catch (error) {
+        console.error(error)
       }
     };
   </script>

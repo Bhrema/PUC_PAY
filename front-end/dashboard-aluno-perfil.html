@@ -95,7 +95,7 @@
                 <div style="position:absolute; left:100px; top:15px; width:50px;">
                   <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
                     seu Login</a>
-                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: 0</a>
+                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span id="balance">0</span></a>
                 </div>
               </div>
             </div>
@@ -293,11 +293,10 @@
     });
 
       const userProfilePic = document.getElementById('profile-pic')
-      let userBalSession = document.getElementById('session-bal')
       const userImage = sessionJson.image
+      const balance = document.getElementById('balance')
+      balance.innerText = sessionJson.balance;
 
-      if (sessionJson.saldo > 0)
-        userBalSession.innerText = sessionJson.saldo.toString();
       if (sessionJson.image === null) {
         userProfilePic.src = '../uploads/user 64.png';
       } else {

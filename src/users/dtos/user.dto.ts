@@ -20,6 +20,9 @@ export class UserDto {
   block: string;
 
   @Expose()
+  balance: number
+
+  @Expose()
   image: string;
 
   @Expose()

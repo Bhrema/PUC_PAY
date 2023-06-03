@@ -33,7 +33,7 @@ export class Product {
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
   restaurant_id: number;
 
-  @ManyToMany(() => Order, (order) => order.produto)
+  @ManyToMany(() => Order, (order) => order.produtos)
   orders: Order[];
 
   @AfterInsert()
