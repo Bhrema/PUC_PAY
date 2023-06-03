@@ -43,19 +43,23 @@ Content-Type: multipart/form-data; boundary=MfnBoundry
 --MfnBoundry
 Content-Disposition: form-data; name="email"
 
-ocostadallo@gmail.com
+thedripper@gmail.com
 --MfnBoundry
 Content-Disposition: form-data; name="name"
 
-Otávio Costa Dallo
+The Dripper
 --MfnBoundry
-Content-Disposition: form-data; name="cpf"
+Content-Disposition: form-data; name="cnpj"
 
-10843769971
+99321652132452
 --MfnBoundry
-Content-Disposition: form-data; name="image"; filename="eutmj.jfif"
+Content-Disposition: form-data; name="block"
+
+3
+--MfnBoundry
+Content-Disposition: form-data; name="image"; filename="thedripper.png"
 Content-Type: image/jpeg
 
-< eutmj.jfif
+< thedripper.png
 --MfnBoundry--
 

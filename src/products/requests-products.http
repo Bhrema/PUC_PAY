@@ -28,7 +28,7 @@ Content-Disposition: form-data; name="restaurant_id";
 
 
 ### Find Restaurant Products
-GET http://localhost:3000/products/restaurant/5
+GET http://localhost:3000/products/restaurant/1
 
 ### Find all products
 GET http://localhost:3000/products/

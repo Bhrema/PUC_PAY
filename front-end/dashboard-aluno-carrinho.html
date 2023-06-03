@@ -220,37 +220,56 @@
 
 
     const tbody = document.getElementById("tbody");
+    const totalElement = document.querySelector(".card-footer h5");
     tbody.innerHTML = '';
 
-    let tableHTML = "";
-    const cartProducts = sessionJson.cart
+    const cartProducts = sessionJson.cart;
 
-    if (cartProducts) {
-      cartProducts.forEach(function (item) {
+    if (cartProducts && tbody && totalElement) {
+      updateCartTable();
+
+      tbody.addEventListener("click", function (event) {
+        if (event.target.classList.contains("button-delete")) {
+          const index = parseInt(event.target.dataset.index);
+          if (!isNaN(index) && index >= 0 && index < cartProducts.length) {
+            cartProducts[index].quantity--;
+            if (cartProducts[index].quantity <= 0) {
+              cartProducts.splice(index, 1);
+            }
+            updateCartTable();
+          }
+        }
+      });
+    }
+
+    function updateCartTable() {
+      let tableHTML = "";
+      let total = 0
+
+      cartProducts.forEach(function (item, index) {
+        const itemTotal = item.quantity * item.price;
         tableHTML += `
-    <tr>
-      <td><img src="/uploads/${item.image}" style="max-width: 25px; margin-right: 10px;"/>${item.name}</td>
-      <td>R$${item.price}</td>
-      <td>${item.quantity}</td>
-      <td>R$${item.price}</td>
-      <td>
-        <button class="btn btn-sm btn-danger" id="button-delete">Remover</button>
-      </td>
-    </tr>
-  `;
+      <tr>
+        <td><img src="/uploads/${item.image}" style="max-width: 25px; margin-right: 10px;"/>${item.name}</td>
+        <td>R$${item.price}</td>
+        <td>${item.quantity}</td>
+        <td>R$${itemTotal}</td>
+        <td>
+          <button class="btn btn-sm btn-danger button-delete" data-index="${index}">Remover</button>
+        </td>
+      </tr>
+    `;
+        total += itemTotal;
+        cartProducts[index].total = total
       });
 
       tbody.innerHTML = tableHTML;
-
-      const total = cartProducts.reduce(function (acc, item) {
-        return acc + parseFloat(item.price);
-      }, 0);
-
-      const totalElement = document.querySelector(".card-footer h5");
-
       totalElement.textContent = "Total da Compra: R$" + total.toFixed(2);
-    }
 
+
+      sessionJson.cart = cartProducts;
+      localStorage.setItem('session', JSON.stringify(sessionJson));
+    }
 
     const goCart = () => {
       window.location.href = "dashboard-aluno-carrinho.html"
@@ -289,13 +308,8 @@
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
-        userProfilePic.src = `../uploads/${userImage}`
+      userProfilePic.src = `../uploads/${userImage}`
     }
-
-    // const cartQtd = document.getElementById('cart-qtd')
-    // if (sessionJson.cart) {
-    //   cartQtd.innerHTML = sessionJson.cart.length;
-    // }
 
     import axios from 'https://cdn.skypack.dev/axios';
     const products = sessionJson.cart;
@@ -318,17 +332,15 @@
 
       try {
         const response = await axios.post(url, createOrderDto, {
-           headers: {
-      'Content-Type': 'application/json'
-    }
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
         console.log(response.data);
       } catch (response) {
         console.log(response.data);
       }
     };
-
-
   </script>
 
 

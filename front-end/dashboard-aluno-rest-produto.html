@@ -270,18 +270,19 @@
             cart = JSON.parse(cartItems);
           } else if (existingProduct) {
             existingProduct.quantity++;
-            existingProduct.price = (parseFloat(existingProduct.price) + parseFloat(product.price)).toFixed(2);
-            console.log(existingProduct.price)
+            existingProduct.total = (parseFloat(existingProduct.total) + parseFloat(product.price)).toFixed(2);
           } else {
             cart.push({
               id: product.id,
               name: product.name,
               price: product.price,
               image: product.image,
+              total: parseFloat(product.price).toFixed(2),
               quantity: 1,
               idComprador: sessionJson.id
             });
           }
+
           session.cart = cart;
           localStorage.setItem("session", JSON.stringify(session));
           location.reload();
@@ -334,10 +335,11 @@
       userProfilePic.src = `../uploads/${userImage}`;
     }
 
-    const cartQtd = document.getElementById("cart-qtd");
-    if (sessionJson.cart) {
-      cartQtd.innerHTML = sessionJson.cart.length;
-    }
+    const cartQtd = document.getElementById('cart-qtd')
+      if (sessionJson.cart) {
+        const products = sessionJson.cart
+        products.forEach(product => cartQtd.innerHTML = product.quantity)
+      }
   </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->

@@ -16,7 +16,7 @@ export class ProductsService {
             throw new BadRequestException('Produto já cadastrado na base de dados');
         }
     
-        const product = this.productRepository.create({ name, description, image, price, restaurant_id})
+        const product = this.productRepository.create({ name, description, image, price, restaurant_id })
         return this.productRepository.save(product)
     }
 

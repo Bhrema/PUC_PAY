@@ -132,7 +132,14 @@
               <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
                 <div class="card-body p-5"><!--  Input Control -->
                   <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Perfil</h2>
-                  <form id="register-form" style="position: relative; bottom: 40px;">
+                  <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
+
+                    <div class="form-outline mb-1">
+                      <label for="image">Foto de Perfil</label>
+                      <input type="file" id="image"  class="form-control form-control-lg" name="image">
+                    </div>
+
+
                     <div class="form-outline mb-1">
                       <label class="form-label" for="formAcaEmail">Email</label>
                       <input id="formEmail" type="email" class="form-control form-control-lg" name="email" />
@@ -234,6 +241,9 @@
       const sessionJson = JSON.parse(session)
 
       const userNameSession = document.getElementById('session-name')
+      if (!sessionJson.name) {
+        userNameSession.innerText = "Faça seu login!"
+      }
 
       userNameSession.innerText = sessionJson.name;
 
@@ -242,16 +252,21 @@
       document.getElementById("formCnpj").value = sessionJson.cnpj;
       document.getElementById("enderecoInput").value = sessionJson.block;
 
+      function replaceLocationSubmit() {
+        setTimeout(function () {
+          window.location.href = "login.html";
+            }, 3000);
+}
+      function replaceLocation() {
+        window.location.replace("login.html");
+      }
+
+      function deleteSession() {
+        localStorage.removeItem("session");
+      }
+
       const form = document.getElementById('register-form');
       const idUser = sessionJson.id;
-
-      form.addEventListener('submit', async event => {
-        event.preventDefault()
-        await handleEdit()
-        messageAlert()
-        deleteSession()
-        replaceLocationSubmit()
-      });
 
       function messageAlert() {
         const message = document.getElementById('message')
@@ -259,48 +274,36 @@
         messageRedirect.style.display = 'block';
       }
 
+      document.getElementById("register-form").addEventListener("submit", async function(event) {
+      event.preventDefault()
 
-      function replaceLocationSubmit() {
-        setTimeout(function () {
-          window.location.replace("login.html");
-        }, 3000)
-      }
+      var formData = new FormData(this);
 
-      function deleteSession() {
-        localStorage.removeItem('session');
-      }
-
-      async function handleEdit() {
-        const formData = new FormData(form);
-        const data = {};
-
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
-
-        const response = await edit(data)
-        console.log(response)
-      }
-
-
-      const edit = async (data) => {
-        const response = await fetch(`http://localhost:3000/auth/${idUser}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data),
-        });
-        const responseData = await response.json();
-
-        return responseData
-      }
+      var xhr = new XMLHttpRequest();
+      xhr.open("PUT", `http://localhost:3000/auth/${idUser}`);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            
+          } else {
+            console.log("Erro na solicitação: " + xhr.status);
+          }
+        }
+      };
+      
+      messageAlert()  
+      deleteSession()
+      setTimeout(function () {
+           
+          replaceLocation();
+          xhr.send(formData);
+            }, 3000);
+      
+    });
 
     </script>
-
-
-
-
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>

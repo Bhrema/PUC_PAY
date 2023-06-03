@@ -263,19 +263,6 @@
         messageRedirect.style.display = 'block';
       }
 
-
-      async function handleEdit() {
-        const formData = new FormData(form);
-        const data = {};
-
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
-
-        const response = await edit(data)
-        console.log(response)
-      }
-
       document.getElementById("register-form").addEventListener("submit", async function(event) {
       event.preventDefault()
 
@@ -320,7 +307,8 @@
 
       const cartQtd = document.getElementById('cart-qtd')
       if (sessionJson.cart) {
-        cartQtd.innerHTML = sessionJson.cart.length;
+        const products = sessionJson.cart
+        products.forEach(product => cartQtd.innerHTML = product.quantity)
       }
 
 

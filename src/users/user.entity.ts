@@ -34,8 +34,8 @@ export class User {
   @Column({ nullable: true, default: null })
   image: string;
 
-  @Column({ default: 0 })
-  quantity: number;
+  @Column( { default: 0 } )
+  balance: number;
 
   @Column()
   password: string;
@@ -48,7 +48,7 @@ export class User {
 
   @OneToMany(() => Order, (order) => order.comprador_id)
   orders: Order[]
-  
+
   @AfterInsert()
   logInsert() {
     console.log('Inserted User with id', this.id);

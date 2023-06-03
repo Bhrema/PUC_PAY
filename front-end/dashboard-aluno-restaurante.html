@@ -273,9 +273,10 @@
     }
 
     const cartQtd = document.getElementById('cart-qtd')
-    if (sessionJson.cart) {
-      cartQtd.innerHTML = sessionJson.cart.length;
-    }
+      if (sessionJson.cart) {
+        const products = sessionJson.cart
+        products.forEach(product => cartQtd.innerHTML = product.quantity)
+      }
   </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
