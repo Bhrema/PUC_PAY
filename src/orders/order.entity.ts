@@ -8,7 +8,7 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToMany(() => orderProduct, orderproduct => orderproduct.id)
+    @ManyToMany(() => orderProduct, orderproduct => orderproduct.order)
     produtos: orderProduct[];
 
     @Column()

@@ -1,17 +1,8 @@
 import { Expose } from "class-transformer"
 
-export class cartProduct {
+export class cartProductDto {
     @Expose()
     id: number
-
-    @Expose()
-    name: string
-
-    @Expose()
-    price: string
-
-    @Expose()
-    image: string
 
     @Expose()
     quantity: number

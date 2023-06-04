@@ -323,14 +323,11 @@
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
 
-      const createOrderDto = {
-        compradorId,
+      const cartProductDto = {
         produtos: products
       };
-      console.log(createOrderDto)
-
       try {
-        const response = await axios.post(url, createOrderDto, {
+        const response = await axios.post(url, cartProductDto, {
           headers: {
             'Content-Type': 'application/json'
           }

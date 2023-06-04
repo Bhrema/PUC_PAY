@@ -192,8 +192,8 @@
     userNameSession.innerText = sessionJson.name;
 
     const userProfilePic = document.getElementById('profile-pic')
-    const balance = document.getElementById('balance')
     const userImage = sessionJson.image
+    const balance = document.getElementById('balance')
     balance.innerText = sessionJson.balance;
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';

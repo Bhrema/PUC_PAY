@@ -1,14 +1,17 @@
 import { Body, Controller, Post} from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { CreateOrderDto } from './dtos/create-order.dto';
-
 
 @Controller('order')
 export class OrdersController {
     constructor(private ordersService: OrdersService){}
 
     @Post()
-    async createOrder(@Body() body: CreateOrderDto) {
-      return body
+    async getCartProducts(@Body() body: any) {
+      const { produtos } = body
+      const filteredProducts = produtos.map(product => {
+        const { id, quantity, idComprador } = product;
+        return { id, quantity, idComprador };
+      });
+      console.log(filteredProducts)
     }
 }

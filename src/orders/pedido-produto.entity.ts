@@ -8,14 +8,11 @@ export class orderProduct {
   id: number;
 
   @Column()
-  name: string
-
-  @Column()
   quantity: number
 
   @ManyToMany(() => Product, product => product.id)
-  product: number
+  product: Product
 
   @ManyToMany(() => Order, order => order.id)
-  order: number;
+  order: Order;
 }
