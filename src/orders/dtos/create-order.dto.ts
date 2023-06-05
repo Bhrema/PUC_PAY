@@ -1,10 +1,12 @@
-import { IsNumber, IsArray } from "class-validator";
-import { cartProductDto } from "src/products/dtos/cart-product.dto";
+import { IsNumber } from "class-validator";
 
-export class CreateOrderDto {
+export class CreateOrderProductDto {
   @IsNumber()
-  compradorId: number;
+  id: number;
+  
+  @IsNumber()
+  quantity: number
 
-  @IsArray()
-  produtos: cartProductDto[];
+  @IsNumber()
+  idComprador: number;
 }

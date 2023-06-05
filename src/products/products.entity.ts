@@ -8,6 +8,7 @@ import {
   AfterInsert,
   AfterRemove,
   AfterUpdate,
+  OneToMany,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { orderProduct } from 'src/orders/pedido-produto.entity';
@@ -33,7 +34,7 @@ export class Product {
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
   restaurant_id: number;
 
-  @ManyToMany(() => orderProduct, orderproduct => orderproduct.idProduto)
+  @OneToMany(() => orderProduct, orderproduct => orderproduct.idProduto)
   orderProducts: orderProduct[]
 
   @AfterInsert()
