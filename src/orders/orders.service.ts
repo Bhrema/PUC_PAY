@@ -16,7 +16,8 @@ export class OrdersService {
         private orderProductRepo: Repository<orderProduct>,
     ) {}
 
-    // async saveProducts(){
-    //     const order = 
+    // async saveProducts(id: number, quantity: number){
+    //     const order = this.orderProductRepo.create({ id, quantity })
+    //     return this.orderProductRepo.save(order)
     // }
 }

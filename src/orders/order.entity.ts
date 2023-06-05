@@ -1,21 +1,20 @@
-import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "src/users/user.entity";
+import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { orderProduct } from "./pedido-produto.entity";
-
+import { User } from "src/users/user.entity";
 
 @Entity()
 export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToMany(() => orderProduct, orderproduct => orderproduct.order)
-    produtos: orderProduct[];
+    @ManyToMany(() => orderProduct, orderproduct => orderproduct.idOrder)
+    orderProducts: orderProduct[];
 
-    @Column()
+    @ManyToOne(() => User, user => user.orders)
     comprador_id: number;
 
-    @ManyToOne(() => User, (user) => user.orders)
-    idRestaurante: number;
+    @Column()
+    pendente: boolean;
 
     @AfterInsert()
     logInsert() {

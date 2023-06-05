@@ -10,7 +10,7 @@ import {
   AfterUpdate,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
-import { Order } from 'src/orders/order.entity';
+import { orderProduct } from 'src/orders/pedido-produto.entity';
 
 @Entity()
 export class Product {
@@ -33,8 +33,8 @@ export class Product {
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
   restaurant_id: number;
 
-  @ManyToMany(() => Order, (order) => order.produtos)
-  orders: Order[];
+  @ManyToMany(() => orderProduct, orderproduct => orderproduct.idProduto)
+  orderProducts: orderProduct[]
 
   @AfterInsert()
   logInsert() {
