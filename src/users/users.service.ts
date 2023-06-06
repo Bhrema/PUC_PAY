@@ -2,10 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
+import { orderProduct } from 'src/orders/pedido-produto.entity';
+import { Product } from 'src/products/products.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private repo: Repository<User>) {}
+  constructor(@InjectRepository(User) private repo: Repository<User>,
+              @InjectRepository(orderProduct) private repoOrder: Repository<orderProduct>,
+              @InjectRepository(Product) private repoProduct: Repository<Product>
+  ) {}
 
   create(email: string, name:string, cpf: string, cnpj: string, block: string, image: string, password: string) {
     const user = this.repo.create({ email, name, cpf, cnpj, block, image, password });
@@ -53,11 +58,15 @@ export class UsersService {
     return updatedUser;
   }
 
-  async remove(id: number) {
-    const user = await this.findOne(id);
+  async remove(id: number): Promise<void> {
+    const user = await this.repo.findOne(id);
     if (!user) {
-      throw new NotFoundException('user not found');
+      throw new NotFoundException('Usuário não encontrado');
     }
-    return this.repo.remove(user);
+
+    await this.repoProduct.delete({ restaurant_id: id })
+    await this.repoOrder.delete({ idComprador: id });
+    await this.repo.delete(id);
   }
+
 }

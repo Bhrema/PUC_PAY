@@ -75,8 +75,8 @@ export class UsersController {
   }
 
   @Delete('/:id')
-  removeUser(@Param('id') id: string) {
-    return this.usersService.remove(parseInt(id));
+  async removeUser(@Param('id') id: string) {
+    await this.usersService.remove(parseInt(id));
   }
 
   @Put('/:id')

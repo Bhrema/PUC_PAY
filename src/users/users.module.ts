@@ -8,9 +8,11 @@ import { User } from './user.entity';
 import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 import { ProductsService } from 'src/products/products.service';
 import { ProductsModule } from 'src/products/products.module';
+import { orderProduct } from 'src/orders/pedido-produto.entity';
+import { Product } from 'src/products/products.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), ProductsModule],
+  imports: [TypeOrmModule.forFeature([User, orderProduct, Product]), ProductsModule],
   controllers: [UsersController],
   providers: [
     UsersService,
