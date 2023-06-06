@@ -131,6 +131,90 @@
     </aside>
 
     <!-- CONTEÚDO DO DASHBOARD -->
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-small" style="max-width: 480px; left: 460px; top: 10px; border-radius: 12px;"> <!--Card de informações-->
+                <div class="card-header">
+                  <h3 class="card-title">Informações Pessoais</h3>
+                </div>
+                <div class="card-body">
+                  <div class="personal-info card-body">
+                    <p><a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a></p>
+                    <p>Email:</p>
+                    <p>CPF: </p>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="float-right">
+                    <h5></h5>
+                  </div>
+                  <button onclick="window.location.href='dashboard-aluno-perfil.html'" class="btn btn-primary mr-2">Editar</button>
+                </div>
+              </div>
+              <div class="card" style="max-width: 410px; bottom: 324px; border-radius: 12px;"> <!--Card ADD SALDO-->
+                <div class="card-header">
+                  <h3 class="card-title">Carteira</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table card-table">
+                    <tbody id="tbody">
+                      <tr>
+                        <td> Saldo atual: </td>
+                        <td id="name"><span id="balance">0</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer">
+                  <div class="float-right">
+                    <h5></h5>
+                  </div>
+                  <button onclick="window.location.href='dashboard-aluno-add-saldo.html'"
+                    class="btn btn-primary mr-2">Adicionar saldo</button>
+                </div>
+                
+              </div>
+              <div class="card" style="max-width: 940px; bottom: 180px; border-radius: 12px;"> <!--Pedidos-->
+                <div class="card-header">
+                  <h3 class="card-title">Pedidos</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Pedido</th>
+                        <th>Total do pedido</th>
+                        <th>Quantidade de itens</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      <tr>
+                        <td>ID</td>
+                        <td>Total</td>
+                        <td>Itens</td>
+                        <td>
+                          <button class="btn btn-sm btn-danger" id="button-delete">Detalhes</button>
+                          <button class="btn btn-sm btn-primary" id="button-qr">QRCode</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer">
+                  <div class="float-right">
+                    <h5></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- /.content-wrapper -->
 
