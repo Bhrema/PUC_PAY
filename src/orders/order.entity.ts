@@ -1,17 +1,25 @@
-import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { orderProduct } from "./pedido-produto.entity";
+import { User } from "src/users/user.entity";
 
 @Entity()
 export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(() => orderProduct, orderproduct => orderproduct.idOrder)
+    @OneToMany(() => orderProduct, orderproduct => orderproduct.order)
     orderProducts: orderProduct[];
+
+    @Column()
+    idComprador: number
 
     @Column()
     pendente: boolean;
 
+    @ManyToOne(() => User, user => user.order)
+    @JoinColumn({ name: "idComprador", referencedColumnName: "id" })
+    user: User;
+    
     @AfterInsert()
     logInsert() {
         console.log('Inserted Order with id', this.id);

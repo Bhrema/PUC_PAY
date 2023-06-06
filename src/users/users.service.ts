@@ -4,12 +4,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { orderProduct } from 'src/orders/pedido-produto.entity';
 import { Product } from 'src/products/products.entity';
+import { Order } from 'src/orders/order.entity';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>,
               @InjectRepository(orderProduct) private repoOrder: Repository<orderProduct>,
-              @InjectRepository(Product) private repoProduct: Repository<Product>
+              @InjectRepository(Product) private repoProduct: Repository<Product>,
+              @InjectRepository(Order) private repoOrd: Repository<Order>
   ) {}
 
   create(email: string, name:string, cpf: string, cnpj: string, block: string, image: string, password: string) {
@@ -65,7 +67,7 @@ export class UsersService {
     }
 
     await this.repoProduct.delete({ restaurant_id: id })
-    await this.repoOrder.delete({ idComprador: id });
+    await this.repoOrd.delete({ idComprador: id });
     await this.repo.delete(id);
   }
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 
 @Controller('order')
@@ -9,18 +9,17 @@ export class OrdersController {
   async createOrderProducts(@Body() body: any) {
     const { produtos } = body;
     const products = produtos.map((produto: any) => {
-      const { id, quantity, idComprador } = produto;
-      return { id, quantity, idComprador };
+      const { id, quantity } = produto;
+      return { id, quantity };
     });
-    console.log(products)
+    console.log(body)
 
-    const createdProducts = await this.ordersService.createOrderProducts(products);
+    const createdProducts = await this.ordersService.createOrderProducts(body.idComprador, products);
     console.log(createdProducts);
   }
 
-  @Get()
-  findAllOrders(){
-    return this.ordersService.getAllOrders()
+  @Get('/:id')
+  findUserOrdersProducts(@Param('id') id: string){
+    return this.ordersService.getAllUserOrders(parseInt(id))
   }
-
 }

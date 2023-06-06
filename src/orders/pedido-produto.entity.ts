@@ -6,20 +6,19 @@ import { Order } from "./order.entity";
 @Entity()
 export class orderProduct {
   @PrimaryColumn()
-  @ManyToMany(() => Order, order => order.orderProducts)
-  @JoinColumn({ name: "idOrder", referencedColumnName: "id" })
-  idOrder: number
+  idOrder: number;
 
   @PrimaryColumn()
-  @ManyToMany(() => Product, product => product.orderProducts)
-  @JoinColumn({ name: "idProduto", referencedColumnName: "id" })
   idProduto: number;
-
-  @PrimaryColumn()
-  @ManyToMany(() => User, user => user.orderProducts)
-  @JoinColumn({ name: "idComprador", referencedColumnName: "id" })
-  idComprador: number;
 
   @Column()
   quantity: number;
+
+  @ManyToOne(() => Order, order => order.orderProducts)
+  @JoinColumn({ name: "idOrder", referencedColumnName: "id" })
+  order: Order;
+
+  @ManyToOne(() => Product, product => product.orderProducts)
+  @JoinColumn({ name: "idProduto", referencedColumnName: "id" })
+  product: Product;
 }
