@@ -34,7 +34,7 @@ export class Product {
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
   restaurant_id: number;
 
-  @OneToMany(() => orderProduct, orderproduct => orderproduct.idProduto)
+  @OneToMany(() => orderProduct, orderproduct => orderproduct.product)
   orderProducts: orderProduct[]
 
   @AfterInsert()

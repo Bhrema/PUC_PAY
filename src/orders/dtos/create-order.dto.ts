@@ -6,7 +6,4 @@ export class CreateOrderProductDto {
   
   @IsNumber()
   quantity: number
-
-  @IsNumber()
-  idComprador: number;
 }

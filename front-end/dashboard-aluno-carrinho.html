@@ -324,8 +324,10 @@
       const compradorId = sessionJson.id;
 
       const cartProductDto = {
+        idComprador: compradorId,
         produtos: products
       };
+
       try {
         const response = await axios.post(url, cartProductDto, {
           headers: {

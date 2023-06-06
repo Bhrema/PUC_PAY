@@ -48,9 +48,8 @@ export class User {
   @OneToMany(() => Product, product => product.restaurant_id)
   products: Product[]
 
-
-  @ManyToMany(() => orderProduct, orderproduct => orderproduct.idComprador)
-  orderProducts: orderProduct[];
+  @OneToMany(() => Order, order => order.user)
+  order: Order[];
 
   @AfterInsert()
   logInsert() {
