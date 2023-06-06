@@ -7,8 +7,7 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -36,12 +35,13 @@
         </li>
       </ul>
 
+
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-primary" onclick="goCart()">
-            <i class="fa fa-shopping-cart"><span id="cart-qtd" style="margin-left: 10px;">0</span></i>
-          </button>
-        <button type="button" class="ml-2 btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <button type="button" class="btn btn-primary" onclick="goCart()">
+          <i class="fa fa-shopping-cart"><span id="cart-qtd" style="margin-left: 10px;">0</span></i>
+        </button>
+        <button type="button" id="btnLogout" class="btn btn-outline-danger float-right ml-2">Logout</button>
         <!-- Navbar Search -->
         <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -100,19 +100,22 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Restaurantes</p>
-              </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./dashboard-aluno.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+              <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Restaurantes</p>
+              </a>
+            </li>
+              </ul>
+                  <a href="./dashboard-aluno.html" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                       Carteira
                     </p>
                   </a>
-                </li>
+
+                <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="./dashboard-aluno-perfil.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -121,11 +124,18 @@
                 </li>
 
                 <li class="nav-item">
-                  <a href="./dashboard-aluno-historico.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Histórico</p>
-                  </a>
-                </li>
+                    <a href="./dashboard-aluno-historico.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Histórico</p>
+                    </a>
+                  </li>
+
+                <li class="nav-item">
+                    <a href="./dashboard-aluno.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i>
+                      <p>Voltar</p>
+                    </a>
+                  </li>
 
               </ul>
         </nav>
@@ -136,25 +146,55 @@
 
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
-      <table cellpadding="10" cellspacing="10" style="position: relative; top:100px; left:300px;" id="table">
-        <tbody id="tbody" style="display: flex" class="tbody">
-          <tr>
-            <td>
-              <a id="goToRestaurant">
-                <div class="card" style="width: 18rem;">
-                  <img src="..." class="crd-img-top" alt="..." >
-                  <div class="card-body">
-                    <h5 class="card-title" id="name">Name</h5>
-                    <p class="card-text" id="block">Endereço</p>
+        <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
+          <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
+                  <div class="card-body p-5"><!--  Input Control -->
+                    <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Adicionar saldo</h2>
+                    <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
+
+                        <div class="form-outline mb-1" id="labelValor">
+                            <label class="form-label" for="formValorAdd">Valor que deseja</label>
+                            <input id="formValorAdd" type="text" class="form-control form-control-lg" name="valor" />
+                        </div>
+
+                        <label  for="">Método de pagamento</label>
+                        <div class="form-check form-check-inline" style="left: 20px;">
+                            <input class="form-check-input"  type="radio" name="inlineRadioOptions" id="pix" checked onclick="set_pix()">
+                            <label class="form-check-label" for="inlineRadio1">PIX</label>
+                        </div>
+
+                        <div class="form-check form-check-inline" style="left: 20px;">
+                            <input class="form-check-input"  type="radio" name="inlineRadioOptions" id="boleto" onclick="set_boleto()">
+                            <label class="form-check-label" for="inlineRadio2">Boleto</label>
+                        </div>
+
+                      <div id="labelPix" class="form-outline mb-1" style="display: none;">
+                        <label class="form-label" for="formPix">Chave PIX</label>
+                        <input id="formPix" readonly class="form-control form-control-lg" name="pix" />
+                      </div>
+  
+                      <div id="labelBoleto" class="form-outline mb-1" style="display: none;">
+                        <label class="form-label" for="formBoleto">Boleto</label>
+                        <input id="formBoleto" readonly type="text" class="form-control form-control-lg" name="boleto" />
+                      </div>
+  
+  
+                      <div class="d-flex justify-content-center position-relative" style="top: 10px;">
+                        <button type="submit" id="confirmar"
+                          class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" style="border-radius: 12px;">Confirmar Pagamento</button>
+                        <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum
+                          campo.</p>
+                      </div>
+                    </form>
                   </div>
                 </div>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+              </div>
+            </div>
+          </div>
+        </div>
     <!-- /.content-wrapper -->
 
     <!-- Control Sidebar -->
@@ -164,78 +204,33 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <!-- <footer class="main-footer">
+    <footer class="main-footer">
       <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
 
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.2.0
       </div>
-    </footer> -->
+    </footer>
   </div>
   <!-- ./wrapper -->
+
+
   <script>
     const goCart = () => {
         window.location.href = "dashboard-aluno-carrinho.html"
       }
+
+      const set_pix = () => {
+      document.getElementById("labelPix").style.display = "block";
+      document.getElementById("labelBoleto").style.display = "none";
       
-    async function showRestaurants() {
-      const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });
-
-      const responseData = await response.json();
-      const users = responseData;
-
-      const tableBody = document.getElementById('tbody');
-      tableBody.innerHTML = '';
-
-      users.forEach(item => {
-        const tableRow = document.createElement('tr');
-        tableRow.classList.add(item.id)
-
-        const tableData = document.createElement('td');
-        const cardLink = document.createElement('a');
-        cardLink.href = `dashboard-aluno-rest-produto.html?id=${tableRow.classList}`;
-
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('card');
-        cardDiv.style.width = '18rem';
-
-        const userImage = item.image;
-        const image = document.createElement('img');
-        image.src = `/uploads/${userImage}`; // Adicione o caminho da imagem correspondente ao item
-
-        const cardBody = document.createElement('div');
-        cardBody.classList.add('card-body');
-
-        const cardTitle = document.createElement('h5');
-        cardTitle.classList.add('card-title');
-        cardTitle.textContent = item.name;
-
-        const cardText = document.createElement('p');
-        cardText.classList.add('card-text');
-        cardText.textContent = item.email;
-
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
-
-        cardDiv.appendChild(image);
-        cardDiv.appendChild(cardBody);
-
-        cardLink.appendChild(cardDiv);
-
-        tableData.appendChild(cardLink);
-        tableRow.appendChild(tableData);
-
-        tableBody.appendChild(tableRow);
-      });
-    };
-    
-    showRestaurants()
+    }
+    const set_boleto = () => {
+      document.getElementById("labelBoleto").style.display = "block";
+      document.getElementById("labelPix").style.display = "none";
+      
+    }
 
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
@@ -252,28 +247,28 @@
 
     }
 
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
-
-    const userNameSession = document.getElementById('session-name')
-    userNameSession.innerText = sessionJson.name;
-
     function replaceLocation() {
       window.location.replace('login.html')
     }
 
+
     function deleteSession() {
       localStorage.removeItem('session');
-    };
+    }
 
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+    const userNameSession = document.getElementById('session-name')
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
+    }
+
+    userNameSession.innerText = sessionJson.name;
 
     const userProfilePic = document.getElementById('profile-pic')
     const userImage = sessionJson.image
     const balance = document.getElementById('balance')
     balance.innerText = sessionJson.balance;
-
-    if (sessionJson.saldo > 0)
-      userBalSession.innerText = sessionJson.saldo.toString();
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
@@ -285,7 +280,9 @@
         const products = sessionJson.cart
         products.forEach(product => cartQtd.innerHTML = product.quantity)
       }
+
   </script>
+
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
