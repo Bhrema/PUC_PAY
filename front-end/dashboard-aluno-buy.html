@@ -176,10 +176,12 @@
                       <h5 class="card-title">NomeProduto</h5>
                     </div>
                     <div class="col-2">
-                      <p class="card-text">Qtnd</p>
+                      <span>Qtnd: </span>
+                      <span class="card-text" id="qntd-1">1</span>
                     </div>
                     <div class="col">
-                      <p class="card-text">Valor</p>
+                      <span>Valor: </span>
+                      <span class="card-text" id="valor-1">15</span>
                     </div>
                   </div>
                 </div>
@@ -188,14 +190,66 @@
           </div>
         </div>
       <div id="numero-itens-total" style="width:fit-content ;position:relative ;left: 197.57px;">
-        <span>Número de Produtos: </span>
-        <span>Valor Total: </span>
+        <span style="left:-100px; position:relative" id='prod-total'>Número de Produtos: </span>
+        <span id="valor-total">Valor Total: </span>
       </div>
-      <div id="form-pagar">
-
+      <select id="paymentMethod" class="form-control">
+        <option selected value="0">Escolha o Método de Pagamento</option>
+        <option value="online">Online Payment</option>
+        <option value="saldo">Saldo Payment</option>
+      </select>
+      <div id="form-pagar-cartao" style="right: 100px; position:relative; top:30px">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12 col-lg-10 col-xl-8">
+            <div class="card rounded-3" style="width:600px">
+              <div class="card-body p-4">
+                <div class="text-center mb-4">
+                  <div class="form-outline mb-4">
+                    <input type="text" id="formControlLgXsd" class="form-control form-control-lg"
+                      value="Otavio Dallo" />
+                    <label class="form-label" for="formControlLgXsd">Nome no Cartão</label>
+                  </div>
+      
+                  <div class="row mb-4">
+                    <div class="col-7">
+                      <div class="form-outline">
+                        <input type="text" id="formControlLgXM" class="form-control form-control-lg"
+                          value="1234 5678 1234 5678" />
+                        <label class="form-label" for="formControlLgXM">Numero do Cartão</label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-outline">
+                        <input type="password" id="formControlLgExpk" class="form-control form-control-lg"
+                          placeholder="MM/YYYY" />
+                        <label class="form-label" for="formControlLgExpk">Validade</label>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                      <div class="form-outline">
+                        <input type="password" id="formControlLgcvv" class="form-control form-control-lg"
+                          placeholder="Cvv" />
+                        <label class="form-label" for="formControlLgcvv">Cvv</label>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <button class="btn btn-success btn-lg btn-block">Pagar</button>
+                </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="btn-pagar" style="width:fit-content ;position:relative ;left: 280.5px;">
-        <button type="submit" class="btn btn-primary custom-button">Pagar</button>
+      <div id="form-pagar-saldo">
+        <div class="card" style="width: 100%; max-width: 600px; margin: auto; top: 30px;">
+          <div class="card-body">
+            <h5 class="card-title">Saldo Atual</h5>
+            <p class="card-text">R$500.00</p>
+            <button class="btn btn-success btn-lg btn-block">Pagar</button>
+          </div>
+        </div>
       </div>
     </div>
       <!-- /.content-wrapper -->
@@ -218,7 +272,117 @@
     </div>
     <!-- ./wrapper -->
 
+    
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+
     <script>
+      // Get the payment method select element
+      const paymentMethodSelect = document.getElementById('paymentMethod');
+
+      // Get the form-pagar-cartao and form-pagar-saldo divs
+      const formPagarCartaoDiv = document.getElementById('form-pagar-cartao');
+      const formPagarSaldoDiv = document.getElementById('form-pagar-saldo');
+
+      // Function to handle the change event of the payment method select element
+      const handlePaymentMethodChange = () => {
+        const selectedPaymentMethod = paymentMethodSelect.value;
+
+        // Show/hide the corresponding divs based on the selected payment method
+        if (selectedPaymentMethod === 'online') {
+          formPagarCartaoDiv.style.display = 'block';
+          formPagarSaldoDiv.style.display = 'none';
+        } else if (selectedPaymentMethod === 'saldo') {
+          formPagarCartaoDiv.style.display = 'none';
+          formPagarSaldoDiv.style.display = 'block';
+        } else {
+          formPagarCartaoDiv.style.display = 'none';
+          formPagarSaldoDiv.style.display = 'none';
+        }
+      };
+
+      // Add the event listener to the payment method select element
+      paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
+
+      // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
+      handlePaymentMethodChange();
+      const calculateSum = () => {
+        let elements = document.querySelectorAll('[id^="valor-"]');
+        let quantidade = document.querySelectorAll('[id^="qntd-"]');
+        let sum = 0;
+        let numero_prod = 0;
+        for (var i = 0; i < elements.length; i++) {
+          let value = parseFloat(elements[i]?.textContent);
+          let qtnd = parseInt(quantidade[i]?.textContent);
+          if (!isNaN(value) && !isNaN(qtnd)) {
+            sum += value * qtnd;
+            numero_prod += qtnd;
+          }
+        }
+        document.getElementById('prod-total').textContent = 'Número de Produtos: ' + numero_prod;
+        document.getElementById('valor-total').textContent = 'Valor Total: ' + sum;
+      }
+      
+      calculateSum();
+
+      function showCart(product) {
+        const tableRow = document.createElement("<div class='row'>");
+        tableRow.innerHTML = `
+              <div class="col-md-4">
+                <div class="card" style="height: 50px; width:600px">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-1">
+                        <div>
+                          <img src="${product.image}">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h5 class="card-title">${product.name}</h5>
+                      </div>
+                      <div class="col-2">
+                        <span>Qtnd: </span>
+                        <span class="card-text" id="qntd-${product.id}">1</span>
+                      </div>
+                      <div class="col">
+                        <span>Valor: </span>
+                        <span class="card-text" id="valor-${product.id}">${product.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+        return tableRow;
+      }
+      products.forEach((product) => {
+        const productElement = createProductElement(product);
+        document.getElementById("produtos").appendChild(productElement);
+        testarDelete()
+      });
+    
       const btn = document.getElementById('btnLogout')
       btn.addEventListener('click', async event => {
         event.preventDefault()
@@ -257,29 +421,8 @@
     
 
     </script>
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js"></script>
 
-    <!-- PAGE PLUGINS -->
-    <!-- jQuery Mapael -->
-    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="plugins/raphael/raphael.min.js"></script>
-    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-    <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard2.js"></script>
 </body>
 
 </html>
