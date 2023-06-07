@@ -7,7 +7,8 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -80,17 +81,19 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 mb-3 d-flex">
           <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+            <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
-              <div class="card" style="width: 234px; height:95px;">
-                <div class="card-body">
-                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
-                  <div style="position:absolute; left:100px; top:15px; width:50px;">
-                    <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
-                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span id="balance">0</span></a>
-                  </div>
+            <div class="card" style="width: 234px; height:95px;">
+              <div class="card-body">
+                <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
+                <div style="position:absolute; left:100px; top:15px; width:50px;">
+                  <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
+                    seu Login</a>
+                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span
+                      id="balance">0</span></a>
                 </div>
-              </div>  
+              </div>
+            </div>
           </div>
         </div>
 
@@ -102,20 +105,20 @@
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-              <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Restaurantes</p>
-              </a>
-            </li>
-              </ul>
-                  <a href="./dashboard-aluno.html" class="nav-link active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                      Carteira
-                    </p>
+                  <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Restaurantes</p>
                   </a>
+                </li>
+              </ul>
+              <a href="./dashboard-aluno.html" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Carteira
+                </p>
+              </a>
 
-                <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="./dashboard-aluno-perfil.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -124,18 +127,18 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="./dashboard-aluno-historico.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Histórico</p>
-                    </a>
-                  </li>
+                  <a href="./dashboard-aluno-historico.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Histórico</p>
+                  </a>
+                </li>
 
                 <li class="nav-item">
-                    <a href="./dashboard-aluno.html" class="nav-link">
-                        <i class="fas fa-arrow-left"></i>
-                      <p>Voltar</p>
-                    </a>
-                  </li>
+                  <a href="./dashboard-aluno.html" class="nav-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <p>Voltar</p>
+                  </a>
+                </li>
 
               </ul>
         </nav>
@@ -146,166 +149,193 @@
 
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content">
-        <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
-          <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
-                  <div class="card-body p-5"><!--  Input Control -->
-                    <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Adicionar saldo</h2>
-                    <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
+      <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
+                <div class="card-body p-5"><!--  Input Control -->
+                  <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Adicionar saldo</h2>
+                  <form id="register-form" style="position: relative; bottom: 40px;">
 
-                        <div class="form-outline mb-1" id="labelValor">
-                            <label class="form-label" for="formValorAdd">Valor que deseja</label>
-                            <input id="formValorAdd" type="text" class="form-control form-control-lg" name="valor" />
-                        </div>
+                    <div class="form-outline mb-1" id="labelValor">
+                      <label class="form-label" for="formValorAdd">Valor que deseja</label>
+                      <input id="formValorAdd" type="text" class="form-control form-control-lg" name="balance"/>
+                    </div>
 
-                        <label  for="">Método de pagamento</label>
-                        <div class="form-check form-check-inline" style="left: 20px;">
-                            <input class="form-check-input"  type="radio" name="inlineRadioOptions" id="pix" checked onclick="set_pix()">
-                            <label class="form-check-label" for="inlineRadio1">PIX</label>
-                        </div>
+                    <label for="">Método de pagamento</label>
+                    <div class="form-check form-check-inline" style="left: 20px;">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pix" checked
+                        onclick="set_pix()">
+                      <label class="form-check-label" for="inlineRadio1">PIX</label>
+                    </div>
 
-                        <div class="form-check form-check-inline" style="left: 20px;">
-                            <input class="form-check-input"  type="radio" name="inlineRadioOptions" id="boleto" onclick="set_boleto()">
-                            <label class="form-check-label" for="inlineRadio2">Boleto</label>
-                        </div>
+                    <div class="form-check form-check-inline" style="left: 20px;">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="boleto"
+                        onclick="set_boleto()">
+                      <label class="form-check-label" for="inlineRadio2">Boleto</label>
+                    </div>
 
-                      <div id="labelPix" class="form-outline mb-1" style="display: none;">
-                        <label class="form-label" for="formPix">Copie e cole esta chave no seu aplicativo bancário</label>
-                        <input id="formPix" value="4f389d6238ca4e58ad4f3b2a6df35dcf4f389d6238ca4e58ad4f3b2a6df35dcf" readonly class="form-control form-control-lg" name="pix" />
-                      </div>
-  
-                      <div id="labelBoleto" class="form-outline mb-1" style="display: none;">
-                        <label class="form-label" for="formBoleto">Número do boleto</label>
-                        <input id="formBoleto" value="01234567890123456789012345678901234567890123" readonly type="text" class="form-control form-control-lg" name="boleto" />
-                      </div>
-  
-  
-                      <div class="d-flex justify-content-center position-relative" style="top: 10px;">
-                        <button type="submit" id="confirmar"
-                          class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" style="border-radius: 12px;">Confirmar Pagamento</button>
-                        <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum
-                          campo.</p>
-                      </div>
-                    </form>
-                  </div>
+                    <div id="labelPix" class="form-outline mb-1" style="display: none;">
+                      <label class="form-label" for="formPix">Copie e cole esta chave no seu aplicativo bancário</label>
+                      <input id="formPix" value="4f389d6238ca4e58ad4f3b2a6df35dcf4f389d6238ca4e58ad4f3b2a6df35dcf"
+                        readonly class="form-control form-control-lg" name="pix" />
+                    </div>
+
+                    <div id="labelBoleto" class="form-outline mb-1" style="display: none;">
+                      <label class="form-label" for="formBoleto">Número do boleto</label>
+                      <input id="formBoleto" value="01234567890123456789012345678901234567890123" readonly type="text"
+                        class="form-control form-control-lg" name="boleto" />
+                    </div>
+
+
+                    <div class="d-flex justify-content-center position-relative" style="top: 10px;">
+                      <button type="submit" id="confirmar"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                        style="border-radius: 12px;">Confirmar Pagamento</button>
+                      <p id="message" style="display: none; color: red; margin-left: 33px;">Por favor, preencha algum
+                        campo.</p>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    <!-- /.content-wrapper -->
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
-
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
       </div>
-    </footer>
-  </div>
-  <!-- ./wrapper -->
+      <!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
+
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b> 3.2.0
+        </div>
+      </footer>
+    </div>
+    <!-- ./wrapper -->
 
 
-  <script>
-    const goCart = () => {
+    <script>
+      const goCart = () => {
         window.location.href = "dashboard-aluno-carrinho.html"
       }
 
       const set_pix = () => {
-      document.getElementById("labelPix").style.display = "block";
-      document.getElementById("labelBoleto").style.display = "none";
-      
-    }
-    const set_boleto = () => {
-      document.getElementById("labelBoleto").style.display = "block";
-      document.getElementById("labelPix").style.display = "none";
-      
-    }
+        document.getElementById("labelPix").style.display = "block";
+        document.getElementById("labelBoleto").style.display = "none";
 
-    const btn = document.getElementById('btnLogout')
-    btn.addEventListener('click', async event => {
-      event.preventDefault()
-      await logout()
-      replaceLocation()
-      deleteSession()
-    })
+      }
+      const set_boleto = () => {
+        document.getElementById("labelBoleto").style.display = "block";
+        document.getElementById("labelPix").style.display = "none";
 
-    const logout = async (data) => {
-      const response = await fetch('http://localhost:3000/auth/signout', {
-        method: 'POST'
-      });
+      }
 
-    }
+      const btn = document.getElementById('btnLogout')
+      btn.addEventListener('click', async event => {
+        event.preventDefault()
+        await logout()
+        replaceLocation()
+        deleteSession()
+      })
 
-    function replaceLocation() {
-      window.location.replace('login.html')
-    }
+      const logout = async (data) => {
+        const response = await fetch('http://localhost:3000/auth/signout', {
+          method: 'POST'
+        });
+
+      }
+
+      function replaceLocation() {
+        window.location.replace('login.html')
+      }
 
 
-    function deleteSession() {
-      localStorage.removeItem('session');
-    }
+      function deleteSession() {
+        localStorage.removeItem('session');
+      }
 
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
-    const userNameSession = document.getElementById('session-name')
-    if (!sessionJson.name) {
-      userNameSession.innerText = "Faça seu login!"
-    }
+      const session = localStorage.getItem('session')
+      const sessionJson = JSON.parse(session)
+      const userNameSession = document.getElementById('session-name')
+      if (!sessionJson.name) {
+        userNameSession.innerText = "Faça seu login!"
+      }
 
-    userNameSession.innerText = sessionJson.name;
+      userNameSession.innerText = sessionJson.name;
 
-    const userProfilePic = document.getElementById('profile-pic')
-    const userImage = sessionJson.image
-    const balance = document.getElementById('balance')
-    balance.innerText = sessionJson.balance;
-    if (sessionJson.image === null) {
-      userProfilePic.src = '../uploads/user 64.png';
-    } else {
+      const userProfilePic = document.getElementById('profile-pic')
+      const userImage = sessionJson.image
+      const balance = document.getElementById('balance')
+      balance.innerText = sessionJson.balance;
+      if (sessionJson.image === null) {
+        userProfilePic.src = '../uploads/user 64.png';
+      } else {
         userProfilePic.src = `../uploads/${userImage}`
-    }
+      }
 
-    const cartQtd = document.getElementById('cart-qtd')
+      const cartQtd = document.getElementById('cart-qtd')
       if (sessionJson.cart) {
         const products = sessionJson.cart
         products.forEach(product => cartQtd.innerHTML = product.quantity)
       }
 
-  </script>
+      const form = document.getElementById('register-form');
+      const userId = sessionJson.id;
+      console.log(userId)
 
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
+        const formData = new FormData(this);
 
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard2.js"></script>
+        fetch(`http://localhost:3000/auth/${userId}`, {
+          method: 'PUT',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+
+    </script>
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
 </body>
 
 </html>

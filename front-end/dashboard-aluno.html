@@ -7,7 +7,8 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -80,17 +81,19 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 mb-3 d-flex">
           <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+            <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
               <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
-              <div class="card" style="width: 234px; height:95px;">
-                <div class="card-body">
-                  <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
-                  <div style="position:absolute; left:100px; top:15px; width:50px;">
-                    <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a>
-                    <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span id="balance">0</span></a>
-                  </div>
+            <div class="card" style="width: 234px; height:95px;">
+              <div class="card-body">
+                <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
+                <div style="position:absolute; left:100px; top:15px; width:50px;">
+                  <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
+                    seu Login</a>
+                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span
+                      id="balance">0</span></a>
                 </div>
-              </div>  
+              </div>
+            </div>
           </div>
         </div>
 
@@ -102,20 +105,20 @@
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-              <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Restaurantes</p>
-              </a>
-            </li>
-              </ul>
-                  <a href="#" class="nav-link active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                      Carteira
-                    </p>
+                  <a href="./dashboard-aluno-restaurante.html" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Restaurantes</p>
                   </a>
+                </li>
+              </ul>
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Carteira
+                </p>
+              </a>
 
-                <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="./dashboard-aluno-perfil.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -136,13 +139,15 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <div class="card card-small" style="max-width: 480px; left: 460px; top: 10px; border-radius: 12px;"> <!--Card de informações-->
+              <div class="card card-small" style="max-width: 480px; left: 460px; top: 10px; border-radius: 12px;">
+                <!--Card de informações-->
                 <div class="card-header">
                   <h3 class="card-title">Informações Pessoais</h3>
                 </div>
                 <div class="card-body">
                   <div class="personal-info card-body">
-                    <p><a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça seu Login</a></p>
+                    <p><a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px">
+                        Faça seu Login</a></p>
                     <p>Email:</p>
                     <p>CPF: </p>
                   </div>
@@ -151,10 +156,11 @@
                   <div class="float-right">
                     <h5></h5>
                   </div>
-                  <button onclick="window.location.href='dashboard-aluno-perfil.html'" class="btn btn-primary mr-2">Editar</button>
+                  <button onclick="window.location.href='dashboard-aluno-perfil.html'"
+                    class="btn btn-primary mr-2">Editar</button>
                 </div>
               </div>
-              
+
               <div class="card" style="max-width: 410px; bottom: 324px; border-radius: 12px;"> <!--Card ADD SALDO-->
                 <div class="card-header">
                   <h3 class="card-title">Carteira</h3>
@@ -164,7 +170,7 @@
                     <tbody id="tbody">
                       <tr>
                         <td> Saldo atual: </td>
-                        <td id="name"><span id="balance">0</span></td>
+                        <td id="name">R$ <span id="balanceCard">0</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -176,7 +182,7 @@
                   <button onclick="window.location.href='dashboard-aluno-add-saldo.html'"
                     class="btn btn-primary mr-2">Adicionar saldo</button>
                 </div>
-                
+
               </div>
               <div class="card" style="max-width: 940px; bottom: 180px; border-radius: 12px;"> <!--Pedidos-->
                 <div class="card-header">
@@ -240,8 +246,8 @@
 
   <script>
     const goCart = () => {
-        window.location.href = "dashboard-aluno-carrinho.html"
-      }
+      window.location.href = "dashboard-aluno-carrinho.html"
+    }
 
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
@@ -277,20 +283,26 @@
     userNameSession.innerText = sessionJson.name;
 
     const userProfilePic = document.getElementById('profile-pic')
+    let userBalSession = document.getElementById('balance')
     const userImage = sessionJson.image
-    const balance = document.getElementById('balance')
-    balance.innerText = sessionJson.balance;
+    const balanceCard = document.getElementById('balanceCard')
+    console.log(userBalSession)
+
+    if (sessionJson.balance > 0)
+      userBalSession.innerText = sessionJson.balance.toString();
+      balanceCard.innerText = sessionJson.balance.toString()
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
-        userProfilePic.src = `../uploads/${userImage}`
+      userProfilePic.src = `../uploads/${userImage}`
     }
 
     const cartQtd = document.getElementById('cart-qtd')
-      if (sessionJson.cart) {
-        const products = sessionJson.cart
-        products.forEach(product => cartQtd.innerHTML = product.quantity)
-      }
+    if (sessionJson.cart) {
+      const products = sessionJson.cart
+      products.forEach(product => cartQtd.innerHTML = product.quantity)
+    }
+
 
   </script>
 

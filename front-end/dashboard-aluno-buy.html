@@ -9,10 +9,11 @@
     .square-box {
       position: relative;
       width: 100%;
-      padding-top: 100%; /* Creates a 1:1 aspect ratio */
+      padding-top: 100%;
+      /* Creates a 1:1 aspect ratio */
       background-color: #ddd;
     }
-    
+
     .square-content {
       position: absolute;
       top: 0;
@@ -21,13 +22,14 @@
       bottom: 0;
       overflow: hidden;
     }
-    
+
     .square-content img {
       width: 100%;
       height: 100%;
       object-fit: cover;
 
     }
+
     .custom-button {
       border-radius: 5px;
       background-color: #ff5a5f;
@@ -37,7 +39,7 @@
       border: none;
       transition: background-color 0.3s;
     }
-    
+
     .custom-button:hover {
       background-color: #ff3b3f;
     }
@@ -126,23 +128,23 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+              <a href="./dashboard-aluno-restaurante.html" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                  Perfil
+                  Restaurantes
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./dashboard-restaurante-produtos.html" class="nav-link">
+                  <a href="./dashboard-aluno.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Produtos</p>
+                    <p>Carteira</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./dashboard-restaurante-relatorio.html" class="nav-link">
+                  <a href="./dashboard-aluno-perfil.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Relatório</p>
+                    <p>Perfil</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -161,34 +163,34 @@
 
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content" style="position:absolute; top:100px; left:750px;">
-        <div id="produtos" class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card" style="height: 50px; width:600px">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-1">
-                      <div>
-                        <img src="image">
-                      </div>
+      <div id="produtos" class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card" style="height: 50px; width:600px">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-1">
+                    <div>
+                      <img src="image">
                     </div>
-                    <div class="col">
-                      <h5 class="card-title">NomeProduto</h5>
-                    </div>
-                    <div class="col-2">
-                      <span>Qtnd: </span>
-                      <span class="card-text" id="qntd-1">1</span>
-                    </div>
-                    <div class="col">
-                      <span>Valor: </span>
-                      <span class="card-text" id="valor-1">15</span>
-                    </div>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title">NomeProduto</h5>
+                  </div>
+                  <div class="col-2">
+                    <span>Qtnd: </span>
+                    <span class="card-text" id="qntd-1">1</span>
+                  </div>
+                  <div class="col">
+                    <span>Valor: </span>
+                    <span class="card-text" id="valor-1">15</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
       <div id="numero-itens-total" style="width:fit-content ;position:relative ;left: 197.57px;">
         <span style="left:-100px; position:relative" id='prod-total'>Número de Produtos: </span>
         <span id="valor-total">Valor Total: </span>
@@ -209,7 +211,7 @@
                       value="Otavio Dallo" />
                     <label class="form-label" for="formControlLgXsd">Nome no Cartão</label>
                   </div>
-      
+
                   <div class="row mb-4">
                     <div class="col-7">
                       <div class="form-outline">
@@ -233,10 +235,10 @@
                       </div>
                     </div>
                   </div>
-      
+
                   <button class="btn btn-success btn-lg btn-block">Pagar</button>
-                </form>
-              </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -252,103 +254,103 @@
         </div>
       </div>
     </div>
-      <!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
 
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-      </aside>
-      <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
 
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-          <b>Version</b> 3.2.0
-        </div>
-      </footer>
-    </div>
-    <!-- ./wrapper -->
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.2.0
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
 
-    
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js"></script>
 
-    <!-- PAGE PLUGINS -->
-    <!-- jQuery Mapael -->
-    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="plugins/raphael/raphael.min.js"></script>
-    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-    <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.js"></script>
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard2.js"></script>
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="plugins/raphael/raphael.min.js"></script>
+  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+  <!-- ChartJS -->
+  <script src="plugins/chart.js/Chart.min.js"></script>
 
-    <script>
-      // Get the payment method select element
-      const paymentMethodSelect = document.getElementById('paymentMethod');
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="dist/js/pages/dashboard2.js"></script>
 
-      // Get the form-pagar-cartao and form-pagar-saldo divs
-      const formPagarCartaoDiv = document.getElementById('form-pagar-cartao');
-      const formPagarSaldoDiv = document.getElementById('form-pagar-saldo');
+  <script>
+    // Get the payment method select element
+    const paymentMethodSelect = document.getElementById('paymentMethod');
 
-      // Function to handle the change event of the payment method select element
-      const handlePaymentMethodChange = () => {
-        const selectedPaymentMethod = paymentMethodSelect.value;
+    // Get the form-pagar-cartao and form-pagar-saldo divs
+    const formPagarCartaoDiv = document.getElementById('form-pagar-cartao');
+    const formPagarSaldoDiv = document.getElementById('form-pagar-saldo');
 
-        // Show/hide the corresponding divs based on the selected payment method
-        if (selectedPaymentMethod === 'online') {
-          formPagarCartaoDiv.style.display = 'block';
-          formPagarSaldoDiv.style.display = 'none';
-        } else if (selectedPaymentMethod === 'saldo') {
-          formPagarCartaoDiv.style.display = 'none';
-          formPagarSaldoDiv.style.display = 'block';
-        } else {
-          formPagarCartaoDiv.style.display = 'none';
-          formPagarSaldoDiv.style.display = 'none';
-        }
-      };
+    // Function to handle the change event of the payment method select element
+    const handlePaymentMethodChange = () => {
+      const selectedPaymentMethod = paymentMethodSelect.value;
 
-      // Add the event listener to the payment method select element
-      paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
-
-      // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
-      handlePaymentMethodChange();
-      const calculateSum = () => {
-        let elements = document.querySelectorAll('[id^="valor-"]');
-        let quantidade = document.querySelectorAll('[id^="qntd-"]');
-        let sum = 0;
-        let numero_prod = 0;
-        for (var i = 0; i < elements.length; i++) {
-          let value = parseFloat(elements[i]?.textContent);
-          let qtnd = parseInt(quantidade[i]?.textContent);
-          if (!isNaN(value) && !isNaN(qtnd)) {
-            sum += value * qtnd;
-            numero_prod += qtnd;
-          }
-        }
-        document.getElementById('prod-total').textContent = 'Número de Produtos: ' + numero_prod;
-        document.getElementById('valor-total').textContent = 'Valor Total: ' + sum;
+      // Show/hide the corresponding divs based on the selected payment method
+      if (selectedPaymentMethod === 'online') {
+        formPagarCartaoDiv.style.display = 'block';
+        formPagarSaldoDiv.style.display = 'none';
+      } else if (selectedPaymentMethod === 'saldo') {
+        formPagarCartaoDiv.style.display = 'none';
+        formPagarSaldoDiv.style.display = 'block';
+      } else {
+        formPagarCartaoDiv.style.display = 'none';
+        formPagarSaldoDiv.style.display = 'none';
       }
-      
-      calculateSum();
+    };
 
-      function showCart(product) {
-        const tableRow = document.createElement("<div class='row'>");
-        tableRow.innerHTML = `
+    // Add the event listener to the payment method select element
+    paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
+
+    // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
+    handlePaymentMethodChange();
+    const calculateSum = () => {
+      let elements = document.querySelectorAll('[id^="valor-"]');
+      let quantidade = document.querySelectorAll('[id^="qntd-"]');
+      let sum = 0;
+      let numero_prod = 0;
+      for (var i = 0; i < elements.length; i++) {
+        let value = parseFloat(elements[i]?.textContent);
+        let qtnd = parseInt(quantidade[i]?.textContent);
+        if (!isNaN(value) && !isNaN(qtnd)) {
+          sum += value * qtnd;
+          numero_prod += qtnd;
+        }
+      }
+      document.getElementById('prod-total').textContent = 'Número de Produtos: ' + numero_prod;
+      document.getElementById('valor-total').textContent = 'Valor Total: ' + sum;
+    }
+
+    calculateSum();
+
+    function showCart(product) {
+      const tableRow = document.createElement("<div class='row'>");
+      tableRow.innerHTML = `
               <div class="col-md-4">
                 <div class="card" style="height: 50px; width:600px">
                   <div class="card-body">
@@ -375,52 +377,90 @@
               </div>
             </div>
             `;
-        return tableRow;
-      }
-      products.forEach((product) => {
-        const productElement = createProductElement(product);
-        document.getElementById("produtos").appendChild(productElement);
-        testarDelete()
+      return tableRow;
+    }
+    products.forEach((product) => {
+      const productElement = createProductElement(product);
+      document.getElementById("produtos").appendChild(productElement);
+      testarDelete()
+    });
+
+    const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
+
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST'
       });
-    
-      const btn = document.getElementById('btnLogout')
-      btn.addEventListener('click', async event => {
-        event.preventDefault()
-        await logout()
-        replaceLocation()
-        deleteSession()
-      })
 
-      const logout = async (data) => {
-        const response = await fetch('http://localhost:3000/auth/signout', {
-          method: 'POST'
+    }
+
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
+
+
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    function deleteSession() {
+      localStorage.removeItem("session");
+    }
+
+    import axios from 'https://cdn.skypack.dev/axios';
+    const products = sessionJson.cart;
+    const buttonOrder = document.getElementById('button-order');
+    buttonOrder.addEventListener('click', async event => {
+      event.preventDefault();
+      createOrder(products);
+    });
+
+    const createOrder = async (products) => {
+      const url = 'http://localhost:3000/order';
+      const compradorId = sessionJson.id;
+
+      const cartProductDto = {
+        idComprador: compradorId,
+        produtos: products
+      };
+
+      try {
+        const response = await axios.post(url, cartProductDto, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
-
+        console.log(response.data);
+      } catch (error) {
+        console.error(error)
       }
+    };
 
-      function replaceLocation() {
-        window.location.replace('login.html')
-      }
+    const userProfilePic = document.getElementById('profile-pic')
+    let userBalSession = document.getElementById('session-bal')
+    const userImage = sessionJson.image
+
+    if (sessionJson.balance > 0)
+      userBalSession.innerText = sessionJson.balance.toString();
+    if (sessionJson.image === null) {
+      userProfilePic.src = '../uploads/user 64.png';
+    } else {
+      userProfilePic.src = `../uploads/${userImage}`
+    }
+
+    const cartQtd = document.getElementById('cart-qtd')
+    if (sessionJson.cart) {
+      const products = sessionJson.cart
+      products.forEach(product => cartQtd.innerHTML = product.quantity)
+    }
 
 
-      const session = localStorage.getItem('session')
-      const sessionJson = JSON.parse(session)
-
-      const userNameSession = document.getElementById('session-name')
-      if (!sessionJson.name) {
-        userNameSession.innerText = "Faça seu login!"
-      }
-
-      userNameSession.innerText = sessionJson.name;
-
-      function deleteSession() {
-        localStorage.removeItem("session");
-      }
-
-
-    
-
-    </script>
+  </script>
 
 
 </body>

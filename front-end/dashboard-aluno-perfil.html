@@ -301,11 +301,11 @@
       });
 
       const userProfilePic = document.getElementById('profile-pic')
-      let userBalSession = document.getElementById('session-bal')
+      let userBalSession = document.getElementById('balance')
       const userImage = sessionJson.image
 
-      if (sessionJson.saldo > 0)
-        userBalSession.innerText = sessionJson.saldo.toString();
+      if (sessionJson.balance > 0)
+        userBalSession.innerText = sessionJson.balance.toString();
       if (sessionJson.image === null) {
         userProfilePic.src = '../uploads/user 64.png';
       } else {

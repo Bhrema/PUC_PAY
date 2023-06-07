@@ -307,45 +307,22 @@
     }
 
     const userProfilePic = document.getElementById('profile-pic')
-    let userBalSession = document.getElementById('session-bal')
+    let userBalSession = document.getElementById('balance')
     const userImage = sessionJson.image
 
-    if (sessionJson.saldo > 0)
-      userBalSession.innerText = sessionJson.saldo.toString();
+    if (sessionJson.balance > 0)
+      userBalSession.innerText = sessionJson.balance.toString();
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
       userProfilePic.src = `../uploads/${userImage}`
     }
 
-    import axios from 'https://cdn.skypack.dev/axios';
-    const products = sessionJson.cart;
-    const buttonOrder = document.getElementById('button-order');
-    buttonOrder.addEventListener('click', async event => {
-      event.preventDefault();
-      createOrder(products);
-    });
-
-    const createOrder = async (products) => {
-      const url = 'http://localhost:3000/order';
-      const compradorId = sessionJson.id;
-
-      const cartProductDto = {
-        idComprador: compradorId,
-        produtos: products
-      };
-
-      try {
-        const response = await axios.post(url, cartProductDto, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error)
-      }
-    };
+    const buttonOrder = document.getElementById('button-order')
+    buttonOrder.addEventListener('click', function(){
+      window.location.href = 'dashboard-aluno-buy.html'
+    })
+    
   </script>
 
 

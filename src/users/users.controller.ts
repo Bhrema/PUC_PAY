@@ -109,7 +109,7 @@ export class UsersController {
       user.cpf = body.cpf;
     }
     if(body.balance) {
-      user.balance = body.balance
+      user.balance += body.balance
     }
 
     const updatedUser = await this.usersService.update(user);

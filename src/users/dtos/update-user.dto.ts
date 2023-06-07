@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import { IsEmail, IsString, IsOptional, IsBoolean, IsNumber } from "class-validator";
 
 export class UpdateUserDto {
@@ -29,6 +30,7 @@ export class UpdateUserDto {
   @IsOptional()
   cnpj: string;
 
+  @Transform(({ value }) => parseInt(value))
   @IsNumber()
   @IsOptional()
   balance: number;

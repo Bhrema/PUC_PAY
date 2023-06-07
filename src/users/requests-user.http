@@ -68,7 +68,7 @@ PUT http://localhost:3000/auth/1
 content-type: application/json
 
 {
-  "balance": 0
+  "balance": 100
 }
 
 
