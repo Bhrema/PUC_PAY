@@ -192,11 +192,12 @@
       localStorage.removeItem('session');
     }
 
-    const cartQtd = document.getElementById('cart-qtd')
-      if (sessionJson.cart) {
-        const products = sessionJson.cart
-        products.forEach(product => cartQtd.innerHTML = product.quantity)
-      }
+    const cartQtd = document.getElementById('cart-qtd');
+    if (sessionJson.cart) {
+      const products = sessionJson.cart;
+      const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
+      cartQtd.innerHTML = totalQuantity;
+    }
   </script>
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->

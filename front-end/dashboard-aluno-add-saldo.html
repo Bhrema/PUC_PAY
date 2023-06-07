@@ -160,7 +160,7 @@
 
                     <div class="form-outline mb-1" id="labelValor">
                       <label class="form-label" for="formValorAdd">Valor que deseja</label>
-                      <input id="formValorAdd" type="text" class="form-control form-control-lg" name="balance"/>
+                      <input id="formValorAdd" type="text" class="form-control form-control-lg" name="balance" />
                     </div>
 
                     <label for="">Método de pagamento</label>
@@ -197,6 +197,9 @@
                         campo.</p>
                     </div>
                   </form>
+                  <p id="messageRedirect" style="display: none; color: red; margin-left: 33px;">Faça login novamente para atualizar o seu saldo
+                    Redirecionando em: <span id="countdown">3</span>s</p>
+
                 </div>
               </div>
             </div>
@@ -289,6 +292,20 @@
         products.forEach(product => cartQtd.innerHTML = product.quantity)
       }
 
+      function messageAlert() {
+        const message = document.getElementById('message')
+        const messageRedirect = document.getElementById('messageRedirect')
+        messageRedirect.style.display = 'block';
+      }
+
+      function replaceLocation() {
+        window.location.replace("login.html");
+      }
+
+      function deleteSession() {
+        localStorage.removeItem("session");
+      }
+
       const form = document.getElementById('register-form');
       const userId = sessionJson.id;
       console.log(userId)
@@ -309,6 +326,14 @@
           .catch(error => {
             console.error(error);
           });
+
+        messageAlert()
+        deleteSession()
+        setTimeout(function () {
+
+          replaceLocation();
+          xhr.send(formData);
+        }, 3000);
       });
 
     </script>

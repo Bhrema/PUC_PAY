@@ -113,12 +113,21 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <i class="fas-fa-user"></i>
-          </div>
-          <div class="info">
-            <a href="#" class="d-block" id="session-name">Faça seu login</a>
+        <div class="user-panel mt-3 mb-3 d-flex">
+          <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
+            <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
+              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
+            <div class="card" style="width: 234px; height:95px;">
+              <div class="card-body">
+                <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
+                <div style="position:absolute; left:100px; top:15px; width:50px;">
+                  <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
+                    seu Login</a>
+                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span
+                      id="balance">0</span></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -164,7 +173,7 @@
     <!-- CONTEÚDO DO DASHBOARD -->
     <div class="content" style="position:absolute; top:100px; left:750px;">
       <div id="produtos" class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-4">
             <div class="card" style="height: 50px; width:600px">
               <div class="card-body">
@@ -189,7 +198,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div id="numero-itens-total" style="width:fit-content ;position:relative ;left: 197.57px;">
         <span style="left:-100px; position:relative" id='prod-total'>Número de Produtos: </span>
@@ -200,7 +209,7 @@
         <option value="online">Online Payment</option>
         <option value="saldo">Saldo Payment</option>
       </select>
-      <div id="form-pagar-cartao" style="right: 100px; position:relative; top:30px">
+      <div id="form-pagar-cartao" style="right: 100px; position:relative; top:30px;">
         <div class="row d-flex justify-content-center">
           <div class="col-md-12 col-lg-10 col-xl-8">
             <div class="card rounded-3" style="width:600px">
@@ -248,7 +257,7 @@
         <div class="card" style="width: 100%; max-width: 600px; margin: auto; top: 30px;">
           <div class="card-body">
             <h5 class="card-title">Saldo Atual</h5>
-            <p class="card-text">R$500.00</p>
+            <p class="card-text" id="bal-atual"></p>
             <button class="btn btn-success btn-lg btn-block">Pagar</button>
           </div>
         </div>
@@ -299,7 +308,12 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard2.js"></script>
 
-  <script>
+  <script type="module">
+    
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+    document.getElementById("bal-atual").value ='R$' + sessionJson.balance;
+    import axios from 'https://cdn.skypack.dev/axios';
     // Get the payment method select element
     const paymentMethodSelect = document.getElementById('paymentMethod');
 
@@ -326,9 +340,8 @@
 
     // Add the event listener to the payment method select element
     paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
-
-    // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
     handlePaymentMethodChange();
+    // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
     const calculateSum = () => {
       let elements = document.querySelectorAll('[id^="valor-"]');
       let quantidade = document.querySelectorAll('[id^="qntd-"]');
@@ -347,9 +360,10 @@
     }
 
     calculateSum();
-
+    const products = sessionJson.cart;
     function showCart(product) {
-      const tableRow = document.createElement("<div class='row'>");
+      const tableRow = document.createElement("div");
+      tableRow.classList.add('row');
       tableRow.innerHTML = `
               <div class="col-md-4">
                 <div class="card" style="height: 50px; width:600px">
@@ -377,12 +391,12 @@
               </div>
             </div>
             `;
+      console.log(tableRow);
       return tableRow;
     }
     products.forEach((product) => {
-      const productElement = createProductElement(product);
+      const productElement = showCart(product);
       document.getElementById("produtos").appendChild(productElement);
-      testarDelete()
     });
 
     const btn = document.getElementById('btnLogout')
@@ -405,16 +419,15 @@
     }
 
 
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
+
 
     function deleteSession() {
       localStorage.removeItem("session");
     }
 
-    import axios from 'https://cdn.skypack.dev/axios';
-    const products = sessionJson.cart;
-    const buttonOrder = document.getElementById('button-order');
+    
+    
+    /*const buttonOrder = document.getElementById('button-order');
     buttonOrder.addEventListener('click', async event => {
       event.preventDefault();
       createOrder(products);
@@ -440,7 +453,7 @@
         console.error(error)
       }
     };
-
+*/
     const userProfilePic = document.getElementById('profile-pic')
     let userBalSession = document.getElementById('session-bal')
     const userImage = sessionJson.image
@@ -453,11 +466,11 @@
       userProfilePic.src = `../uploads/${userImage}`
     }
 
-    const cartQtd = document.getElementById('cart-qtd')
-    if (sessionJson.cart) {
-      const products = sessionJson.cart
-      products.forEach(product => cartQtd.innerHTML = product.quantity)
-    }
+    //const cartQtd = document.getElementById('cart-qtd')
+    //if (sessionJson.cart) {
+    //  const products = sessionJson.cart
+    //  products.forEach(product => cartQtd.innerHTML = product.quantity)
+    //}
 
 
   </script>

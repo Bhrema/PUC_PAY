@@ -130,12 +130,12 @@
                 <p>Perfil</p>
               </a>
 
-              <li class="nav-item">
-                <a href="./dashboard-aluno-historico.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Histórico</p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a href="./dashboard-aluno-historico.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Histórico</p>
+              </a>
+            </li>
 
           </ul>
         </nav>
@@ -312,10 +312,11 @@
         userProfilePic.src = `../uploads/${userImage}`
       }
 
-      const cartQtd = document.getElementById('cart-qtd')
+      const cartQtd = document.getElementById('cart-qtd');
       if (sessionJson.cart) {
-        const products = sessionJson.cart
-        products.forEach(product => cartQtd.innerHTML = product.quantity)
+        const products = sessionJson.cart;
+        const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
+        cartQtd.innerHTML = totalQuantity;
       }
 
 
