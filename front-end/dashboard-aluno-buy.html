@@ -256,9 +256,9 @@
       <div id="form-pagar-saldo">
         <div class="card" style="width: 100%; max-width: 600px; margin: auto; top: 30px;">
           <div class="card-body">
-            <h5 class="card-title">Saldo Atual</h5>
+            <h5 class="card-title">Saldo Atual: R$<span id="balanceTotal"></span></h5>
             <p class="card-text" id="bal-atual"></p>
-            <button class="btn btn-success btn-lg btn-block">Pagar</button>
+            <button class="btn btn-success btn-lg btn-block" id="button-order">Pagar</button>
           </div>
         </div>
       </div>
@@ -309,10 +309,10 @@
   <script src="dist/js/pages/dashboard2.js"></script>
 
   <script type="module">
-    
+
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
-    document.getElementById("bal-atual").value ='R$' + sessionJson.balance;
+    document.getElementById("bal-atual").value = 'R$' + sessionJson.balance;
     import axios from 'https://cdn.skypack.dev/axios';
     // Get the payment method select element
     const paymentMethodSelect = document.getElementById('paymentMethod');
@@ -338,6 +338,13 @@
       }
     };
 
+    const productss = sessionJson.cart;
+
+    const total = productss.reduce(function (accumulator, item) {
+      const itemTotal = item.quantity * item.price;
+      return accumulator + itemTotal;
+    }, 0);
+
     // Add the event listener to the payment method select element
     paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
     handlePaymentMethodChange();
@@ -355,8 +362,8 @@
           numero_prod += qtnd;
         }
       }
-      document.getElementById('prod-total').textContent = 'Número de Produtos: ' + numero_prod;
-      document.getElementById('valor-total').textContent = 'Valor Total: ' + sum;
+      document.getElementById('prod-total').textContent = 'Número de Produtos: ' + sessionJson.cart.length;
+      document.getElementById('valor-total').textContent = 'Valor Total: R$' + total;
     }
 
     calculateSum();
@@ -379,11 +386,11 @@
                       </div>
                       <div class="col-2">
                         <span>Qtnd: </span>
-                        <span class="card-text" id="qntd-${product.id}">1</span>
+                        <span class="card-text" id="qntd-${product.id}">${product.quantity}</span>
                       </div>
                       <div class="col">
                         <span>Valor: </span>
-                        <span class="card-text" id="valor-${product.id}">${product.price}</span>
+                        <span class="card-text" id="valor-${product.id}">R$ ${product.price}</span>
                       </div>
                     </div>
                   </div>
@@ -391,7 +398,6 @@
               </div>
             </div>
             `;
-      console.log(tableRow);
       return tableRow;
     }
     products.forEach((product) => {
@@ -425,15 +431,18 @@
       localStorage.removeItem("session");
     }
 
-    
-    
-    /*const buttonOrder = document.getElementById('button-order');
+
+
+    const buttonOrder = document.getElementById('button-order');
     buttonOrder.addEventListener('click', async event => {
       event.preventDefault();
       createOrder(products);
     });
 
-    const createOrder = async (products) => {
+    console.log(total)
+
+    if(sessionJson.balance >= total){
+      const createOrder = async (products) => {
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
 
@@ -453,17 +462,32 @@
         console.error(error)
       }
     };
-*/
+    }
+
+
+    const userNameSession = document.getElementById('session-name')
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
+    }
+
+    userNameSession.innerText = sessionJson.name;
+
+
     const userProfilePic = document.getElementById('profile-pic')
     let userBalSession = document.getElementById('session-bal')
     const userImage = sessionJson.image
 
     if (sessionJson.balance > 0)
-      userBalSession.innerText = sessionJson.balance.toString();
+      balance.innerText = sessionJson.balance.toString();
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
       userProfilePic.src = `../uploads/${userImage}`
+    }
+
+    if (sessionJson.balance > 0) {
+      const balanceTotal = document.getElementById('balanceTotal')
+      balanceTotal.innerText = sessionJson.balance.toString();
     }
 
     //const cartQtd = document.getElementById('cart-qtd')
