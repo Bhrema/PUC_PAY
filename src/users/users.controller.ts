@@ -111,6 +111,9 @@ export class UsersController {
     if(body.balance) {
       user.balance += body.balance
     }
+    if(body.isAdmin) {
+      user.isAdmin = body.isAdmin
+    }
 
     const updatedUser = await this.usersService.update(user);
     return updatedUser;

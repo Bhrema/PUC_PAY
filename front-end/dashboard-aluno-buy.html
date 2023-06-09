@@ -200,9 +200,8 @@
           </div>
         </div> -->
       </div>
-      <div id="numero-itens-total" style="width:fit-content ;position:relative ;left: 197.57px;">
-        <span style="left:-100px; position:relative" id='prod-total'>Número de Produtos: </span>
-        <span id="valor-total">Valor Total: </span>
+      <div id="numero-itens-total" style="width:fit-content ;position:relative ;left: 400px;">
+        <span id="valor-total" style="font-size: 25px">Valor Total: </span>
       </div>
       <select id="paymentMethod" class="form-control">
         <option selected value="0">Escolha o Método de Pagamento</option>
@@ -362,7 +361,6 @@
           numero_prod += qtnd;
         }
       }
-      document.getElementById('prod-total').textContent = 'Número de Produtos: ' + sessionJson.cart.length;
       document.getElementById('valor-total').textContent = 'Valor Total: R$' + total;
     }
 
@@ -378,17 +376,17 @@
                     <div class="row">
                       <div class="col-1">
                         <div>
-                          <img src="../uploads/${product.image}" style="width:35px; height:35px; bottom:1px; position:absolute;">
+                          <img src="../uploads/${product.image}" style="width:35px; height:35px; bottom:-5px; position:absolute; border-radius: 10px; border: 2px solid black">
                         </div>
                       </div>
                       <div class="col">
-                        <h5 class="card-title">${product.name}</h5>
+                        <h5 class="card-title" style="margin-left: -8px; margin-top: -5px;">${product.name}</h5>
                       </div>
-                      <div class="col-2">
+                      <div class="col-2" style="margin-top: -5px; margin-left: 205px">
                         <span>Qtnd: </span>
                         <span class="card-text" id="qntd-${product.id}">${product.quantity}</span>
                       </div>
-                      <div class="col">
+                      <div class="col" style="margin-top: -5px">
                         <span>Valor: </span>
                         <span class="card-text" id="valor-${product.id}">R$ ${product.price}</span>
                       </div>
@@ -424,14 +422,9 @@
       window.location.replace('login.html')
     }
 
-
-
-
     function deleteSession() {
       localStorage.removeItem("session");
     }
-
-
 
     const buttonOrder = document.getElementById('button-order');
     buttonOrder.addEventListener('click', async event => {
@@ -439,10 +432,16 @@
       createOrder(products);
     });
 
-    console.log(total)
 
     if(sessionJson.balance >= total){
-      const createOrder = async (products) => {
+      const buttonOrder = document.getElementById('button-order');
+      buttonOrder.addEventListener('click', async event => {
+      event.preventDefault();
+      createOrder(products);
+    });
+    }
+
+    const createOrder = async (products) => {
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
 
@@ -462,8 +461,7 @@
         console.error(error)
       }
     };
-    }
-
+    
 
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
@@ -489,6 +487,7 @@
       const balanceTotal = document.getElementById('balanceTotal')
       balanceTotal.innerText = sessionJson.balance.toString();
     }
+    
 
     //const cartQtd = document.getElementById('cart-qtd')
     //if (sessionJson.cart) {

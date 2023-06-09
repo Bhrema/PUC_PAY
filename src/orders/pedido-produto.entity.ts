@@ -8,7 +8,7 @@ export class orderProduct {
   @PrimaryColumn()
   idOrder: number;
 
-  @PrimaryColumn()
+  @Column()
   idProduto: number;
 
   @Column()

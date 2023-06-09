@@ -5,6 +5,7 @@ import { Order } from './order.entity';
 import { Product } from 'src/products/products.entity';
 import { orderProduct } from './pedido-produto.entity';
 import { CreateOrderProductDto } from './dtos/create-order.dto';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class OrdersService {
@@ -15,6 +16,8 @@ export class OrdersService {
     private produtoRepo: Repository<Product>,
     @InjectRepository(orderProduct)
     private orderProductRepo: Repository<orderProduct>,
+    @InjectRepository(User)
+    private userRepo: Repository<User>
   ) { }
 
   async createOrderProducts(idComprador: number, orderProducts: CreateOrderProductDto[]): Promise<orderProduct[]> {
@@ -46,12 +49,10 @@ export class OrdersService {
   }
   
   async getAllUserOrders(idComprador: number): Promise<Order[]> {
-    const userOrder = 
-      this.orderRepo.find({
+    const userOrders = await this.orderRepo.find({
       where: { idComprador },
-      relations: ['orderProducts']
+      relations: ['orderProducts', 'orderProducts.product'],
     });
-
-    return userOrder
+    return userOrders;
   }
 }
