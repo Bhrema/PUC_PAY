@@ -11,7 +11,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
-import { orderProduct } from 'src/orders/pedido-produto.entity';
+import { OrderProduct } from 'src/orders/pedido-produto.entity';
 
 @Entity()
 export class Product {
@@ -34,8 +34,8 @@ export class Product {
   @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
   restaurant_id: number;
 
-  @OneToMany(() => orderProduct, orderproduct => orderproduct.product)
-  orderProducts: orderProduct[]
+  @OneToMany(() => OrderProduct, OrderProduct => OrderProduct.product)
+  orderProducts: OrderProduct[]
 
   @AfterInsert()
   logInsert() {

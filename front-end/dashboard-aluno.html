@@ -146,10 +146,10 @@
                 </div>
                 <div class="card-body">
                   <div class="personal-info card-body">
-                    <p><a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px">
+                    <p><a href="" class="d-block" id="session-name-body" style="align-items: center; padding-bottom:10px">
                         Faça seu Login</a></p>
-                    <p>Email:</p>
-                    <p>CPF: </p>
+                    <p>Email: <span id="email"></span></p>
+                    <p>CPF: <span id="cpf"></span></p>
                   </div>
                 </div>
                 <div class="card-footer">
@@ -167,7 +167,7 @@
                 </div>
                 <div class="card-body">
                   <table class="table card-table">
-                    <tbody id="tbody">
+                    <tbody id="tbodyWallet">
                       <tr>
                         <td> Saldo atual: </td>
                         <td id="name">R$ <span id="balanceCard">0</span></td>
@@ -193,7 +193,7 @@
                     <thead>
                       <tr>
                         <th>Pedido</th>
-                        <th>Total do pedido</th>
+                        <th>Produtos</th>
                         <th>Quantidade de itens</th>
                         <th>Ações</th>
                       </tr>
@@ -201,7 +201,7 @@
                     <tbody id="tbody">
                       <tr>
                         <td>ID</td>
-                        <td>Total</td>
+                        <td>Produtos</td>
                         <td>Itens</td>
                         <td>
                           <button class="btn btn-sm btn-danger" id="button-delete">Detalhes</button>
@@ -244,7 +244,10 @@
   <!-- ./wrapper -->
 
 
-  <script>
+  <script type="module">
+
+    import axios from 'https://cdn.skypack.dev/axios';
+
     const goCart = () => {
       window.location.href = "dashboard-aluno-carrinho.html"
     }
@@ -276,11 +279,24 @@
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
     const userNameSession = document.getElementById('session-name')
+    const userNameBody = document.getElementById('session-name-body')
+    const email = document.getElementById('email')
+    const cpf = document.getElementById('cpf')
+
+    if(!sessionJson){
+      email.innerText = "Faça seu login!"
+      cpf.innerText = "Faça seu login!"
+    }
+    email.innerText = sessionJson.email
+    cpf.innerText = sessionJson.cpf
+
+
     if (!sessionJson.name) {
       userNameSession.innerText = "Faça seu login!"
     }
 
     userNameSession.innerText = sessionJson.name;
+    userNameBody.innerText = sessionJson.name
 
     const userProfilePic = document.getElementById('profile-pic')
     let userBalSession = document.getElementById('balance')
@@ -303,25 +319,39 @@
       cartQtd.innerHTML = totalQuantity;
     }
 
+
     const idUser = sessionJson.id
 
-    function getOrder() {
-      var formData = new FormData();
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", `http://localhost:3000/order/${idUser}`);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-          } else {
-            console.log("Erro na solicitação: " + xhr.status);
-          }
-        }
-      };
-      xhr.send(formData);
+    async function getOrder() {
+      try {
+        const response = await axios.get(`http://localhost:3000/order/${idUser}`)
+        const data = response.data
+
+        const tbody = document.getElementById('tbody');
+
+        data.forEach(item => {
+          const row = document.createElement('tr');
+
+          row.innerHTML = `
+      <td>${item.id}</td>
+      <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
+      <td>${item.orderProducts.length}</td>
+      <td>
+        <button class="btn btn-sm btn-danger">Detalhes</button>
+        <button class="btn btn-sm btn-primary">QRCode</button>
+      </td>
+    `;
+
+          tbody.appendChild(row);
+        });
+        console.log(data)
+
+      } catch (error) {
+        console.error(error)
+      }
     }
 
-      getOrder()
+    getOrder()
 
 
   </script>

@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { orderProduct } from 'src/orders/pedido-produto.entity';
+import { OrderProduct } from 'src/orders/pedido-produto.entity';
 import { Product } from 'src/products/products.entity';
 import { Order } from 'src/orders/order.entity';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>,
-              @InjectRepository(orderProduct) private repoOrder: Repository<orderProduct>,
+              @InjectRepository(OrderProduct) private repoOrder: Repository<OrderProduct>,
               @InjectRepository(Product) private repoProduct: Repository<Product>,
               @InjectRepository(Order) private repoOrd: Repository<Order>
   ) {}

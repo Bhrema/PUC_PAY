@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, getManager } from 'typeorm';
 import { Order } from './order.entity';
 import { Product } from 'src/products/products.entity';
-import { orderProduct } from './pedido-produto.entity';
+import { OrderProduct } from './pedido-produto.entity';
 import { CreateOrderProductDto } from './dtos/create-order.dto';
 import { User } from 'src/users/user.entity';
 
@@ -14,22 +14,22 @@ export class OrdersService {
     private orderRepo: Repository<Order>,
     @InjectRepository(Product)
     private produtoRepo: Repository<Product>,
-    @InjectRepository(orderProduct)
-    private orderProductRepo: Repository<orderProduct>,
+    @InjectRepository(OrderProduct)
+    private orderProductRepo: Repository<OrderProduct>,
     @InjectRepository(User)
     private userRepo: Repository<User>
   ) { }
 
-  async createOrderProducts(idComprador: number, orderProducts: CreateOrderProductDto[]): Promise<orderProduct[]> {
+  async createOrderProducts(idComprador: number, orderProducts: CreateOrderProductDto[]): Promise<OrderProduct[]> {
     const order = new Order();
     order.pendente = true;
     order.idComprador = idComprador;
     const createdOrder = await this.orderRepo.save(order);
     console.log(createdOrder.id);
   
-    const createdOrderProducts: orderProduct[] = [];
+    const createdOrderProducts: OrderProduct[] = [];
     for (const productDto of orderProducts) {
-      const product = new orderProduct();
+      const product = new OrderProduct();
       product.idProduto = productDto.id;
       product.quantity = productDto.quantity;
       product.idOrder = createdOrder.id;
@@ -42,7 +42,7 @@ export class OrdersService {
     return createdOrderProducts;
   }
 
-  async getUserOrdersProducts(id: number): Promise<orderProduct[]> {
+  async getUserOrdersProducts(id: number): Promise<OrderProduct[]> {
     return this.orderProductRepo.createQueryBuilder('orderProduct')
       .where('orderProduct.idComprador = :id', { id })
       .getMany()

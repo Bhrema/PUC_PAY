@@ -4,8 +4,11 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany, Colu
 import { Order } from "./order.entity";
 
 @Entity()
-export class orderProduct {
-  @PrimaryColumn()
+export class OrderProduct {
+  @PrimaryGeneratedColumn()
+  id: number
+  
+  @Column()
   idOrder: number;
 
   @Column()

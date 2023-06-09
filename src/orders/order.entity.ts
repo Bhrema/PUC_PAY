@@ -1,5 +1,5 @@
-import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { orderProduct } from "./pedido-produto.entity";
+import { AfterInsert, AfterRemove, AfterUpdate, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { OrderProduct } from "./pedido-produto.entity";
 import { User } from "src/users/user.entity";
 
 @Entity()
@@ -7,8 +7,8 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(() => orderProduct, orderproduct => orderproduct.order)
-    orderProducts: orderProduct[];
+    @OneToMany(() => OrderProduct, orderproduct => orderproduct.order)
+    orderProducts: OrderProduct[];
 
     @Column()
     idComprador: number

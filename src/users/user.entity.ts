@@ -11,7 +11,7 @@ import {
 
 import { Product } from 'src/products/products.entity';
 import { Order } from 'src/orders/order.entity';
-import { orderProduct } from 'src/orders/pedido-produto.entity';
+import { OrderProduct } from 'src/orders/pedido-produto.entity';
 
 @Entity()
 export class User {
