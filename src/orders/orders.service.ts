@@ -25,7 +25,6 @@ export class OrdersService {
     order.pendente = true;
     order.idComprador = idComprador;
     const createdOrder = await this.orderRepo.save(order);
-    console.log(createdOrder.id);
   
     const createdOrderProducts: OrderProduct[] = [];
     for (const productDto of orderProducts) {
@@ -54,5 +53,5 @@ export class OrdersService {
       relations: ['orderProducts', 'orderProducts.product'],
     });
     return userOrders;
-  }
+        }
 }

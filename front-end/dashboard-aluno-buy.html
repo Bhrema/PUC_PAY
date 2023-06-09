@@ -255,7 +255,7 @@
       <div id="form-pagar-saldo">
         <div class="card" style="width: 100%; max-width: 600px; margin: auto; top: 30px;">
           <div class="card-body">
-            <h5 class="card-title">Saldo Atual: R$<span id="balanceTotal"></span></h5>
+            <h5 class="card-title">Saldo Atual: R$<span id="balanceTotal"> 0</span></h5>
             <p class="card-text" id="bal-atual"></p>
             <button class="btn btn-success btn-lg btn-block" id="button-order">Pagar</button>
           </div>
@@ -429,18 +429,13 @@
     const buttonOrder = document.getElementById('button-order');
     buttonOrder.addEventListener('click', async event => {
       event.preventDefault();
-      createOrder(products);
+      if (sessionJson.balance > total) {
+        createOrder(products);
+        attBalance()
+      }
     });
 
-
-    if(sessionJson.balance >= total){
-      const buttonOrder = document.getElementById('button-order');
-      buttonOrder.addEventListener('click', async event => {
-      event.preventDefault();
-      createOrder(products);
-    });
-    }
-
+    console.log(products)
     const createOrder = async (products) => {
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
@@ -461,7 +456,7 @@
         console.error(error)
       }
     };
-    
+
 
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
@@ -487,15 +482,6 @@
       const balanceTotal = document.getElementById('balanceTotal')
       balanceTotal.innerText = sessionJson.balance.toString();
     }
-    
-
-    //const cartQtd = document.getElementById('cart-qtd')
-    //if (sessionJson.cart) {
-    //  const products = sessionJson.cart
-    //  products.forEach(product => cartQtd.innerHTML = product.quantity)
-    //}
-
-
   </script>
 
 

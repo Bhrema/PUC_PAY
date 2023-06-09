@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
+import { create } from 'domain';
 
 @Controller('order')
 export class OrdersController {
@@ -12,10 +13,9 @@ export class OrdersController {
       const { id, quantity } = produto;
       return { id, quantity };
     });
-    console.log(body)
 
     const createdProducts = await this.ordersService.createOrderProducts(body.idComprador, products);
-    console.log(createdProducts);
+    console.log(createdProducts)
   }
 
   @Get('/:id')
