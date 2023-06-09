@@ -38,10 +38,7 @@
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <button type="button" class="btn btn-primary" onclick="goCart()">
-          <i class="fa fa-shopping-cart"><span id="cart-qtd" style="margin-left: 10px;">0</span></i>
-        </button>
-        <button type="button" class="ml-2 btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <button type="button" id="btnLogout" class="btn btn-outline-danger float-right">Logout</button>
         <!-- Navbar Search -->
         <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -82,11 +79,8 @@
           <div class="image">
             <i class="fas-fa-user"></i>
           </div>
-          <div class="info" style="display:flex; gap: 12px; align-items: center;">
-            <a href="dashboard-aluno-perfil.html">
-              <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;"> -->
-              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a>
-          </a>
+          <div class="info">
+            <a href="#" class="d-block" id="session-name">Faça seu login</a>
           </div>
         </div>
 
@@ -94,37 +88,32 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
+                 with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>
-                      Carteira
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./dashboard-aluno-restaurante.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Restaurantes</p>
-                  </a>
-                </li>
-              </ul>
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Promoções</p>
+              <a href="./dashboard-restaurante.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  Perfil
+                </p>
               </a>
-              <ul class="nav nav-treeview">
+              </li>
                 <li class="nav-item">
-                  <a href="./dashboard-aluno-perfil.html" class="nav-link">
+                  <a href="./dashboard-restaurante-produtos.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Perfil</p>
+                    <p>Produtos</p>
                   </a>
                 </li>
-
               </ul>
+                  <a href="./dashboard-restaurante-historico.html" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>Histórico</p>
+                  </a>
+                <ul class="nav nav-treeview">
+               
+                
+          </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -132,6 +121,51 @@
     </aside>
 
     <!-- CONTEÚDO DO DASHBOARD -->
+
+    <div class="content-wrapper">
+      <section class="content">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center">
+                      <div class="card" style="width: 1000px; border-radius: 12px; top: 12px;"> <!--Pedidos-->
+                          <div class="card-header">
+                              <h3 class="card-title">Histórico de Pedidos</h3>
+                          </div>
+                          <div class="card-body">
+                              <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <th>Pedido</th>
+                                          <th>Data</th>
+                                          <th>Total do pedido</th>
+                                          <th>Quantidade de itens</th>
+                                          <th>Ações</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody id="tbody">
+                                      <tr>
+                                          <td>ID</td>
+                                          <td>Data</td>
+                                          <td>Total</td>
+                                          <td>Itens</td>
+                                          <td>
+                                              <button class="btn btn-sm btn-primary" id="button-delete">Ver pedido</button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="card-footer">
+                              <div class="float-right">
+                                  <h5></h5>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </div>
     <!-- /.content-wrapper -->
 
     <!-- Control Sidebar -->
@@ -151,23 +185,9 @@
     </footer>
   </div>
   <!-- ./wrapper -->
+
+
   <script>
-    const session = localStorage.getItem('session')
-    const sessionJson = JSON.parse(session)
-
-    const userNameSession = document.getElementById('session-name')
-    if (!sessionJson.name) {
-      userNameSession.innerText = "Faça seu login!"
-    }
-
-    userNameSession.innerText = sessionJson.name;
-    const cartQtd = document.getElementById('cart-qtd')
-    cartQtd.innerHTML = sessionJson.cart.length;  
-
-    const goCart = () => {
-        window.location.href = "dashboard-aluno-carrinho.html"
-      }
-      
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
       event.preventDefault()
@@ -192,13 +212,21 @@
       localStorage.removeItem('session');
     }
 
-    const cartQtd = document.getElementById('cart-qtd');
-    if (sessionJson.cart) {
-      const products = sessionJson.cart;
-      const totalQuantity = products.reduce((acc, product) => acc + product.quantity, 0);
-      cartQtd.innerHTML = totalQuantity;
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+
+    const userNameSession = document.getElementById('session-name')
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
     }
+
+    userNameSession.innerText = sessionJson.name;
+
   </script>
+
+
+
+
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
