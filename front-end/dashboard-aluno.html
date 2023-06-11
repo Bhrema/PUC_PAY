@@ -203,6 +203,7 @@
                         <th>Pedido</th>
                         <th>Produtos</th>
                         <th>Quantidade de itens</th>
+                        <th>Data</th>
                         <th>Ações</th>
                       </tr>
                     </thead>
@@ -211,6 +212,8 @@
                         <td>ID</td>
                         <td>Produtos</td>
                         <td>Itens</td>
+                        <td>Data</td>
+                        <td>Açoes</td>
                         <td>
                           <!-- <button class="btn btn-sm btn-danger" id="button-delete">Detalhes</button>
                           <button class="btn btn-sm btn-primary" class="generateQRCodeButton">QRCode</button>
@@ -345,6 +348,7 @@
         <td>${item.id}</td>
         <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
         <td>${item.orderProducts.length}</td>
+        <td>${item.date}</td>
         <td>
           <button class="btn btn-sm btn-danger">Detalhes</button>
           <button class="btn btn-sm btn-primary generateQRCodeButton">QRCode</button>

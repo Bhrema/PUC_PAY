@@ -468,7 +468,8 @@
 
     const userProfilePic = document.getElementById('profile-pic')
     let userBalSession = document.getElementById('session-bal')
-    const userImage = sessionJson.image
+    const userImage = sessionJson.image;
+    const userId = sessionJson.id;
 
     if (sessionJson.balance > 0)
       balance.innerText = sessionJson.balance.toString();
@@ -482,6 +483,41 @@
       const balanceTotal = document.getElementById('balanceTotal')
       balanceTotal.innerText = sessionJson.balance.toString();
     }
+
+    const idUser = sessionJson.id;
+    const userBalance = sessionJson.balance
+    console.log(total)
+    console.log(userBalance)
+
+
+    const attBalance = async (products) => {
+      const url = `http://localhost:3000/auth/${idUser}`;
+      const saldoFinal = userBalance - total
+      const newBalance = {
+        balance: saldoFinal
+      };
+      try {
+        const response = await axios.put(url, newBalance, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(data => {
+          const session = localStorage.getItem('session');
+          const sessionJson = JSON.parse(session);
+          sessionJson.balance = saldoFinal
+          localStorage.setItem('session', JSON.stringify(sessionJson));
+
+          balance.innerText = sessionJson.balance
+        })
+        
+      } catch (error) {
+        console.error(error)
+      }
+    };
+    
+
+
+
   </script>
 
 

@@ -138,22 +138,22 @@
   
                     <div class="form-outline mb-1">
                       <label class="form-label" for="name">Nome</label>
-                      <input type="text" class="form-control form-control-lg" name="name" />
+                      <input id="name" type="text" class="form-control form-control-lg" name="name"/>
                     </div>
   
                     <div class="form-outline mb-1">
                       <label class="form-label" for="description">Descrição</label>
-                      <input id="formAdmNome" type="text" class="form-control form-control-lg" name="description" />
+                      <input id="description" type="text" class="form-control form-control-lg" name="description" />
                     </div>
   
                     <div class="form-outline mb-1">
                       <label class="form-label" for="price">Preço</label>
-                      <input id="formAdmCPF" type="text"  class="form-control form-control-lg" name="price" />
+                      <input id="price" type="text"  class="form-control form-control-lg" name="price" />
                     </div>
   
                     <div class="form-outline mb-1">
                       <label class="form-label" for="image">Imagem</label>
-                      <input id="formAdmCNPJ" type="file"  class="form-control form-control-lg" name="image" />
+                      <input id="image" type="file"  class="form-control form-control-lg" name="image" />
                     </div>
   
                     <div class="form-outline mb-1" style="position:relative; right:1500px">
@@ -224,16 +224,12 @@
 
       userNameSession.innerText = sessionJson.name;
 
-      document.getElementById("formNome").value = sessionJson.name;
-      document.getElementById("formEmail").value = sessionJson.email;
-      document.getElementById("formCnpj").value = sessionJson.cnpj;
-      document.getElementById("enderecoInput").value = sessionJson.block;
-
+      
       function replaceLocationSubmit() {
         setTimeout(function () {
           window.location.href = "login.html";
-            }, 3000);
-}
+        }, 3000);
+      }
       function replaceLocation() {
         window.location.replace("login.html");
       }
@@ -241,46 +237,60 @@
       function deleteSession() {
         localStorage.removeItem("session");
       }
-
+      
       const form = document.getElementById('register-form');
       const idUser = sessionJson.id;
-
+      
       function messageAlert() {
         const message = document.getElementById('message')
         const messageRedirect = document.getElementById('messageRedirect')
         messageRedirect.style.display = 'block';
       }
-
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+      
       document.getElementById("register-form").addEventListener("submit", async function(event) {
-      event.preventDefault()
-
-      var formData = new FormData(this);
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("PUT", `http://localhost:3000/auth/${idUser}`);
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            console.log(response);
+        event.preventDefault()
+        
+        var formData = new FormData(this);
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", `http://localhost:3000/products/${productId}`);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              window.location.href = "dashboard-restaurante-produtos.html" 
             
           } else {
             console.log("Erro na solicitação: " + xhr.status);
           }
         }
       };
-      
-      messageAlert()  
-      deleteSession()
-      setTimeout(function () {
-           
-          replaceLocation();
-          xhr.send(formData);
-            }, 3000);
+      xhr.send(formData);
       
     });
-
-    </script>
+    
+    async function showProducts() {
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+        );
+        const responseData = await response.json();
+        const product = responseData;
+        document.getElementById("name").value = product.name;
+        document.getElementById("description").value = product.description;
+        document.getElementById("price").value = product.price;
+      }
+      showProducts()
+      
+      </script>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -290,7 +300,7 @@
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.js"></script>
-
+    
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
     <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>

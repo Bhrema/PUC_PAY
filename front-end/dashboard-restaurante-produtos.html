@@ -274,6 +274,7 @@
         function createProductElement(product) {
           const tableRow = document.createElement("tr");
           tableRow.style.width = "250px";
+          tableRow.classList.add(product.id)
           tableRow.innerHTML = `
                 <td>
                   <a href="#">
@@ -294,7 +295,7 @@
                         </div>
                         <div>
                           <button type="button" class="btn btn-danger" style="width:100px; display:inline;" id="product-deletar-${product.id}">Deletar</button>
-                          <button type="button" class="btn btn-primary" style="width:100px; onclick=window.location.href = 'dashboard-restaurante-edit-produto.html" display:inline;" id="product-${product.id}-editar">Editar</button>
+                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-${product.id}-editar"><a style="text-decoration: none; color: white" href= 'dashboard-restaurante-edit-produto.html?id=${tableRow.classList}';>Editar</a></button>
                         <div>
                       </div>
                     </div>

@@ -64,11 +64,7 @@ Content-Type: image/jpeg
 --MfnBoundry--
 
 ### Update balance
-PUT http://localhost:3000/auth/3
+PUT http://localhost:3000/auth/2
 content-type: application/json
-
-{
-  "isAdmin": true
-}
 
  
