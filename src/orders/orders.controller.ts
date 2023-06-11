@@ -19,7 +19,12 @@ export class OrdersController {
   }
 
   @Get('/:id')
-  findUserOrdersProducts(@Param('id') id: string){
+  findUserOrders(@Param('id') id: string){
     return this.ordersService.getAllUserOrders(parseInt(id))
+  }
+
+  @Get('/products/:id')
+  findUserOrderProducts(@Param('id') id: string){
+    return this.ordersService.getUserOrdersProducts(parseInt(id))
   }
 }

@@ -55,7 +55,7 @@ Content-Disposition: form-data; name="cnpj"
 --MfnBoundry
 Content-Disposition: form-data; name="block"
 
-3
+2
 --MfnBoundry
 Content-Disposition: form-data; name="image"; filename="thedripper.png"
 Content-Type: image/jpeg
@@ -64,7 +64,7 @@ Content-Type: image/jpeg
 --MfnBoundry--
 
 ### Update balance
-PUT http://localhost:3000/auth/4
+PUT http://localhost:3000/auth/3
 content-type: application/json
 
 {

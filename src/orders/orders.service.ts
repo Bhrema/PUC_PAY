@@ -24,34 +24,45 @@ export class OrdersService {
     const order = new Order();
     order.pendente = true;
     order.idComprador = idComprador;
+    order.date = new Date()
     const createdOrder = await this.orderRepo.save(order);
-  
+
     const createdOrderProducts: OrderProduct[] = [];
     for (const productDto of orderProducts) {
       const product = new OrderProduct();
       product.idProduto = productDto.id;
       product.quantity = productDto.quantity;
       product.idOrder = createdOrder.id;
-      console.log(product);
-  
+
       const createdProduct = await this.orderProductRepo.save(product);
       createdOrderProducts.push(createdProduct);
     }
-  
+
     return createdOrderProducts;
   }
 
-  async getUserOrdersProducts(id: number): Promise<OrderProduct[]> {
-    return this.orderProductRepo.createQueryBuilder('orderProduct')
-      .where('orderProduct.idComprador = :id', { id })
-      .getMany()
+  async getUserOrdersProducts(idComprador: number) {
+    const userOrders = await this.orderRepo.find({
+      where: { idComprador },
+      relations: ['orderProducts', 'orderProducts.product'],
+    });
+    const userOrderProducts = userOrders.map((order) => {
+      const filteredOrderProducts = order.orderProducts.filter(
+        (orderProduct) => orderProduct.idOrder === order.id
+      );
+      return {
+        orderProducts: filteredOrderProducts,
+      };
+    });
+
+    return userOrderProducts;
   }
-  
+
   async getAllUserOrders(idComprador: number): Promise<Order[]> {
     const userOrders = await this.orderRepo.find({
       where: { idComprador },
       relations: ['orderProducts', 'orderProducts.product'],
     });
     return userOrders;
-        }
+  }
 }

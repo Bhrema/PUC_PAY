@@ -12,6 +12,9 @@ export class Order {
     
     @Column()
     pendente: boolean;
+
+    @Column({ type: "datetime" })
+    date: Date
     
     @OneToMany(() => OrderProduct, orderproduct => orderproduct.order)
     orderProducts: OrderProduct[];
