@@ -26,7 +26,7 @@
         <a href="#" class="h1"><b>PUC</b>PAY</a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Mude o que for Necessários</p>
+        <p class="login-box-msg">Mude os Campos Necessários</p>
 
         <form id="register-form">
 
@@ -87,7 +87,7 @@
                 <span class="fas fa-lock"></span>
               </div>
             </div>
-            <span id="spanErrorValidatePassword" class="invalid-feedback">Insira a mesma senha </span>
+            <span id="spanErrorValidatePassword" class="invalid-feedback">Insira a mesma senha</span>
             <!--Span que aparece caso o Regex não retorne True-->
           </div>
           <!-- /.col -->
@@ -106,21 +106,20 @@
   <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
   <script>
-
-    // const set_cnpj = () => {
-    //   document.getElementById("cnpj_div").style.display = "flex";
-    //   document.getElementById("cpf_div").style.display = "none";
-    //   document.getElementById("endereco").style.display = "block";
-    // }
-    // const set_cpf = () => {
-    //   document.getElementById("cpf_div").style.display = "flex";
-    //   document.getElementById("cnpj_div").style.display = "none";
-    //   document.getElementById("endereco").style.display = "none";
-    // }
+    const set_cnpj = () => {
+      document.getElementById("cnpj_div").style.display = "flex";
+      document.getElementById("cpf_div").style.display = "none";
+      document.getElementById("endereco").style.display = "block";
+    }
+    const set_cpf = () => {
+      document.getElementById("cpf_div").style.display = "flex";
+      document.getElementById("cnpj_div").style.display = "none";
+      document.getElementById("endereco").style.display = "none";
+    }
 
     const form = document.getElementById('register-form') // Captura o formulário
 
-    // // Regex de email para o cadastro de usuário
+    // Regex de email para o cadastro de usuário
     // const emailInput = document.getElementById('formEmail'); // Captura o input de email
     // const emailFeedback = document.getElementById('spanErrorEmail'); // Captura o span de Erro
     // emailInput.addEventListener('input', () => {
@@ -154,7 +153,7 @@
     //     nameInput.classList.add('is-invalid');
     //     nameFeedback.style.display = 'block';
     //   }
-    // });
+    // }); 
 
     // const cpfInput = document.getElementById('formCpf')
     // const cpfFeedback = document.getElementById('spanErrorCpf')
@@ -219,14 +218,14 @@
     //   const passwordValue = passwordInput.value;
 
     //   if (passwordRegex.test(passwordValue)) {
-    //     passwordInput.classList.remove('is-invalid');
-    //     passwordInput.classList.add('is-valid');
-    //     passwordFeedback.style.display = 'none';
+    //       passwordInput.classList.remove('is-invalid');
+    //       passwordInput.classList.add('is-valid');
+    //       passwordFeedback.style.display = 'none';
     //   } else {
-    //     passwordInput.classList.remove('is-valid');
-    //     passwordInput.classList.add('is-invalid');
-    //     passwordFeedback.style.display = 'block';
-    //   }
+    //       passwordInput.classList.remove('is-valid');
+    //       passwordInput.classList.add('is-invalid');
+    //       passwordFeedback.style.display = 'block';
+    //     }
     // });
 
     // const validatePasswordInput = document.getElementById('formValidatePassword')
@@ -237,24 +236,25 @@
     //   const validatePassValue = validatePasswordInput.value
 
     //   if (validatePassValue === passwordInput.value && passwordRegex.test(validatePassValue)) {
-    //     validatePasswordInput.classList.remove('is-invalid');
-    //     validatePasswordInput.classList.add('is-valid');
-    //     validatePassFeedback.style.display = 'none';
+    //       validatePasswordInput.classList.remove('is-invalid');
+    //       validatePasswordInput.classList.add('is-valid');
+    //       validatePassFeedback.style.display = 'none';
     //   }
     //   else {
-    //     validatePasswordInput.classList.remove('is-valid');
-    //     validatePasswordInput.classList.add('is-invalid');
-    //     validatePassFeedback.style.display = 'block';
+    //       validatePasswordInput.classList.remove('is-valid');
+    //       validatePasswordInput.classList.add('is-invalid');
+    //       validatePassFeedback.style.display = 'block';
     //   }
 
     // }
     // )
 
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("id");
     const register = async (data) => {
-      const response = await fetch('http://localhost:3000/auth/signup', { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
+      const response = await fetch(`http://localhost:3000/auth/${userId}`, { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
         //fetch() retorna uma promise que é resolvida quando a resposta é recebida
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
         },
@@ -282,22 +282,14 @@
 
       const response = await register(data) // aguarda a resolução da Promise retornada
 
-
-      if (response.isEmail) {
-        window.location.replace('login.html')
-      }
-      else {
-        alert('Registro inválido')
-      }
+        window.location.replace('dashboard-adm-view-users.html')
+      
     }
 
-
-    async function showRestaurant() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const userId = urlParams.get("id");
-      console.log(userId)
+    async function showUser() {
+      
       const response = await fetch(
-        `http://localhost:3000/products/restaurant/${userId}`,
+        `http://localhost:3000/auth/${userId}`,
         {
           method: "GET",
           headers: {
@@ -308,10 +300,13 @@
       const responseData = await response.json();
       const user = responseData;
       console.log(user);
+      document.getElementById("formNome").value = user.name;
+      document.getElementById("formEmail").value = user.email;
+      document.getElementById("formCpf").value = user.cpf;
+      document.getElementById("formPassword").value = user.senha;
+      document.getElementById("formValidatePassword").value = user.senha;
     }
-
-    showRestaurant()
-
+    showUser()
   </script>
 
   <!-- jQuery -->

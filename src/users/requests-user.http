@@ -3,14 +3,14 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "otaviodallao@gmail.com",
+  "email": "admin@admin.com",
   "name": "Otávio Dallo",
   "cpf": "10843769932",
-  "password": "@Livia040323"
+  "password": "admin"
 }
 
 ### Sign in as an existing user
-PUT http://localhost:3000/auth/7
+PUT http://localhost:3000/auth/1
 content-type: application/json
 
 {
