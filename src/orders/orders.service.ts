@@ -70,4 +70,12 @@ export class OrdersService {
     });
     return userOrders;
   }
+
+  async getAllRestaurantOrders(idRestaurante: number): Promise<Order[]> {
+    const restaurantOrders = await this.orderRepo.find({
+      where: { idRestaurante },
+      relations: ['orderProducts', 'orderProducts.product'],
+    });
+    return restaurantOrders;
+  }
 }

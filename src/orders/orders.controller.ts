@@ -27,4 +27,9 @@ export class OrdersController {
   findUserOrderProducts(@Param('id') id: string){
     return this.ordersService.getUserOrdersProducts(parseInt(id))
   }
+
+  @Get('restaurant/:id')
+  findRestaurantOrders(@Param('id') id: string){
+    return this.ordersService.getAllRestaurantOrders(parseInt(id))
+  }
 }
