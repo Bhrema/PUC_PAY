@@ -16,6 +16,5 @@ export class CreateProductDto {
 
     @Transform(({ value }) => parseInt(value))
     @IsNumber()
-    restaurant_id: number;
-
+    idRestaurant: number;
 }

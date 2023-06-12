@@ -45,11 +45,14 @@ export class User {
   @Column( { default: false } )
   isAdmin: boolean;
   
-  @OneToMany(() => Product, product => product.restaurant_id)
+  @OneToMany(() => Product, product => product.restaurant)
   products: Product[]
 
   @OneToMany(() => Order, order => order.user)
   order: Order[];
+
+  @OneToMany(() => Order, order => order.restaurant)
+  orderRes: Order[];
 
   @AfterInsert()
   logInsert() {

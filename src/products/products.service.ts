@@ -10,13 +10,13 @@ export class ProductsService {
         private productRepository: Repository<Product>,
     ) {}
 
-    async create(name: string, description: string, image: string, price:string, restaurant_id: number) {
+    async create(name: string, description: string, image: string, price:string, idRestaurant: number) {
         const products = await this.productRepository.find({ name })
         if (products.length) {
             throw new BadRequestException('Produto já cadastrado na base de dados');
         }
     
-        const product = this.productRepository.create({ name, description, image, price, restaurant_id })
+        const product = this.productRepository.create({ name, description, image, price, idRestaurant })
         return this.productRepository.save(product)
     }
 
@@ -37,7 +37,7 @@ export class ProductsService {
 
     async findProductsWithIdRestaurant(idRes: number): Promise<Product[]> {
         return this.productRepository.createQueryBuilder('product')
-          .where('restaurant_id = :idRes', { idRes })
+          .where('idRestaurant = :idRes', { idRes })
           .getMany();
       }
 

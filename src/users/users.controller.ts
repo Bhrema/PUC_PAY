@@ -28,14 +28,13 @@ export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
-  ) { }
+  ) {}
 
   @Post('/signout')
   signOut(@Session() session: any) {
     session.userId = null;
     return session.userId
   }
-
 
   @Post('/signin')
   async signin(@Body() body: LoginUserDto) {
@@ -48,7 +47,6 @@ export class UsersController {
     const user = await this.authService.signup(body.email, body.name, body.cpf, body.cnpj, body.block, body.image, body.password);
     return user;
   }
-
 
   @Get('/:id')
   async findUser(@Param('id') id: string) {

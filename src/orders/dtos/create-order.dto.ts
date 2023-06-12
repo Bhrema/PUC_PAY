@@ -5,5 +5,8 @@ export class CreateOrderProductDto {
   id: number;
   
   @IsNumber()
-  quantity: number
+  quantity: number;
+
+  @IsNumber()
+  idComprador: number;
 }

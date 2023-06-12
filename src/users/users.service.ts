@@ -66,7 +66,7 @@ export class UsersService {
       throw new NotFoundException('Usuário não encontrado');
     }
 
-    await this.repoProduct.delete({ restaurant_id: id })
+    await this.repoProduct.delete({ idRestaurant: id })
     await this.repoOrd.delete({ idComprador: id });
     await this.repo.delete(id);
   }

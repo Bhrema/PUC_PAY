@@ -14,7 +14,7 @@ export class OrdersController {
     });
     console.log(body)
 
-    const createdProducts = await this.ordersService.createOrderProducts(body.idComprador, products);
+    const createdProducts = await this.ordersService.createOrderProducts(body.idComprador, body.idRestaurant, products);
     console.log(createdProducts);
   }
 

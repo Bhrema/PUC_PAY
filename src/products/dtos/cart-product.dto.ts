@@ -9,4 +9,7 @@ export class cartProductDto {
 
     @Expose()
     idComprador: number
+
+    @Expose()
+    idRestaurant: number
 }

@@ -20,10 +20,13 @@ export class OrdersService {
     private userRepo: Repository<User>
   ) { }
 
-  async createOrderProducts(idComprador: number, orderProducts: CreateOrderProductDto[]): Promise<OrderProduct[]> {
+  async createOrderProducts(idComprador: number, idRestaurant: number, orderProducts: CreateOrderProductDto[]): Promise<Order> {
     const order = new Order();
     order.pendente = true;
     order.idComprador = idComprador;
+    order.date = new Date();
+    order.idRestaurante = idRestaurant;
+  
     const createdOrder = await this.orderRepo.save(order);
     console.log(createdOrder.id);
   
@@ -32,14 +35,16 @@ export class OrdersService {
       const product = new OrderProduct();
       product.idProduto = productDto.id;
       product.quantity = productDto.quantity;
-      product.idOrder = createdOrder.id;
+      product.order = createdOrder;
       console.log(product);
   
       const createdProduct = await this.orderProductRepo.save(product);
       createdOrderProducts.push(createdProduct);
     }
   
-    return createdOrderProducts;
+    createdOrder.orderProducts = createdOrderProducts;
+  
+    return createdOrder;
   }
 
   async getUserOrdersProducts(id: number): Promise<OrderProduct[]> {

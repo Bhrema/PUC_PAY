@@ -30,9 +30,12 @@ export class Product {
   @Column()
   image: string;
 
+  @Column()
+  idRestaurant: number
+
   @ManyToOne(() => User, user => user.products)
-  @JoinColumn({ name: "restaurant_id", referencedColumnName: "id" })
-  restaurant_id: number;
+  @JoinColumn({ name: "idRestaurant", referencedColumnName: "id" })
+  restaurant: User;
 
   @OneToMany(() => OrderProduct, OrderProduct => OrderProduct.product)
   orderProducts: OrderProduct[]

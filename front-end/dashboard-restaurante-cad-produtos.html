@@ -159,8 +159,8 @@
                   </div>
 
                   <div class="form-outline mb-1" style="position:relative; right:1500px">
-                    <label class="form-label" for="restaurant_id">ID</label>
-                    <input id="restaurant_id" type="text"  class="form-control form-control-lg" name="restaurant_id" />
+                    <label class="form-label" for="idRestaurant">ID</label>
+                    <input id="idRestaurant" type="text"  class="form-control form-control-lg" name="idRestaurant" />
                   </div>
 
                   <div class="d-flex justify-content-center position-relative" style="bottom: 50px;">
@@ -200,8 +200,9 @@
   <script>
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
-    const restaurant_id = document.getElementById('restaurant_id');
-    restaurant_id.value = sessionJson.id;
+    const idRestaurant = document.getElementById('idRestaurant');
+    idRestaurant.value = sessionJson.id;
+    console.log(idRestaurant.value)
 
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {

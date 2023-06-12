@@ -20,9 +20,9 @@ Content-Type: image/jpeg
 
 < cerveja-gelada.jpg
 --MfnBoundry
-Content-Disposition: form-data; name="restaurant_id";
+Content-Disposition: form-data; name="idRestaurant";
 
-7
+1
 --MfnBoundry--
 
 

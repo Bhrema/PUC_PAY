@@ -267,13 +267,15 @@
         );
         const responseData = await response.json();
         const products = responseData;
-
+        console.log(products)
+        
         const tbody = document.getElementById("tbody");
         tbody.innerHTML = "";
 
         function createProductElement(product) {
           const tableRow = document.createElement("tr");
           tableRow.style.width = "250px";
+          tableRow.classList.add(product.id)
           tableRow.innerHTML = `
                 <td>
                   <a href="#">
@@ -293,8 +295,8 @@
                           <h6 class="mb-3">R$${product.price}</h6>
                         </div>
                         <div>
-                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-deletar-${product.id}">Deletar</button>
-                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-${product.id}-editar">Editar</button>
+                          <button type="button" class="btn btn-danger" style="width:100px; display:inline;" id="product-deletar-${product.id}">Deletar</button>
+                          <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-${product.id}-editar"><a style="text-decoration: none; color: white" href= 'dashboard-restaurante-edit-produto.html?id=${tableRow.classList}';>Editar</a></button>
                         <div>
                       </div>
                     </div>
@@ -306,11 +308,11 @@
         products.forEach((product) => {
           const productElement = createProductElement(product);
           tbody.appendChild(productElement);
-          testarDelete()
         });
       }
 
       showProducts()
+
 
       function testarDelete() {
       const buttonsDelete = document.querySelectorAll('[id^="product-deletar"]');

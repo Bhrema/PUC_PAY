@@ -321,14 +321,18 @@
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data);
+            const session = localStorage.getItem('session');
+            const sessionJson = JSON.parse(session);
+            sessionJson.balance += parseFloat(formData.get('balance'));
+            localStorage.setItem('session', JSON.stringify(sessionJson));
+
+            balance.innerText = sessionJson.balance
           })
           .catch(error => {
             console.error(error);
           });
 
         messageAlert()
-        deleteSession()
         setTimeout(function () {
 
           replaceLocation();

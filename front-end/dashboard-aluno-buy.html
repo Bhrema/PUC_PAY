@@ -255,7 +255,7 @@
       <div id="form-pagar-saldo">
         <div class="card" style="width: 100%; max-width: 600px; margin: auto; top: 30px;">
           <div class="card-body">
-            <h5 class="card-title">Saldo Atual: R$<span id="balanceTotal"></span></h5>
+            <h5 class="card-title">Saldo Atual: R$<span id="balanceTotal"> 0</span></h5>
             <p class="card-text" id="bal-atual"></p>
             <button class="btn btn-success btn-lg btn-block" id="button-order">Pagar</button>
           </div>
@@ -313,18 +313,13 @@
     const sessionJson = JSON.parse(session)
     document.getElementById("bal-atual").value = 'R$' + sessionJson.balance;
     import axios from 'https://cdn.skypack.dev/axios';
-    // Get the payment method select element
     const paymentMethodSelect = document.getElementById('paymentMethod');
 
-    // Get the form-pagar-cartao and form-pagar-saldo divs
     const formPagarCartaoDiv = document.getElementById('form-pagar-cartao');
     const formPagarSaldoDiv = document.getElementById('form-pagar-saldo');
 
-    // Function to handle the change event of the payment method select element
     const handlePaymentMethodChange = () => {
       const selectedPaymentMethod = paymentMethodSelect.value;
-
-      // Show/hide the corresponding divs based on the selected payment method
       if (selectedPaymentMethod === 'online') {
         formPagarCartaoDiv.style.display = 'block';
         formPagarSaldoDiv.style.display = 'none';
@@ -344,10 +339,8 @@
       return accumulator + itemTotal;
     }, 0);
 
-    // Add the event listener to the payment method select element
     paymentMethodSelect.addEventListener('change', handlePaymentMethodChange);
     handlePaymentMethodChange();
-    // Call the handlePaymentMethodChange function initially to set the initial visibility of the divs
     const calculateSum = () => {
       let elements = document.querySelectorAll('[id^="valor-"]');
       let quantidade = document.querySelectorAll('[id^="qntd-"]');
@@ -429,24 +422,22 @@
     const buttonOrder = document.getElementById('button-order');
     buttonOrder.addEventListener('click', async event => {
       event.preventDefault();
-      createOrder(products);
+      if (sessionJson.balance > total) {
+        createOrder(products);
+        attBalance()
+      }
     });
 
-
-    if(sessionJson.balance >= total){
-      const buttonOrder = document.getElementById('button-order');
-      buttonOrder.addEventListener('click', async event => {
-      event.preventDefault();
-      createOrder(products);
-    });
-    }
-
+    console.log(products)
+    console.log(sessionJson.cart[0].idRestaurant)
     const createOrder = async (products) => {
       const url = 'http://localhost:3000/order';
       const compradorId = sessionJson.id;
+      const restaurantId = sessionJson.cart[0].idRestaurant
 
       const cartProductDto = {
         idComprador: compradorId,
+        idRestaurant: restaurantId,
         produtos: products
       };
 
@@ -461,7 +452,7 @@
         console.error(error)
       }
     };
-    
+
 
     const userNameSession = document.getElementById('session-name')
     if (!sessionJson.name) {
@@ -473,7 +464,8 @@
 
     const userProfilePic = document.getElementById('profile-pic')
     let userBalSession = document.getElementById('session-bal')
-    const userImage = sessionJson.image
+    const userImage = sessionJson.image;
+    const userId = sessionJson.id;
 
     if (sessionJson.balance > 0)
       balance.innerText = sessionJson.balance.toString();
@@ -487,13 +479,39 @@
       const balanceTotal = document.getElementById('balanceTotal')
       balanceTotal.innerText = sessionJson.balance.toString();
     }
+
+    const idUser = sessionJson.id;
+    const userBalance = sessionJson.balance
+    console.log(total)
+    console.log(userBalance)
+
+
+    const attBalance = async (products) => {
+      const url = `http://localhost:3000/auth/${idUser}`;
+      const saldoFinal = userBalance - total
+      const newBalance = {
+        balance: saldoFinal
+      };
+      try {
+        const response = await axios.put(url, newBalance, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(data => {
+          const session = localStorage.getItem('session');
+          const sessionJson = JSON.parse(session);
+          sessionJson.balance = saldoFinal
+          localStorage.setItem('session', JSON.stringify(sessionJson));
+
+          balance.innerText = sessionJson.balance
+        })
+        
+      } catch (error) {
+        console.error(error)
+      }
+    };
     
 
-    //const cartQtd = document.getElementById('cart-qtd')
-    //if (sessionJson.cart) {
-    //  const products = sessionJson.cart
-    //  products.forEach(product => cartQtd.innerHTML = product.quantity)
-    //}
 
 
   </script>
