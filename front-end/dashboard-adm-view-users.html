@@ -7,7 +7,8 @@
   <title>PUCPAY</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -292,31 +293,31 @@
 
               table.innerHTML += linha;
             })
-          } catch{
+          } catch {
             console.log(error)
           }
-          }
+        }
 
 
-            async function responseRestaurant() {
-                try {
-                  const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
-                    method: 'GET',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                  });
+        async function responseRestaurant() {
+          try {
+            const response = await fetch('http://localhost:3000/auth/adm/restaurants', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            });
 
-                  const responseData = await response.json();
-                  const users = responseData;
+            const responseData = await response.json();
+            const users = responseData;
 
 
-                  const tableRes = document.querySelector('.tbody')
-                  tableRes.innerHTML = ''
+            const tableRes = document.querySelector('.tbody')
+            tableRes.innerHTML = ''
 
-                  users.forEach(elemento => {
-                    const linhaRes = `
-                <tr>
+            users.forEach(elemento => {
+              const linhaRes = `
+                <tr class="${elemento.id}">
                       <td>${elemento.id}</td>
                       <td>${elemento.name}</td>
                       <td>${elemento.email}</td>
@@ -328,16 +329,17 @@
                     </tr>
                     `;
 
-                    tableRes.innerHTML += linhaRes;
-                  })
+              tableRes.innerHTML += linhaRes;
+            })
 
             const buttonsDelete = document.querySelectorAll('[id^="button-delete"]');
             buttonsDelete.forEach((buttonDelete) => {
               buttonDelete.addEventListener('click', () => {
                 const id = buttonDelete.id.split('-')[2];
-                if(sessionJson.isAdmin & users.isAdmin !== true){
+                const confirmResult = window.confirm("Você tem certeza?????");
+                if (sessionJson.isAdmin & users.isAdmin !== true & confirmResult) {
                   deleteUser(id);
-              }
+                }
               });
             });
 
@@ -345,14 +347,14 @@
             buttonsEditRestaurante.forEach(buttonsEditRestaurante => {
               buttonsEditRestaurante.addEventListener('click', () => {
                 const id = buttonsEditRestaurante.id.split('-')[3];
-                window.location.replace('./adm-editar-restaurante.html')
+                window.location.replace(`adm-editar-restaurante.html?id=${id}`)
               })
             });
             const buttonsEditUser = document.querySelectorAll('[id^="button-edit-user"]');
             buttonsEditUser.forEach(buttonsEditUser => {
               buttonsEditUser.addEventListener('click', () => {
                 const id = buttonsEditUser.id.split('-')[3];
-                window.location.replace('./adm-editar-acad.html')
+                window.location.replace(`adm-editar-acad.html?id=${id}`)
               })
             });
 

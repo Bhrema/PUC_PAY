@@ -10,11 +10,11 @@ content-type: application/json
 }
 
 ### Sign in as an existing user
-PUT http://localhost:3000/auth/4
+PUT http://localhost:3000/auth/7
 content-type: application/json
 
 {
-  "peso": "2000"
+  "isAdmin": true
 }
 
 ### Get the currently signed in user
