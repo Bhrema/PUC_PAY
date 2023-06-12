@@ -180,7 +180,7 @@
         >
           <tbody id="tbody" style="display: flex">
             <tr style="width: 200px" ;>
-              <td>
+              <!-- <td>
                 <a href="#">
                   <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card">
@@ -214,7 +214,7 @@
                     </div>
                   </div>
                 </a>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>
@@ -295,7 +295,7 @@
                           <h6 class="mb-3">R$${product.price}</h6>
                         </div>
                         <div>
-                          <button type="button" class="btn btn-danger" style="width:100px; display:inline;" id="product-deletar-${product.id}">Deletar</button>
+                          <button type="button" class="btn btn-danger" style="width:100px; display:inline;" id="product-${product.id}-deletar" onclick='deleteProduct(${product.id})'>Deletar</button>
                           <button type="button" class="btn btn-primary" style="width:100px; display:inline;" id="product-${product.id}-editar"><a style="text-decoration: none; color: white" href= 'dashboard-restaurante-edit-produto.html?id=${tableRow.classList}';>Editar</a></button>
                         <div>
                       </div>
@@ -313,15 +313,21 @@
 
       showProducts()
 
-
-      const buttonsDelete = document.querySelectorAll('[id^="product-deletar"]');
-      buttonsDelete.forEach((buttonDelete) => {
+      const inserirDeletes = () => {
+      console.log("as")
+        const buttonsDelete = document.querySelectorAll('[id^="product-"][id$="-deletar"]');
+        console.log("as")
+        buttonsDelete.forEach((buttonDelete) => {
           buttonDelete.addEventListener('click', () => {
-            const id = buttonDelete.id.split('-')[2];
+            console.log("Deus Existe")
+            const id = buttonDelete.id.split('-')[1];
             deleteProduct(id);
           });
         });
-      
+      }
+      inserirDeletes();
+
+    
       async function deleteProduct(id) {
               try {
                 const response = await fetch(`http://localhost:3000/products/${id}`, {
@@ -332,8 +338,8 @@
                 });
 
                 if (response.ok) {
-                  const row = document.querySelector(`#product-deletar-${id}`).parentNode.parentNode;
-                  row.parentNode.removeChild(row);
+                  window.location.reload();
+                  
                 } else {
                   console.error('Erro ao deletar usuário.');
                 }
