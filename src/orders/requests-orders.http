@@ -1,2 +1,5 @@
 ### Find all orders
 GET http://localhost:3000/order/2
+
+### Find all orders products
+GET http://localhost:3000/order/products/2

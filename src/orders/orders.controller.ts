@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OrdersService } from './orders.service';
+import { create } from 'domain';
 
 @Controller('order')
 export class OrdersController {
@@ -12,14 +13,18 @@ export class OrdersController {
       const { id, quantity } = produto;
       return { id, quantity };
     });
-    console.log(body)
 
     const createdProducts = await this.ordersService.createOrderProducts(body.idComprador, body.idRestaurant, products);
     console.log(createdProducts);
   }
 
   @Get('/:id')
-  findUserOrdersProducts(@Param('id') id: string){
+  findUserOrders(@Param('id') id: string){
     return this.ordersService.getAllUserOrders(parseInt(id))
+  }
+
+  @Get('/products/:id')
+  findUserOrderProducts(@Param('id') id: string){
+    return this.ordersService.getUserOrdersProducts(parseInt(id))
   }
 }

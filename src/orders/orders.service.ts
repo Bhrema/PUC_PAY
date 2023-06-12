@@ -28,8 +28,7 @@ export class OrdersService {
     order.idRestaurante = idRestaurant;
   
     const createdOrder = await this.orderRepo.save(order);
-    console.log(createdOrder.id);
-  
+
     const createdOrderProducts: OrderProduct[] = [];
     for (const productDto of orderProducts) {
       const product = new OrderProduct();
@@ -47,12 +46,23 @@ export class OrdersService {
     return createdOrder;
   }
 
-  async getUserOrdersProducts(id: number): Promise<OrderProduct[]> {
-    return this.orderProductRepo.createQueryBuilder('orderProduct')
-      .where('orderProduct.idComprador = :id', { id })
-      .getMany()
+  async getUserOrdersProducts(idComprador: number) {
+    const userOrders = await this.orderRepo.find({
+      where: { idComprador },
+      relations: ['orderProducts', 'orderProducts.product'],
+    });
+    const userOrderProducts = userOrders.map((order) => {
+      const filteredOrderProducts = order.orderProducts.filter(
+        (orderProduct) => orderProduct.idOrder === order.id
+      );
+      return {
+        orderProducts: filteredOrderProducts,
+      };
+    });
+
+    return userOrderProducts;
   }
-  
+
   async getAllUserOrders(idComprador: number): Promise<Order[]> {
     const userOrders = await this.orderRepo.find({
       where: { idComprador },

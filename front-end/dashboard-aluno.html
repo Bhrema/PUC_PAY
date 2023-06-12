@@ -15,12 +15,12 @@
   <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css">
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
-
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
       <!-- Left navbar links -->
@@ -153,7 +153,8 @@
                 </div>
                 <div class="card-body">
                   <div class="personal-info card-body">
-                    <p><a href="" class="d-block" id="session-name-body" style="align-items: center; padding-bottom:10px">
+                    <p><a href="" class="d-block" id="session-name-body"
+                        style="align-items: center; padding-bottom:10px">
                         Faça seu Login</a></p>
                     <p>Email: <span id="email"></span></p>
                     <p>CPF: <span id="cpf"></span></p>
@@ -202,6 +203,7 @@
                         <th>Pedido</th>
                         <th>Produtos</th>
                         <th>Quantidade de itens</th>
+                        <th>Data</th>
                         <th>Ações</th>
                       </tr>
                     </thead>
@@ -210,9 +212,12 @@
                         <td>ID</td>
                         <td>Produtos</td>
                         <td>Itens</td>
+                        <td>Data</td>
+                        <td>Açoes</td>
                         <td>
-                          <button class="btn btn-sm btn-danger" id="button-delete">Detalhes</button>
-                          <button class="btn btn-sm btn-primary" id="button-qr">QRCode</button>
+                          <!-- <button class="btn btn-sm btn-danger" id="button-delete">Detalhes</button>
+                          <button class="btn btn-sm btn-primary" class="generateQRCodeButton">QRCode</button>
+                          <div id="qrcode"></div> -->
                         </td>
                       </tr>
                     </tbody>
@@ -290,7 +295,7 @@
     const email = document.getElementById('email')
     const cpf = document.getElementById('cpf')
 
-    if(!sessionJson){
+    if (!sessionJson) {
       email.innerText = "Faça seu login!"
       cpf.innerText = "Faça seu login!"
     }
@@ -331,8 +336,8 @@
 
     async function getOrder() {
       try {
-        const response = await axios.get(`http://localhost:3000/order/${idUser}`)
-        const data = response.data
+        const response = await axios.get(`http://localhost:3000/order/${idUser}`);
+        const data = response.data;
 
         const tbody = document.getElementById('tbody');
 
@@ -340,27 +345,46 @@
           const row = document.createElement('tr');
 
           row.innerHTML = `
-      <td>${item.id}</td>
-      <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
-      <td>${item.orderProducts.length}</td>
-      <td>
-        <button class="btn btn-sm btn-danger">Detalhes</button>
-        <button class="btn btn-sm btn-primary">QRCode</button>
-      </td>
-    `;
+        <td>${item.id}</td>
+        <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
+        <td>${item.orderProducts.length}</td>
+        <td>${item.date}</td>
+        <td>
+          <button class="btn btn-sm btn-danger">Detalhes</button>
+          <button class="btn btn-sm btn-primary generateQRCodeButton">QRCode</button>
+          <div class="qrcode"></div>
+        </td>
+      `;
 
           tbody.appendChild(row);
         });
-        console.log(data)
 
+        const generateQRCodeButtons = document.querySelectorAll('.generateQRCodeButton');
+
+        generateQRCodeButtons.forEach(button => {
+          button.addEventListener('click', function () {
+            const qrCodeValue = 'https://www.google.com.br/';
+            const qrCodeElement = this.parentNode.querySelector('.qrcode');
+
+            if (qrCodeElement.innerHTML === '') {
+              const qrcode = new QRCode(qrCodeElement, {
+                text: qrCodeValue,
+                width: 128,
+                height: 128
+              });
+            } else {
+              qrCodeElement.innerHTML = '';
+            }
+          });
+        });
+
+        console.log(data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
 
-    getOrder()
-
-
+    getOrder();
   </script>
 
   <!-- REQUIRED SCRIPTS -->

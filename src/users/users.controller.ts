@@ -107,7 +107,7 @@ export class UsersController {
       user.cpf = body.cpf;
     }
     if(body.balance) {
-      user.balance += body.balance
+      user.balance = body.balance
     }
     if(body.isAdmin) {
       user.isAdmin = body.isAdmin

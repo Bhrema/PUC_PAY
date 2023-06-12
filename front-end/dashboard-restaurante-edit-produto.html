@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUCPAY</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="node_modules/bootstrap/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../node_modules/admin-lte/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contato</a>
+        </li>
+      </ul>
+
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <button type="button" class="btn btn-outline-danger float-right" id="btnLogout">Logout</button>
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+            <i class="fas fa-search"></i>
+          </a>
+          <div class="navbar-search-block">
+            <form class="form-inline">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <span class="brand-text font-weight-light" style="margin-left:33px;">PUCPAY</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <i class="fas-fa-user"></i>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block" id="session-name">Faça seu login</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Perfil
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="./dashboard-restaurante-produtos.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Produtos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./dashboard-restaurante-historico.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Histórico</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="./dashboard-restaurante-produtos.html" class="nav-link">
+                      <i class="fas fa-arrow-left"></i>
+                      <p>Voltar</p>
+                    </a>
+                  </li>
+               
+
+              </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- CONTEÚDO DO DASHBOARD -->
+    <div class="mask d-flex align-items-center gradient-custom-3" style=" position:relative; top:90px;">
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" id="card-registro" style="border-radius: 15px;left: 140px;height: 550px;">
+                <div class="card-body p-5"><!--  Input Control -->
+                  <h2 class="text-uppercase text-center mb-5 position-relative" id="label-cad">Editar produto</h2>
+  
+                  <form enctype="multipart/form-data" id="register-form" style="position: relative; bottom: 40px;">
+  
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="name">Nome</label>
+                      <input id="name" type="text" class="form-control form-control-lg" name="name"/>
+                    </div>
+  
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="description">Descrição</label>
+                      <input id="description" type="text" class="form-control form-control-lg" name="description" />
+                    </div>
+  
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="price">Preço</label>
+                      <input id="price" type="text"  class="form-control form-control-lg" name="price" />
+                    </div>
+  
+                    <div class="form-outline mb-1">
+                      <label class="form-label" for="image">Imagem</label>
+                      <input id="image" type="file"  class="form-control form-control-lg" name="image" />
+                    </div>
+  
+                    <div class="form-outline mb-1" style="position:relative; right:1500px">
+                      <label class="form-label" for="restaurant_id">ID</label>
+                      <input id="restaurant_id" type="text"  class="form-control form-control-lg" name="restaurant_id" />
+                    </div>
+  
+                    <div class="d-flex justify-content-center position-relative" style="bottom: 50px;">
+                      <button type="submit"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Confirmar</button>
+                    </div>
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      <!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2023 <a href="https://trello.com/b/1P1e72Ss/projeto">PUCPAY</a>.</strong>
+
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b> 3.2.0
+        </div>
+      </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <script>
+      const btn = document.getElementById('btnLogout')
+      btn.addEventListener('click', async event => {
+        event.preventDefault()
+        await logout()
+        replaceLocation()
+        deleteSession()
+      })
+
+      const logout = async (data) => {
+        const response = await fetch('http://localhost:3000/auth/signout', {
+          method: 'POST'
+        });
+
+      }
+
+      function replaceLocation() {
+        window.location.replace('login.html')
+      }
+
+
+      const session = localStorage.getItem('session')
+      const sessionJson = JSON.parse(session)
+
+      const userNameSession = document.getElementById('session-name')
+      if (!sessionJson.name) {
+        userNameSession.innerText = "Faça seu login!"
+      }
+
+      userNameSession.innerText = sessionJson.name;
+
+      
+      function replaceLocationSubmit() {
+        setTimeout(function () {
+          window.location.href = "login.html";
+        }, 3000);
+      }
+      function replaceLocation() {
+        window.location.replace("login.html");
+      }
+
+      function deleteSession() {
+        localStorage.removeItem("session");
+      }
+      
+      const form = document.getElementById('register-form');
+      const idUser = sessionJson.id;
+      
+      function messageAlert() {
+        const message = document.getElementById('message')
+        const messageRedirect = document.getElementById('messageRedirect')
+        messageRedirect.style.display = 'block';
+      }
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+      
+      document.getElementById("register-form").addEventListener("submit", async function(event) {
+        event.preventDefault()
+        
+        var formData = new FormData(this);
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", `http://localhost:3000/products/${productId}`);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              window.location.href = "dashboard-restaurante-produtos.html" 
+            
+          } else {
+            console.log("Erro na solicitação: " + xhr.status);
+          }
+        }
+      };
+      xhr.send(formData);
+      
+    });
+    
+    async function showProducts() {
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+        );
+        const responseData = await response.json();
+        const product = responseData;
+        document.getElementById("name").value = product.name;
+        document.getElementById("description").value = product.description;
+        document.getElementById("price").value = product.price;
+      }
+      showProducts()
+      
+      </script>
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard2.js"></script>
+</body>
+
+</html>

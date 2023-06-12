@@ -1,4 +1,4 @@
-import { AfterInsert, AfterRemove, AfterUpdate, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, AfterRemove, AfterUpdate, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { OrderProduct } from "./pedido-produto.entity";
 import { User } from "src/users/user.entity";
 
@@ -6,21 +6,21 @@ import { User } from "src/users/user.entity";
 export class Order {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @OneToMany(() => OrderProduct, orderproduct => orderproduct.order)
-    orderProducts: OrderProduct[];
-
+    
     @Column()
     idComprador: number
-
+    
     @Column()
     idRestaurante: number
 
     @Column()
     pendente: boolean;
 
-    @Column({ type: 'datetime' })
-    date: Date;
+    @Column({ type: "datetime" })
+    date: Date
+    
+    @OneToMany(() => OrderProduct, orderproduct => orderproduct.order)
+    orderProducts: OrderProduct[];
 
     @ManyToOne(() => User, user => user.order)
     @JoinColumn({ name: "idComprador", referencedColumnName: "id" })
