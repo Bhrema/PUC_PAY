@@ -27,7 +27,7 @@ export class Order {
     user: User;
 
     @ManyToOne(() => User, user => user.order)
-    @JoinColumn({ name: "idRestauranter", referencedColumnName: "id" })
+    @JoinColumn({ name: "idRestaurante", referencedColumnName: "id" })
     restaurant: User;
     
     @AfterInsert()

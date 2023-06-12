@@ -338,6 +338,7 @@
       try {
         const response = await axios.get(`http://localhost:3000/order/${idUser}`);
         const data = response.data;
+        console.log(data)
 
         const tbody = document.getElementById('tbody');
 

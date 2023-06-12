@@ -137,20 +137,16 @@
                                       <tr>
                                           <th>Pedido</th>
                                           <th>Data</th>
-                                          <th>Total do pedido</th>
-                                          <th>Quantidade de itens</th>
-                                          <th>Ações</th>
+                                          <th>Produtos</th>
+                                          <th>Data</th>
                                       </tr>
                                   </thead>
                                   <tbody id="tbody">
                                       <tr>
                                           <td>ID</td>
-                                          <td>Data</td>
-                                          <td>Total</td>
                                           <td>Itens</td>
-                                          <td>
-                                              <button class="btn btn-sm btn-primary" id="button-delete">Ver pedido</button>
-                                          </td>
+                                          <td>Quantidade</td>
+                                          <td>Data</td>
                                       </tr>
                                   </tbody>
                               </table>
@@ -187,7 +183,9 @@
   <!-- ./wrapper -->
 
 
-  <script>
+  <script type="module">
+
+    import axios from 'https://cdn.skypack.dev/axios';  
     const btn = document.getElementById('btnLogout')
     btn.addEventListener('click', async event => {
       event.preventDefault()
@@ -221,7 +219,35 @@
     }
 
     userNameSession.innerText = sessionJson.name;
+    const idRestaurant = sessionJson.id
 
+
+    async function getOrder() {
+      try {
+        const response = await axios.get(`http://localhost:3000/order/restaurant/${idRestaurant}`);
+        const data = response.data;
+        console.log(data)
+
+        const tbody = document.getElementById('tbody');
+
+        data.forEach(item => {
+          const row = document.createElement('tr');
+
+          row.innerHTML = `
+        <td>${item.id}</td>
+        <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
+        <td>${item.orderProducts.length}</td>
+        <td>${item.date}</td>
+      `;
+
+          tbody.appendChild(row);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getOrder()
   </script>
 
 

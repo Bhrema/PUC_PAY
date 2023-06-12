@@ -30,6 +30,10 @@ export class UpdateUserDto {
   @IsOptional()
   cnpj: string;
 
+  @IsString()
+  @IsOptional()
+  peso: string;
+
   @Transform(({ value }) => parseInt(value))
   @IsNumber()
   @IsOptional()

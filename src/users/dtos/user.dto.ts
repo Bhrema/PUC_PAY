@@ -21,6 +21,9 @@ export class UserDto {
 
   @Expose()
   balance: number
+  
+  @Expose()
+  peso: string;
 
   @Expose()
   image: string;

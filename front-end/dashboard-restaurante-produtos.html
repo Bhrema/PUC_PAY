@@ -314,19 +314,17 @@
       showProducts()
 
 
-      function testarDelete() {
       const buttonsDelete = document.querySelectorAll('[id^="product-deletar"]');
       buttonsDelete.forEach((buttonDelete) => {
           buttonDelete.addEventListener('click', () => {
             const id = buttonDelete.id.split('-')[2];
-            deleteUser(id);
+            deleteProduct(id);
           });
         });
-      }
       
-      async function deleteUser(id) {
+      async function deleteProduct(id) {
               try {
-                const response = await fetch(`http://localhost:3000/products/restaurant/${id}`, {
+                const response = await fetch(`http://localhost:3000/products/${id}`, {
                   method: 'DELETE',
                   headers: {
                     'Content-Type': 'application/json'

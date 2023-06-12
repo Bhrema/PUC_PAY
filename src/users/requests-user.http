@@ -3,19 +3,18 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "otaviodallo@gmail.com",
+  "email": "otaviodallao@gmail.com",
   "name": "Otávio Dallo",
-  "cpf": "10843769931",
+  "cpf": "10843769932",
   "password": "@Livia040323"
 }
 
 ### Sign in as an existing user
-POST http://localhost:3000/auth2/signin
+PUT http://localhost:3000/auth/4
 content-type: application/json
 
 {
-  "email": "ocostadallo@gmail.com",
-  "password": "@Livia040323"
+  "peso": "2000"
 }
 
 ### Get the currently signed in user
@@ -34,10 +33,10 @@ GET http://localhost:3000/auth/adm/restaurants
 GET http://localhost:3000/auth?email=asdf@asdf.com
 
 ### Delete a user given id
-DELETE http://localhost:3000/auth/1
+DELETE http://localhost:3000/auth/3
 
 ### Update a user
-PUT http://localhost:3000/auth/3 HTTP/1.1
+PUT http://localhost:3000/auth/4 HTTP/1.1
 Content-Type: multipart/form-data; boundary=MfnBoundry
 
 --MfnBoundry
@@ -55,7 +54,7 @@ Content-Disposition: form-data; name="cnpj"
 --MfnBoundry
 Content-Disposition: form-data; name="block"
 
-3
+2
 --MfnBoundry
 Content-Disposition: form-data; name="image"; filename="thedripper.png"
 Content-Type: image/jpeg
