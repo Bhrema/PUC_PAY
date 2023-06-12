@@ -28,6 +28,11 @@ export class OrdersController {
     return this.ordersService.getUserOrdersProducts(parseInt(id))
   }
 
+  @Get('/id/:id')
+  findOrder(@Param('id') id: string){
+    return this.ordersService.getOrderById(parseInt(id))
+  }
+
   @Get('restaurant/:id')
   findRestaurantOrders(@Param('id') id: string){
     return this.ordersService.getAllRestaurantOrders(parseInt(id))
