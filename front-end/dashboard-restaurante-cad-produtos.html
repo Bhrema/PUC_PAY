@@ -140,33 +140,41 @@
 
                   <div class="form-outline mb-1">
                     <label class="form-label" for="name">Nome</label>
-                    <input type="text" class="form-control form-control-lg" name="name" />
+                    <input id="formProdName" type="text" class="form-control form-control-lg" name="name" />
+                    <span id="spanName" class="invalid-feedback">Digite um nome de produto válido</span>
                   </div>
 
                   <div class="form-outline mb-1">
                     <label class="form-label" for="description">Descrição</label>
-                    <input id="formAdmNome" type="text" class="form-control form-control-lg" name="description" />
+                    <input id="formProdDesc" type="text" class="form-control form-control-lg" name="description" />
+                    <span id="spanDescription" class="invalid-feedback">Digite algo válido</span>
                   </div>
 
                   <div class="form-outline mb-1">
                     <label class="form-label" for="price">Preço</label>
-                    <input id="formAdmCPF" type="text"  class="form-control form-control-lg" name="price" />
+                    <input id="formProdPrice" type="text"  class="form-control form-control-lg" name="price" />
+                    <span id="spanPrice" class="invalid-feedback">Informe um preço válido</span>
                   </div>
 
                   <div class="form-outline mb-1">
-                    <label class="form-label" for="image">Imagem</label>
-                    <input id="formAdmCNPJ" type="file"  class="form-control form-control-lg" name="image" />
+                    <label class="form-label" for="formProdImage">Imagem</label>
+                    <input id="formProdImage" type="file"  class="form-control form-control-lg" name="image" />
+                    <span id="spanImage" class="invalid-feedback">Insira um arquivo em formato JPEG ou PNG</span>
                   </div>
 
                   <div class="form-outline mb-1" style="position:relative; right:1500px">
                     <label class="form-label" for="idRestaurant">ID</label>
                     <input id="idRestaurant" type="text"  class="form-control form-control-lg" name="idRestaurant" />
+                    
                   </div>
 
+                  
                   <div class="d-flex justify-content-center position-relative" style="bottom: 50px;">
-                    <button type="submit"
+                    <button id="regButton" type="submit"
                       class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrar</button>
                   </div>
+
+                  
                 </form>
 
               </div>
@@ -198,6 +206,84 @@
   <!-- ./wrapper -->
 
   <script>
+
+    const formProdName = document.getElementById('formProdName')
+    const spanName = document.getElementById('spanName')
+
+    formProdName.addEventListener('input', () => {
+      const nameRegex = /^[a-zA-Z0-9\s]+$/;
+      const nameValue = formProdName.value;
+
+      if (nameRegex.test(nameValue)) {
+        formProdName.classList.remove('is-invalid')
+        formProdName.classList.add('is-valid')
+        spanName.style.display = 'none'
+      } else {
+        formProdName.classList.remove('is-valid')
+        formProdName.classList.add('is-invalid')
+        spanName.style.display = 'block'
+      }
+    })
+
+    const formProdDescription = document.getElementById('formProdDesc')
+    const spanDescription = document.getElementById('spanDescription')
+
+    formProdDescription.addEventListener('input', () => {
+      const descriptionRegex = /^[\w\s.,!?()-]+$/;
+      const descriptionValue= formProdDescription.value;
+
+      if (descriptionRegex.test(descriptionValue)) {
+        formProdDescription.classList.remove('is-invalid')
+        formProdDescription.classList.add('is-valid')
+        spanDescription.style.display = 'none'
+      } else {
+        formProdDescription.classList.remove('is-valid')
+        formProdDescription.classList.add('is-invalid')
+        spanDescription.style.display = 'block'
+      }
+    })
+
+    const formProdPrice = document.getElementById('formProdPrice')
+    const spanPrice = document.getElementById('spanPrice')
+
+    formProdPrice.addEventListener('input', () => {
+      const priceRegex = /^\d+(\.\d{1,2})?$/;
+      const priceValue= formProdPrice.value;
+
+      if (priceRegex.test(priceValue)) {
+        formProdPrice.classList.remove('is-invalid')
+        formProdPrice.classList.add('is-valid')
+        spanPrice.style.display = 'none'
+      } else {
+        formProdPrice.classList.remove('is-valid')
+        formProdPrice.classList.add('is-invalid')
+        spanPrice.style.display = 'block'
+      }
+    })
+
+    const formProdImage = document.getElementById('formProdImage')
+    const spanImage = document.getElementById('spanImage')
+
+    formProdImage.addEventListener('input', () => {
+      const imageRegex = /\.(png|jpe?g)$/i;
+      const imageValue= formProdImage.value;
+
+      if (imageRegex.test(imageValue)) {
+        formProdImage.classList.remove('is-invalid')
+        formProdImage.classList.add('is-valid')
+        spanImage.style.display = 'none'
+      } else {
+        formProdImage.classList.remove('is-valid')
+        formProdImage.classList.add('is-invalid')
+        spanImage.style.display = 'block'
+      }
+    })
+
+    
+
+    
+    
+
     const session = localStorage.getItem('session')
     const sessionJson = JSON.parse(session)
     const idRestaurant = document.getElementById('idRestaurant');
