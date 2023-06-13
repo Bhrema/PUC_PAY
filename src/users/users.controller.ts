@@ -28,7 +28,7 @@ export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @Post('/signout')
   signOut(@Session() session: any) {
@@ -106,14 +106,18 @@ export class UsersController {
     if (body.cpf) {
       user.cpf = body.cpf;
     }
-    if(body.balance) {
+    if (body.balance) {
       user.balance = body.balance
     }
-    if(body.isAdmin) {
+    if (body.isAdmin) {
       user.isAdmin = body.isAdmin
     }
-    
+    if(body.password) {
+      user.password = body.password
+    } 
+
     const updatedUser = await this.usersService.update(user);
     return updatedUser;
   }
 }
+

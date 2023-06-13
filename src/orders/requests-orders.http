@@ -5,7 +5,7 @@ GET http://localhost:3000/order/5
 GET http://localhost:3000/order/products/5
 
 ### Find all restaurant Orders
-GET http://localhost:3000/order/restaurant/4
+GET http://localhost:3000/order/restaurant/6
 
 ### Find order by id
 GET http://localhost:3000/order/id/2

@@ -180,7 +180,7 @@
                   <div class="float-right">
                     <h5></h5>
                   </div>
-                  <button onclick="window.location.href='dashboard-aluno-rest-produto.html'"
+                  <button onclick="window.location.href='dashboard-aluno-restaurante.html'"
                     class="btn btn-primary mr-2">Continuar comprando</button>
                   <button class="btn btn-danger" id="button-order">Finalizar Compra</button>
                 </div>
@@ -233,7 +233,6 @@
     tbody.innerHTML = '';
 
     const cartProducts = sessionJson.cart;
-    console.log(cartProducts)
 
     if (cartProducts && tbody && totalElement) {
       updateCartTable();
@@ -271,6 +270,7 @@
     `;
         total += itemTotal;
       });
+    
 
       tbody.innerHTML = tableHTML;
       totalElement.textContent = "Total da Compra: R$" + total.toFixed(2);
@@ -322,7 +322,12 @@
 
     const buttonOrder = document.getElementById('button-order')
     buttonOrder.addEventListener('click', function () {
-      window.location.href = 'dashboard-aluno-buy.html'
+      if(sessionJson.cart){
+        window.location.href = 'dashboard-aluno-buy.html'
+      }else{
+        window.alert('Por favor adicione no carrinho antes de confirmar a compra! Obrigado! Tamojunto!')
+      }
+      
     })
 
     const cartQtd = document.getElementById('cart-qtd');

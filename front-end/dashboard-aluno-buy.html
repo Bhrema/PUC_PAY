@@ -156,12 +156,6 @@
                     <p>Perfil</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="./dashboard-aluno-historico.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Histórico</p>
-                  </a>
-                </li>
 
               </ul>
         </nav>
@@ -425,6 +419,7 @@
       if (sessionJson.balance > total) {
         createOrder(products);
         attBalance()
+        window.location.href = "dashboard-aluno.html"
       }
     });
 

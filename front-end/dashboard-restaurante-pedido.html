@@ -107,27 +107,19 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
+        <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="brand-text font-weight-light" style="margin-left:33px;">PUCPAY</span>
       </a>
 
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 mb-3 d-flex">
-          <div class="info" style="display:flex; gap: 12px; align-items: center; width: 234px;">
-            <!-- <img src="/uploads/eutmj.jfif" alt="foto-perfil" style="border-radius: 30px; width: 30px; border: 1px solid black; height: 35px;">
-              <a href="" class="d-block" id="session-name" style="align-items: center;">Faça seu login</a> -->
-            <div class="card" style="width: 234px; height:95px;">
-              <div class="card-body">
-                <img id="profile-pic" src="../uploads/user 64.png" style="float: left; height:50px; width:50px;">
-                <div style="position:absolute; left:100px; top:15px; width:50px;">
-                  <a href="" class="d-block" id="session-name" style="align-items: center; padding-bottom:10px"> Faça
-                    seu Login</a>
-                  <a href="" class="d-block" id="session-bal" style="align-items: center;">Saldo: R$ <span
-                      id="balance">0</span></a>
-                </div>
-              </div>
-            </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <i class="fas-fa-user"></i>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block" id="session-name">Faça seu login</a>
           </div>
         </div>
 
@@ -135,33 +127,30 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                 with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="./dashboard-aluno-restaurante.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Restaurantes
-                </p>
-              </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./dashboard-aluno.html" class="nav-link">
+                  <a href="./dashboard-restaurante.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Carteira</p>
+                    <p>
+                      Perfil
+                    </p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./dashboard-aluno-perfil.html" class="nav-link">
+                  <a href="./dashboard-restaurante-produtos.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Perfil</p>
+                    <p>Produtos</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="./dashboard-aluno-historico.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Histórico</p>
-                  </a>
-                </li>
+              </ul>
+              <a href="./dashboard-restaurante-historico.html" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Histórico</p>
+              </a>
+              <ul class="nav nav-treeview">
+
 
               </ul>
         </nav>
@@ -267,6 +256,7 @@
     const idPedido = document.getElementById('idPedido')
     idPedido.innerText = idOrder
 
+    userNameSession.innerText = sessionJson.name;
 
     async function getOrder() {
       try {

@@ -30,36 +30,36 @@ GET http://localhost:3000/auth/adm/users
 GET http://localhost:3000/auth/adm/restaurants
 
 ### Find all users with a given email
-GET http://localhost:3000/auth?email=asdf@asdf.com
+GET http://localhost:3000/auth?email=ocostadallo@gmail.com
 
 ### Delete a user given id
 DELETE http://localhost:3000/auth/3
 
 ### Update a user
-PUT http://localhost:3000/auth/4 HTTP/1.1
+PUT http://localhost:3000/auth/6 HTTP/1.1
 Content-Type: multipart/form-data; boundary=MfnBoundry
 
 --MfnBoundry
 Content-Disposition: form-data; name="email"
 
-thedripper@gmail.com
+augustapizzaria@gmail.com
 --MfnBoundry
 Content-Disposition: form-data; name="name"
 
-The Dripper
+Augusta pizzaria
 --MfnBoundry
 Content-Disposition: form-data; name="cnpj"
 
-99321652132452
+99221652132452
 --MfnBoundry
 Content-Disposition: form-data; name="block"
 
 2
 --MfnBoundry
-Content-Disposition: form-data; name="image"; filename="thedripper.png"
+Content-Disposition: form-data; name="image"; filename="augusta.jpg"
 Content-Type: image/jpeg
 
-< thedripper.png
+< augusta.jpg
 --MfnBoundry--
 
 ### Update balance
