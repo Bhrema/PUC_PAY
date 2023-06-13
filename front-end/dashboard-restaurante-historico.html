@@ -182,7 +182,6 @@
   </div>
   <!-- ./wrapper -->
 
-
   <script type="module">
 
     import axios from 'https://cdn.skypack.dev/axios';  
@@ -198,7 +197,6 @@
       const response = await fetch('http://localhost:3000/auth/signout', {
         method: 'POST'
       });
-
     }
 
     function replaceLocation() {
@@ -220,7 +218,6 @@
 
     userNameSession.innerText = sessionJson.name;
     const idRestaurant = sessionJson.id
-
 
     async function getOrder() {
       try {
@@ -249,10 +246,6 @@
 
     getOrder()
   </script>
-
-
-
-
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>

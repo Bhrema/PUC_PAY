@@ -317,7 +317,7 @@
 
     if (sessionJson.balance > 0)
       userBalSession.innerText = sessionJson.balance.toString();
-    balanceCard.innerText = sessionJson.balance.toString()
+      balanceCard.innerText = sessionJson.balance.toString()
     if (sessionJson.image === null) {
       userProfilePic.src = '../uploads/user 64.png';
     } else {
@@ -343,10 +343,10 @@
 
         data.forEach(item => {
           const row = document.createElement('tr');
-
+          row.classList.add(item.id)
           row.innerHTML = `
         <td>${item.id}</td>
-        <td><button class="btn btn-sm btn-primary">Abrir Pedido</button></td>
+        <td><button class="btn btn-sm btn-primary"><a href="dashboard-aluno-pedido.html?id=${row.classList}">Abrir pedido</a></button></td>
         <td>${item.orderProducts.length}</td>
         <td>${item.date}</td>
         <td>

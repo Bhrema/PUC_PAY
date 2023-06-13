@@ -252,42 +252,41 @@
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get("id");
     const register = async (data) => {
-      const response = await fetch(`http://localhost:3000/auth/${userId}`, { // Requisição HTTP POST para essa URL(endpoint do servidor que a função quer acessar)
-        //fetch() retorna uma promise que é resolvida quando a resposta é recebida
+      const response = await fetch(`http://localhost:3000/auth/${userId}`, { 
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json' // Cabeçalho da requisição - Indica que é um JSON
+          'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(data) // Define o corpo como string JSON a partir de data
+        body: JSON.stringify(data)
       })
-      const responseData = await response.json(); // aguarda a resposta e a converte em objeto JavaScript e armazena ela em respondeData
+      const responseData = await response.json();
 
-      console.log(responseData); // exibe a resposta no console
+      console.log(responseData);
 
-      return responseData; // retorna a resposta como um objeto JS
+      return responseData;
     }
-    // Captura o evento de submit do form
+
     form.addEventListener('submit', event => {
-      event.preventDefault() // Previne que a tela sofra refresh
+      event.preventDefault()
       handleRegister()
     })
     async function handleRegister() {
-      const formData = new FormData(form); // obtém os valores do form e os converte em objetos
-      const data = {}; // objeto que irá armazenar os valores do formulário
+      const formData = new FormData(form);
+      const data = {};
 
-      formData.forEach((value, key) => { // itera sobre os campos do formulário
-        data[key] = value; // o valor e a chave são adicionados em data
-        // ex : email(chave) luiz@gamil.com(value)
+      formData.forEach((value, key) => {
+        data[key] = value;
       });
 
-      const response = await register(data) // aguarda a resolução da Promise retornada
+      const response = await register(data)
 
         window.location.replace('dashboard-adm-view-users.html')
       
     }
 
+
     async function showUser() {
-      
+   
       const response = await fetch(
         `http://localhost:3000/auth/${userId}`,
         {
@@ -306,7 +305,9 @@
       document.getElementById("formPassword").value = user.senha;
       document.getElementById("formValidatePassword").value = user.senha;
     }
+
     showUser()
+  
   </script>
 
   <!-- jQuery -->

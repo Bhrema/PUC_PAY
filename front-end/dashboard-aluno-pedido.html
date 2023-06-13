@@ -178,11 +178,11 @@
             <div id="card-master" class="card" style="height: 200px; width: 640px; right: 225px;;">
               <div class="card-body">
                 <div>
-                  <h5 id="idPedido">ID</h5>
+                  <h5>Pedido: <span id="idPedido"></span></h5>
                 </div>
-                <div class="card" style="height: 50px; width:600px; top:30px">
+                <div class="card" style="height: 50px; width:600px; top:30px" id="tableCard">
                   <div class="card-body">
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-1">
                         <div>
                           <img src="image">
@@ -199,7 +199,7 @@
                         <span>Valor: </span>
                         <span class="card-text" id="valor-1">15</span>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -208,9 +208,9 @@
         </div>
       </div>
       <div id="numero-itens-total" style="width:fit-content ;position:relative ;right: 185px; bottom: 75px;">
-        <span id="valor-total" style="font-size: 25px;">Valor Total: </span>
+        <span id="valor-total" style="font-size: 25px;">Valor Total: R$ <span id="totalValue"></span></span>
       </div>
-  
+
     </div>
     <!-- /.content-wrapper -->
 
@@ -258,62 +258,118 @@
   <script src="dist/js/pages/dashboard2.js"></script>
   <script type="module">
     import axios from 'https://cdn.skypack.dev/axios';
+    const urlParams = new URLSearchParams(window.location.search);
+    const idOrder = urlParams.get("id");
+
+    const session = localStorage.getItem('session')
+    const sessionJson = JSON.parse(session)
+    const userNameSession = document.getElementById('session-name')
+    const idPedido = document.getElementById('idPedido')
+    idPedido.innerText = idOrder
 
 
     async function getOrder() {
-        try {
-          const response = await axios.get(`http://localhost:3000/order/${idUser}`);
-          const data = response.data;
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    getOrder();
+      try {
+        const response = await axios.get(`http://localhost:3000/order/id/${idOrder}`);
+        const data = response.data;
+        const products = data[0].orderProducts
+        const container = document.getElementById("tableCard");
+        let total = 0
+        products.forEach(product => {
+          const novoDiv = document.createElement("div");
+          novoDiv.classList.add("card");
 
-
-
-
-
-    const products = sess;
-    function showProducts(product) {
-      const tableRow = document.createElement("div");
-      tableRow.classList.add('row');
-      tableRow.innerHTML = `
-              <div class="col-md-4">
-                <div class="card" style="height: 50px; width:600px">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-1">
-                        <div>
-                          <img src="../uploads/${product.image}" style="width:35px; height:35px; bottom:-5px; position:absolute; border-radius: 10px; border: 2px solid black">
-                        </div>
-                      </div>
-                      <div class="col">
-                        <h5 class="card-title" style="margin-left: -8px; margin-top: -5px;">${product.name}</h5>
-                      </div>
-                      <div class="col-2" style="margin-top: -5px; margin-left: 205px">
-                        <span>Qtnd: </span>
-                        <span class="card-text" id="qntd-${product.id}">${product.quantity}</span>
-                      </div>
-                      <div class="col" style="margin-top: -5px">
-                        <span>Valor: </span>
-                        <span class="card-text" id="valor-${product.id}">R$ ${product.price}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          novoDiv.innerHTML = `
+    <div class="card-body">
+      <div>
+        <h5 id="idPedido">${product.product.id}</h5>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-1">
+              <div>
+                <img src="/uploads/${product.product.image}" style="width:35px; height:35px; bottom:-5px; position:absolute; border-radius: 10px; border: 2px solid black">
               </div>
             </div>
-            `;
-            document.getElementById("card-master").style.height += "100px";
-            document.getElementById("valor-total").style.top += "50px"
-      return tableRow;
+            <div class="col">
+              <h5 class="card-title">${product.product.name}</h5>
+            </div>
+            <div class="col-2">
+              <span>Qtnd: </span>
+              <span class="card-text" id="qntd-1">${product.quantity}</span>
+            </div>
+            <div class="col">
+              <span>Valor: </span>
+              <span class="card-text" id="valor-1">${product.product.price}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+          container.appendChild(novoDiv);
+          const cardMaster = document.getElementById('card-master');
+          const currentHeight = parseInt(cardMaster.style.height);
+          const newHeight = currentHeight + 170;
+          cardMaster.style.height = newHeight + 'px';
+
+          const total = products.reduce((acc, product) => acc + parseFloat(product.product.price), 0)
+          const totalValue = document.getElementById("totalValue")
+          totalValue.innerText = total
+        });
+      } catch (error) {
+        console.error(error)
+      }
     }
-    products.forEach((product) => {
-      const productElement = showProducts(product);
-      document.getElementById("produtos").appendChild(productElement);
-    });
+
+
+    getOrder();
+    const userImage = sessionJson.image
+    const userProfilePic = document.getElementById('profile-pic')
+    if (sessionJson.image === null) {
+      userProfilePic.src = '../uploads/user 64.png';
+    } else {
+      userProfilePic.src = `../uploads/${userImage}`
+    }
+
+    // function showProducts(product) {
+
+    // products.forEach((product) => {
+    //   const productElement = showProducts(product);
+    //   document.getElementById("produtos").appendChild(productElement);
+    // });
+
+
+    const btn = document.getElementById('btnLogout')
+    btn.addEventListener('click', async event => {
+      event.preventDefault()
+      await logout()
+      replaceLocation()
+      deleteSession()
+    })
+
+    const logout = async (data) => {
+      const response = await fetch('http://localhost:3000/auth/signout', {
+        method: 'POST'
+      });
+
+    }
+
+    function replaceLocation() {
+      window.location.replace('login.html')
+    }
+
+
+    function deleteSession() {
+      localStorage.removeItem('session');
+    }
+
+    if (!sessionJson.name) {
+      userNameSession.innerText = "Faça seu login!"
+    }
+
+    userNameSession.innerText = sessionJson.name;
   </script>
 
 
